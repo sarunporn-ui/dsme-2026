@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ลงทะเบียน LINE AI</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex justify-center items-center p-4">
+  
+  <div class="max-w-md w-full bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
+    
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <div class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-2">
+        FREE WORKSHOP • สำหรับเจ้าของธุรกิจ
+      </div>
+      <h1 class="text-2xl font-bold text-slate-800">LINE AI <span class="text-blue-600">เลขาส่วนตัวเจ้าของธุรกิจ</span></h1>
+      <p class="text-xs text-slate-500 mt-1">เชื่อม LINE เข้ากับ AI ให้ช่วยคิด ช่วยจำ และจัดการงานสำคัญได้ตลอดวัน</p>
+    </div>
+
+    <!-- Features Pill -->
+    <div class="flex justify-between text-center text-xs text-slate-600 mb-6 bg-slate-100 p-2 rounded-xl">
+      <div class="w-1/3 py-1 bg-white rounded-lg shadow-sm font-medium">เรียนฟรี</div>
+      <div class="w-1/3 py-1 font-medium">ลงมือทำจริง</div>
+      <div class="w-1/3 py-1 font-medium">จำนวนจำกัด</div>
+    </div>
+
+    <!-- Form View -->
+    <form id="regForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">ชื่อ-นามสกุล <span class="text-red-500">*</span></label>
+        <input type="text" id="fullName" required placeholder="ชื่อที่ใช้ลงทะเบียน" class="w-full border border-slate-200 p-3 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">ชื่อธุรกิจ / แบรนด์ <span class="text-red-500">*</span></label>
+        <input type="text" id="businessName" required placeholder="เช่น ToGreater" class="w-full border border-slate-200 p-3 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">ประเภทธุรกิจ</label>
+        <select id="businessType" class="w-full border border-slate-200 p-3 rounded-xl focus:outline-none focus:border-blue-500 text-sm bg-white">
+          <option value="">เลือกประเภทธุรกิจ</option>
+          <option value="บริการ / ที่ปรึกษา">บริการ / ที่ปรึกษา</option>
+          <option value="สินค้า / E-commerce">สินค้า / E-commerce</option>
+          <option value="การศึกษา">การศึกษา</option>
+          <option value="อื่น ๆ">อื่น ๆ</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">เบอร์โทร <span class="text-red-500">*</span></label>
+        <input type="tel" id="phone" required placeholder="08X-XXX-XXXX" class="w-full border border-slate-200 p-3 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">อยากให้ AI ช่วยงานอะไรที่สุด? <span class="text-red-500">*</span></label>
+        <textarea id="aiGoal" required rows="3" placeholder="เช่น สรุปงาน เตือนติดตามลูกค้า ตอบคำถาม หรือคิดคอนเทนต์" class="w-full border border-slate-200 p-3 rounded-xl focus:outline-none focus:border-blue-500 text-sm"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-2">สนใจบริการใดใน P4Digital</label>
+        <div class="space-y-2 text-sm">
+          <label class="flex items-start gap-2 border p-3 rounded-xl cursor-pointer hover:bg-slate-50">
+            <input type="checkbox" name="services" value="Broadcast Package" class="mt-1 rounded text-blue-600">
+            <div>
+              <div class="font-semibold text-slate-800">1. Broadcast Package</div>
+              <div class="text-xs text-slate-500">แพ็กเกจสื่อสารและ Broadcast ผ่าน LINE OA</div>
+            </div>
+          </label>
+          <label class="flex items-start gap-2 border p-3 rounded-xl cursor-pointer hover:bg-slate-50">
+            <input type="checkbox" name="services" value="บริการยิง Ads" class="mt-1 rounded text-blue-600">
+            <div>
+              <div class="font-semibold text-slate-800">2. บริการยิง Ads</div>
+              <div class="text-xs text-slate-500">วางแผนและบริหารจัดการโฆษณา</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" id="btnSubmit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl shadow-lg transition duration-200">
+        ลงทะเบียน
+      </button>
+    </form>
+
+    <!-- Success View -->
+    <div id="successView" class="hidden text-center py-10 space-y-4">
+      <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto text-3xl font-bold">
+        ✓
+      </div>
+      <h2 class="text-2xl font-bold text-slate-800">ลงทะเบียนสำเร็จ!</h2>
+      <p class="text-slate-500 text-sm">ยินดีด้วย แล้วพบกันวันเรียนเลยนะ<br>รายละเอียดจะส่งให้คุณผ่าน LINE OA</p>
+      <button onclick="liff.closeWindow()" class="w-full border border-blue-600 text-blue-600 font-semibold py-3 rounded-xl hover:bg-blue-50">
+        กลับไปที่ LINE
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // ตั้งค่า URL และ LIFF ID
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz7-1zmpBu52O1evMO0GG8BRC240nKoVLmGwx5ES2GS7Rk0rCVev7r8Li2aEgV5KwW_/exec";
+    const LIFF_ID = "2011192780-bJnFBR4e"; 
+    let profileData = {};
+
+    async function initLiff() {
+      try {
+        await liff.init({ liffId: LIFF_ID });
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        } else {
+          profileData = await liff.getProfile();
+        }
+      } catch (err) {
+        console.error("LIFF Initialization failed", err);
+      }
+    }
+    initLiff();
+
+    document.getElementById('regForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = true;
+      btn.innerText = "กำลังบันทึกข้อมูล...";
+
+      const checkedServices = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
+
+      const payload = {
+        userId: profileData.userId || '',
+        displayName: profileData.displayName || '',
+        fullName: document.getElementById('fullName').value,
+        businessName: document.getElementById('businessName').value,
+        businessType: document.getElementById('businessType').value,
+        phone: document.getElementById('phone').value,
+        aiGoal: document.getElementById('aiGoal').value,
+        services: checkedServices
+      };
+
+      try {
+        await fetch(GAS_WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        document.getElementById('regForm').classList.add('hidden');
+        document.getElementById('successView').classList.remove('hidden');
+      } catch (error) {
+        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+        btn.disabled = false;
+        btn.innerText = "ลงทะเบียน";
+      }
+    });
+  </script>
+</body>
+</html>
