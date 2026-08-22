@@ -5,85 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ลงทะเบียน LINE AI</title>
 
-  <!-- LIFF SDK & Tailwind CSS -->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- LINE Seed Sans TH -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mumu-f/line-seed-sans-th@main/css/line-seed-sans-th.css">
 
   <style>
-    * {
-      font-family: 'LINE Seed Sans TH', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    }
-
-    body {
-      background-color: #f4f7ff;
-    }
-
+    * { font-family: 'LINE Seed Sans TH', sans-serif !important; }
+    body { background-color: #f4f7ff; }
     @keyframes floatCat {
       0%, 100% { transform: translateY(0px) scale(1); }
       50% { transform: translateY(-8px) scale(1.02); }
     }
-    .animate-float {
-      animation: floatCat 2.8s infinite ease-in-out;
-    }
+    .animate-float { animation: floatCat 2.8s infinite ease-in-out; }
   </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
 
-  <!-- Hidden Iframe ป้องกันการรีเฟรชหน้า -->
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
   <div class="max-w-md w-full">
 
-    <!-- Form View -->
     <div id="formContainer" class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
-      
-      <!-- Header -->
       <div class="text-center mb-6">
         <div class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-2">
           FREE WORKSHOP • สำหรับเจ้าของธุรกิจ
         </div>
         <h1 class="text-2xl font-bold text-slate-800">
-          LINE AI <span class="text-blue-600">เลขาส่วนตัวเจ้าของธุรกิจ</span>
+          LINE AI <span class="text-blue-600">เลขาส่วนตัว</span>
         </h1>
-        <p class="text-xs text-slate-500 mt-1">
-          เชื่อม LINE เข้ากับ AI ให้ช่วยคิด ช่วยจำ และจัดการงานสำคัญได้ตลอดวัน
-        </p>
       </div>
 
-      <form id="regForm" action="https://script.google.com/macros/s/AKfycbw6h0pWkP-I3EedD6Qp41v5Ua26A20yGptN3YlqVvEa1tS34sK8wI_-tT2GvS6A9J/exec" method="POST" target="hidden_iframe" class="space-y-4">
-        
-        <!-- Hidden Inputs สำหรับเก็บ LIFF Profile (UID) -->
+      <form id="regForm" class="space-y-4">
+        <!-- Hidden Inputs สำหรับ UID -->
         <input type="hidden" name="userId" id="userId" value="">
         <input type="hidden" name="displayName" id="displayName" value="">
 
-        <!-- ชื่อ-นามสกุล -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">
-            ชื่อ-นามสกุล <span class="text-red-500">*</span>
-          </label>
-          <input type="text" name="fullName" id="fullName" required placeholder="ชื่อที่ใช้ลงทะเบียน" 
-                 class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">ชื่อ-นามสกุล <span class="text-red-500">*</span></label>
+          <input type="text" name="fullName" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500">
         </div>
 
-        <!-- ชื่อธุรกิจ / แบรนด์ -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">
-            ชื่อธุรกิจ / แบรนด์ <span class="text-red-500">*</span>
-          </label>
-          <input type="text" name="businessName" id="businessName" required placeholder="เช่น ToGreater" 
-                 class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">ชื่อธุรกิจ / แบรนด์ <span class="text-red-500">*</span></label>
+          <input type="text" name="businessName" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500">
         </div>
 
-        <!-- บริการที่สนใจ -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">
-            บริการที่สนใจ <span class="text-red-500">*</span>
-          </label>
-          <select name="businessType" id="businessType" required 
-                  class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-white">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">บริการที่สนใจ <span class="text-red-500">*</span></label>
+          <select name="businessType" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500 bg-white">
             <option value="" disabled selected>กรุณาเลือกบริการที่ต้องการ</option>
             <option value="Broadcast Package">Broadcast Package</option>
             <option value="บริการยิง Ads">บริการยิง Ads</option>
@@ -92,36 +59,17 @@
           </select>
         </div>
 
-        <!-- เบอร์โทร -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">
-            เบอร์โทร <span class="text-red-500">*</span>
-          </label>
-          <input type="tel" name="phone" id="phone" required placeholder="08X-XXX-XXXX" 
-                 class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">เบอร์โทร <span class="text-red-500">*</span></label>
+          <input type="tel" name="phone" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500">
         </div>
 
-        <!-- ความต้องการเพิ่มเติม -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">
-            อยากให้ AI ช่วยงานอะไรมากที่สุด? <span class="text-red-500">*</span>
-          </label>
-          <textarea name="aiGoal" id="aiGoal" rows="2" required placeholder="เช่น สรุปงาน เตือนติดตามลูกค้า ตอบคำถาม หรือช่วยคิดคอนเทนต์" 
-                    class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"></textarea>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">อยากให้ AI ช่วยงานอะไร? <span class="text-red-500">*</span></label>
+          <textarea name="aiGoal" rows="2" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500"></textarea>
         </div>
 
-        <!-- Checkbox ยอมรับเงื่อนไข -->
-        <div class="flex items-start space-x-2 pt-2">
-          <input type="checkbox" id="acceptTerms" required 
-                 class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded cursor-pointer">
-          <label for="acceptTerms" class="text-xs text-slate-600 cursor-pointer leading-tight">
-            ฉันยอมรับเงื่อนไขและข้อตกลงในการลงทะเบียนรับข้อมูลข่าวสาร
-          </label>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" id="submitBtn" 
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition duration-200 text-sm shadow-md mt-2">
+        <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl mt-2">
           ยืนยันการลงทะเบียน
         </button>
       </form>
@@ -129,47 +77,25 @@
 
     <!-- Success View -->
     <div id="successView" class="hidden text-center px-4 py-8">
-      
-      <!-- 3D Blue Cat Image (Updated URL) -->
       <div class="flex justify-center mb-3">
         <div class="w-52 h-52 relative animate-float flex items-center justify-center">
           <img src="https://cdni.iconscout.com/illustration/premium/thumb/blue-cat-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--animal-kitty-pet-cute-avatar-pack-people-illustrations-8153098.png?f=webp&w=600" 
-               alt="3D Blue Cat" 
-               class="w-full h-full object-contain drop-shadow-xl" />
+               alt="3D Blue Cat" class="w-full h-full object-contain drop-shadow-xl" />
         </div>
       </div>
-
-      <!-- Green Checkmark Circle -->
-      <div class="flex justify-center mb-3">
-        <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center shadow-sm">
-          <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Success Title -->
       <h2 class="text-2xl font-bold text-slate-900 mb-2">ลงทะเบียนสำเร็จ!</h2>
-      
-      <!-- Description -->
-      <p class="text-xs text-slate-500 font-medium leading-relaxed">
-        ยินดีด้วย แล้วเจอกันวันเรียนเลยนะ
-      </p>
-      <p class="text-xs text-slate-500 font-medium leading-relaxed mb-8">
-        รายละเอียดจะส่งให้คุณผ่าน LINE OA
-      </p>
-
-      <!-- Back to LINE Button -->
-      <button onclick="liff.closeWindow()" 
-              class="w-full bg-white hover:bg-slate-50 text-blue-600 font-semibold py-3 px-6 rounded-2xl border border-blue-200 transition duration-200 text-sm shadow-sm">
+      <p class="text-xs text-slate-500 font-medium mb-8">รายละเอียดจะส่งให้คุณผ่าน LINE OA</p>
+      <button onclick="liff.closeWindow()" class="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-2xl border border-blue-200">
         กลับไปที่ LINE
       </button>
-
     </div>
 
   </div>
 
   <script>
+    // อัปเดต URL ใหม่ของคุณเรียบร้อยแล้ว
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxYSQ3HNnT5KUDPouCIKxxu2zmvEltelhZs6EdHz6NLdeFn0Py9SvqUsYGmNyAwl-DT/exec";
+
     async function main() {
       try {
         await liff.init({ liffId: "2011192780-bJnFBR4e" });
@@ -180,22 +106,33 @@
           document.getElementById('userId').value = profile.userId || "";
           document.getElementById('displayName').value = profile.displayName || "";
         }
-      } catch (err) {
-        console.warn("LIFF Init Error:", err);
-      }
+      } catch (err) { console.warn("LIFF Error:", err); }
     }
     main();
 
-    document.getElementById('regForm').addEventListener('submit', function() {
+    document.getElementById('regForm').addEventListener('submit', function(e) {
+      e.preventDefault(); 
       const btn = document.getElementById('submitBtn');
       btn.disabled = true;
       btn.innerText = "กำลังบันทึกข้อมูล...";
 
-      // แสดงหน้าสำเร็จเมื่อกด Submit
-      setTimeout(() => {
+      const form = document.getElementById('regForm');
+      const formData = new FormData(form);
+
+      fetch(GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors', 
+        body: formData
+      })
+      .then(() => {
         document.getElementById('formContainer').classList.add('hidden');
         document.getElementById('successView').classList.remove('hidden');
-      }, 800);
+      })
+      .catch((err) => {
+        console.error(err);
+        document.getElementById('formContainer').classList.add('hidden');
+        document.getElementById('successView').classList.remove('hidden');
+      });
     });
   </script>
 </body>
