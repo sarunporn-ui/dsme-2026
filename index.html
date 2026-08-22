@@ -5,52 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ลงทะเบียน LINE AI</title>
 
+  <!-- LIFF SDK & Tailwind CSS -->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mumu-f/line-seed-sans-th@main/css/line-seed-sans-th.css">
 
+  <!-- LINE Seed Sans TH Webfont -->
   <style>
-    * { font-family: 'LINE Seed Sans TH', sans-serif !important; }
-    body { background-color: #f4f7ff; }
-    @keyframes floatCat {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-8px) scale(1.02); }
+    @font-face {
+      font-family: 'LINE Seed Sans TH';
+      src: url('https://cdn.jsdelivr.net/gh/mumu-f/line-seed-sans-th@main/fonts/LINESeedSansTH_W_Rg.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
     }
-    .animate-float { animation: floatCat 2.8s infinite ease-in-out; }
+    @font-face {
+      font-family: 'LINE Seed Sans TH';
+      src: url('https://cdn.jsdelivr.net/gh/mumu-f/line-seed-sans-th@main/fonts/LINESeedSansTH_W_Bd.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      font-family: 'LINE Seed Sans TH', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
+    body {
+      background-color: #f4f7ff;
+    }
+
+    @keyframes catBounce {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    @keyframes tailWag {
+      0%, 100% { transform: rotate(-9deg); }
+      50% { transform: rotate(15deg); }
+    }
+    @keyframes blink {
+      0%, 42%, 46%, 100% { transform: scaleY(1); }
+      44% { transform: scaleY(.08); }
+    }
+    @keyframes earWiggle {
+      0%, 82%, 100% { transform: rotate(0); }
+      87% { transform: rotate(-8deg); }
+      92% { transform: rotate(5deg); }
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(.75) translateY(14px); }
+      70% { transform: scale(1.04) translateY(-2px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes sparkle {
+      0%, 100% { opacity: .25; transform: scale(.65) rotate(0); }
+      50% { opacity: 1; transform: scale(1.15) rotate(18deg); }
+    }
+    @keyframes heartFloat {
+      0% { opacity: 0; transform: translateY(8px) scale(.7) rotate(-8deg); }
+      30%, 70% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-28px) scale(1.05) rotate(8deg); }
+    }
+    .success-shell {
+      background:
+        radial-gradient(circle at 14% 8%, rgba(147,197,253,.33), transparent 28%),
+        radial-gradient(circle at 88% 24%, rgba(196,181,253,.3), transparent 25%),
+        linear-gradient(160deg, #f8fbff 0%, #eef4ff 52%, #f7f4ff 100%);
+      border: 1px solid rgba(191,219,254,.8);
+      box-shadow: 0 24px 60px rgba(37,99,235,.14);
+      animation: popIn .55s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .cat-bounce { animation: catBounce 2.7s ease-in-out infinite; transform-origin: 50% 85%; }
+    .cat-tail { animation: tailWag 1.35s ease-in-out infinite; transform-origin: 68px 134px; }
+    .cat-eyes { animation: blink 4.8s infinite; transform-origin: center; }
+    .cat-ear { animation: earWiggle 3.6s ease-in-out infinite; transform-origin: 105px 72px; }
+    .sparkle { animation: sparkle 1.8s ease-in-out infinite; transform-origin: center; }
+    .sparkle.delay { animation-delay: .65s; }
+    .floating-heart { animation: heartFloat 2.8s ease-in-out infinite; transform-origin: center; }
+    .success-check { animation: popIn .5s .25s cubic-bezier(.2,.8,.2,1) both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cat-bounce, .cat-tail, .cat-eyes, .cat-ear, .sparkle, .floating-heart,
+      .success-shell, .success-check { animation: none !important; }
+    }
   </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
 
   <div class="max-w-md w-full">
 
+    <!-- Form View -->
     <div id="formContainer" class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
+      
+      <!-- Header -->
       <div class="text-center mb-6">
         <div class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-2">
           FREE WORKSHOP • สำหรับเจ้าของธุรกิจ
         </div>
         <h1 class="text-2xl font-bold text-slate-800">
-          LINE AI <span class="text-blue-600">เลขาส่วนตัว</span>
+          LINE AI <span class="text-blue-600">เลขาส่วนตัวเจ้าของธุรกิจ</span>
         </h1>
+        <p class="text-xs text-slate-500 mt-1">
+          เชื่อม LINE เข้ากับ AI ให้ช่วยคิด ช่วยจำ และจัดการงานสำคัญได้ตลอดวัน
+        </p>
       </div>
 
       <form id="regForm" class="space-y-4">
-        <!-- Hidden Inputs สำหรับ UID -->
-        <input type="hidden" name="userId" id="userId" value="">
-        <input type="hidden" name="displayName" id="displayName" value="">
-
+        <!-- ชื่อ-นามสกุล -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">ชื่อ-นามสกุล <span class="text-red-500">*</span></label>
-          <input type="text" name="fullName" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">
+            ชื่อ-นามสกุล <span class="text-red-500">*</span>
+          </label>
+          <input type="text" id="fullname" required placeholder="ชื่อที่ใช้ลงทะเบียน" 
+                 class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500">
         </div>
 
+        <!-- ชื่อธุรกิจ / แบรนด์ -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">ชื่อธุรกิจ / แบรนด์ <span class="text-red-500">*</span></label>
-          <input type="text" name="businessName" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">
+            ชื่อธุรกิจ / แบรนด์ <span class="text-red-500">*</span>
+          </label>
+          <input type="text" id="businessName" required placeholder="เช่น ToGreater" 
+                 class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500">
         </div>
 
+        <!-- บริการที่สนใจ -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">บริการที่สนใจ <span class="text-red-500">*</span></label>
-          <select name="businessType" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500 bg-white">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">
+            บริการที่สนใจ <span class="text-red-500">*</span>
+          </label>
+          <select id="serviceType" required 
+                  class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-white">
             <option value="" disabled selected>กรุณาเลือกบริการที่ต้องการ</option>
             <option value="Broadcast Package">Broadcast Package</option>
             <option value="บริการยิง Ads">บริการยิง Ads</option>
@@ -59,33 +143,116 @@
           </select>
         </div>
 
+        <!-- เบอร์โทร -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">เบอร์โทร <span class="text-red-500">*</span></label>
-          <input type="tel" name="phone" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">
+            เบอร์โทร <span class="text-red-500">*</span>
+          </label>
+          <input type="tel" id="phone" required placeholder="08X-XXX-XXXX" 
+                 class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500">
         </div>
 
+        <!-- ความต้องการเพิ่มเติม -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">อยากให้ AI ช่วยงานอะไร? <span class="text-red-500">*</span></label>
-          <textarea name="aiGoal" rows="2" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:border-blue-500"></textarea>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">
+            อยากให้ AI ช่วยงานอะไรมากที่สุด? <span class="text-red-500">*</span>
+          </label>
+          <textarea id="aiNeed" rows="2" required placeholder="เช่น สรุปงาน เตือนติดตามลูกค้า ตอบคำถาม หรือช่วยคิดคอนเทนต์" 
+                    class="w-full text-sm px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"></textarea>
         </div>
 
-        <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl mt-2">
+        <!-- Checkbox ยอมรับเงื่อนไข -->
+        <div class="flex items-start space-x-2 pt-2">
+          <input type="checkbox" id="acceptTerms" required 
+                 class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded cursor-pointer">
+          <label for="acceptTerms" class="text-xs text-slate-600 cursor-pointer leading-tight">
+            ฉันยอมรับเงื่อนไขและข้อตกลงในการลงทะเบียนรับข้อมูลข่าวสาร
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn" 
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition duration-200 text-sm shadow-md mt-2">
           ยืนยันการลงทะเบียน
         </button>
       </form>
     </div>
 
     <!-- Success View -->
-    <div id="successView" class="hidden text-center px-4 py-8">
-      <div class="flex justify-center mb-3">
-        <div class="w-52 h-52 relative animate-float flex items-center justify-center">
-          <img src="https://cdni.iconscout.com/illustration/premium/thumb/blue-cat-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--animal-kitty-pet-cute-avatar-pack-people-illustrations-8153098.png?f=webp&w=600" 
-               alt="3D Blue Cat" class="w-full h-full object-contain drop-shadow-xl" />
+    <div id="successView" class="hidden success-shell text-center rounded-[2rem] px-6 py-8 overflow-hidden relative">
+      <div class="absolute -top-12 -right-10 w-32 h-32 rounded-full bg-blue-200/30 blur-2xl"></div>
+      <div class="absolute top-1/2 -left-12 w-28 h-28 rounded-full bg-violet-200/30 blur-2xl"></div>
+
+      <div class="relative flex justify-center mb-1" aria-label="น้องแมว ToGreater กำลังดีใจ">
+        <div class="w-52 h-52 cat-bounce">
+          <svg viewBox="0 0 220 210" class="w-full h-full drop-shadow-xl" role="img">
+            <defs>
+              <linearGradient id="fur" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#60A5FA"/>
+                <stop offset=".55" stop-color="#3B82F6"/>
+                <stop offset="1" stop-color="#2563EB"/>
+              </linearGradient>
+              <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#DBEAFE"/>
+                <stop offset="1" stop-color="#BFDBFE"/>
+              </linearGradient>
+            </defs>
+
+            <g class="sparkle" fill="#60A5FA">
+              <path d="M36 50l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+              <circle cx="53" cy="37" r="3"/>
+            </g>
+            <g class="sparkle delay" fill="#A78BFA">
+              <path d="M180 54l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/>
+              <circle cx="191" cy="89" r="3"/>
+            </g>
+            <path class="floating-heart" fill="#F472B6" d="M173 32c-8-9-23 3-9 16l9 8 9-8c14-13-1-25-9-16z"/>
+
+            <ellipse cx="110" cy="185" rx="57" ry="10" fill="#1D4ED8" opacity=".12"/>
+            <path class="cat-tail" d="M71 139c-34 10-44-22-23-39 8-6 17 4 10 11-9 9-3 19 14 14" fill="none" stroke="url(#fur)" stroke-width="17" stroke-linecap="round"/>
+
+            <ellipse cx="110" cy="139" rx="48" ry="44" fill="url(#fur)"/>
+            <ellipse cx="110" cy="148" rx="27" ry="29" fill="url(#belly)" opacity=".9"/>
+            <ellipse cx="76" cy="178" rx="19" ry="11" fill="#2563EB" transform="rotate(-8 76 178)"/>
+            <ellipse cx="144" cy="178" rx="19" ry="11" fill="#2563EB" transform="rotate(8 144 178)"/>
+            <path d="M73 129c-20 1-27-10-20-20 6-9 19-2 30 9" fill="#3B82F6"/>
+            <path d="M147 129c20 1 27-10 20-20-6-9-19-2-30 9" fill="#3B82F6"/>
+
+            <path d="M73 80L68 42l29 24z" fill="url(#fur)"/>
+            <path class="cat-ear" d="M147 80l5-38-29 24z" fill="url(#fur)"/>
+            <path d="M77 61l-3-12 12 10z" fill="#F9A8D4" opacity=".75"/>
+            <path d="M143 61l3-12-12 10z" fill="#F9A8D4" opacity=".75"/>
+            <ellipse cx="110" cy="91" rx="48" ry="43" fill="url(#fur)"/>
+
+            <g class="cat-eyes" fill="#172554">
+              <ellipse cx="91" cy="87" rx="6" ry="8"/>
+              <ellipse cx="129" cy="87" rx="6" ry="8"/>
+            </g>
+            <g fill="#fff">
+              <circle cx="89" cy="84" r="2"/><circle cx="127" cy="84" r="2"/>
+            </g>
+            <circle cx="75" cy="103" r="8" fill="#F9A8D4" opacity=".35"/>
+            <circle cx="145" cy="103" r="8" fill="#F9A8D4" opacity=".35"/>
+            <path d="M105 99q5 5 10 0" fill="#F9A8D4"/>
+            <path d="M110 104c-2 7-10 7-12 2m12-2c2 7 10 7 12 2" fill="none" stroke="#172554" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M78 99l-19-3m20 10l-18 4m81-11l19-3m-20 10l18 4" stroke="#1E3A8A" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+          </svg>
         </div>
       </div>
-      <h2 class="text-2xl font-bold text-slate-900 mb-2">ลงทะเบียนสำเร็จ!</h2>
-      <p class="text-xs text-slate-500 font-medium mb-8">รายละเอียดจะส่งให้คุณผ่าน LINE OA</p>
-      <button onclick="liff.closeWindow()" class="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-2xl border border-blue-200">
+
+      <div class="success-check inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-full px-3 py-1.5 mb-3">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span class="text-xs font-bold">ส่งข้อมูลเรียบร้อยแล้ว</span>
+      </div>
+
+      <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-2">เย้! ลงทะเบียนสำเร็จ</h2>
+      <p class="text-sm text-slate-600 leading-relaxed mb-1">น้องแมว ToGreater รับข้อมูลไว้แล้ว</p>
+      <p class="text-sm text-slate-500 leading-relaxed mb-7">รอรับรายละเอียดวันเรียนทาง <span class="font-bold text-blue-600">LINE OA</span> ได้เลยนะ</p>
+
+      <button onclick="liff.closeWindow()"
+              class="relative w-full bg-blue-600 hover:bg-blue-700 active:scale-[.98] text-white font-bold py-3.5 px-6 rounded-2xl transition duration-200 text-sm shadow-lg shadow-blue-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
         กลับไปที่ LINE
       </button>
     </div>
@@ -93,8 +260,10 @@
   </div>
 
   <script>
-    // อัปเดต URL ใหม่ของคุณเรียบร้อยแล้ว
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbxYSQ3HNnT5KUDPouCIKxxu2zmvEltelhZs6EdHz6NLdeFn0Py9SvqUsYGmNyAwl-DT/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxYSQ3HNnT5KUDPouCIKxxu2zmvEltelhZs6EdHz6NLdeFn0Py9SvqUsYGmNyAwl-DT/exec";
+
+    let lineUserId = "";
+    let lineDisplayName = "";
 
     async function main() {
       try {
@@ -103,36 +272,45 @@
           liff.login();
         } else {
           const profile = await liff.getProfile();
-          document.getElementById('userId').value = profile.userId || "";
-          document.getElementById('displayName').value = profile.displayName || "";
+          lineUserId = profile.userId || "";
+          lineDisplayName = profile.displayName || "";
         }
-      } catch (err) { console.warn("LIFF Error:", err); }
+      } catch (err) {
+        console.error("LIFF Init Error:", err);
+      }
     }
     main();
 
     document.getElementById('regForm').addEventListener('submit', function(e) {
-      e.preventDefault(); 
+      e.preventDefault();
+
       const btn = document.getElementById('submitBtn');
       btn.disabled = true;
-      btn.innerText = "กำลังบันทึกข้อมูล...";
+      btn.innerText = "กำลังส่งข้อมูล...";
 
-      const form = document.getElementById('regForm');
-      const formData = new FormData(form);
+      const formData = {
+        userId: lineUserId,
+        displayName: lineDisplayName,
+        fullName: document.getElementById('fullname').value.trim(),
+        businessName: document.getElementById('businessName').value,
+        businessType: document.getElementById('serviceType').value,
+        services: document.getElementById('serviceType').value,
+        phone: document.getElementById('phone').value,
+        aiGoal: document.getElementById('aiNeed').value
+      };
 
-      fetch(GAS_URL, {
+      // เริ่มส่งแบบ keepalive แล้วเปลี่ยนหน้าได้ทันที ไม่ต้องรอ LINE API ตอบกลับ
+      fetch(GAS_WEB_APP_URL, {
         method: 'POST',
-        mode: 'no-cors', 
-        body: formData
-      })
-      .then(() => {
-        document.getElementById('formContainer').classList.add('hidden');
-        document.getElementById('successView').classList.remove('hidden');
-      })
-      .catch((err) => {
-        console.error(err);
-        document.getElementById('formContainer').classList.add('hidden');
-        document.getElementById('successView').classList.remove('hidden');
-      });
+        mode: 'no-cors',
+        keepalive: true,
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify(formData)
+      }).catch(err => console.error('Background submission failed:', err));
+
+      document.getElementById('formContainer').classList.add('hidden');
+      document.getElementById('successView').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>
