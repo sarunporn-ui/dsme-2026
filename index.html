@@ -122,12 +122,12 @@
     <!-- Success View -->
     <div id="successView" class="hidden text-center px-4 py-8">
       
-      <!-- Real 3D Blue Cat Image -->
+      <!-- 3D Blue Cat Image -->
       <div class="flex justify-center mb-3">
         <div class="w-52 h-52 relative animate-float flex items-center justify-center">
           <img src="https://raw.githubusercontent.com/sarunporn-ui/dsme-2026/main/image_f545c0.jpg" 
                alt="3D Blue Cat" 
-               class="w-full h-full object-contain drop-shadow-2xl mix-blend-multiply" />
+               class="w-full h-full object-contain drop-shadow-xl" />
         </div>
       </div>
 
@@ -194,8 +194,7 @@
       btn.disabled = true;
       btn.innerText = "กำลังบันทึกข้อมูล...";
 
-      // เตรียมข้อมูลส่งเข้า Google Apps Script
-      const payload = new URLSearchParams({
+      const formData = {
         userId: lineProfile.userId,
         displayName: lineProfile.displayName,
         pictureUrl: lineProfile.pictureUrl,
@@ -204,16 +203,20 @@
         serviceType: document.getElementById('serviceType').value,
         phone: document.getElementById('phone').value,
         aiNeed: document.getElementById('aiNeed').value
-      });
+      };
 
       try {
+        // ใช้ mode: 'no-cors' เพื่อข้ามปัญหาการบล็อกส่งข้อมูลไปที่ Google Sheets
         await fetch(GAS_WEB_APP_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: payload.toString()
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(formData)
         });
 
-        // สลับแสดงหน้าสำเร็จ
+        // เปลี่ยนหน้าทันที
         document.getElementById('formContainer').classList.add('hidden');
         document.getElementById('successView').classList.remove('hidden');
 
