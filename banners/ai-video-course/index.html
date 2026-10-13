@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CutGreater Banner</title>
+<title>CutGreater Banners</title>
 <style>
 @font-face{font-family:"LINE Seed Sans TH";src:url(assets/fonts/LINESeedSansTH_Rg.ttf);font-weight:400}
 @font-face{font-family:"LINE Seed Sans TH";src:url(assets/fonts/LINESeedSansTH_Bd.ttf);font-weight:700}
@@ -13,6 +13,7 @@
   --tg-blue:#2563FF;--tg-blue-deep:#1B47C2;--tg-blue-soft:#C7D2FE;
   --tg-orange:#FF7A3D;--tg-orange-pale:#FFB088;
   --tg-text:#E6EEFF;--tg-text-muted:#B6C2D9;
+  --tg-ink:#0F172A;--tg-ink-body:#475569;
   --tg-border:rgba(199,210,254,.35);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -20,133 +21,241 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 .hl{color:var(--tg-orange)}
 .banner{position:relative;overflow:hidden;flex:none;
   background:radial-gradient(ellipse 60% 70% at 100% 0%,var(--tg-bg-glow) 0%,transparent 70%),var(--tg-bg)}
-.eyebrow{display:flex;align-items:center;gap:16px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--tg-blue-soft)}
+.banner>*{position:absolute}
+.s11{width:1080px;height:1080px}.s45{width:1080px;height:1350px}.s169{width:1440px;height:810px}
+.center{left:0;right:0;text-align:center;justify-content:center}
+
+.logo{display:flex}.logo img{height:100%}
+.eyebrow{display:flex;align-items:center;gap:16px;font-size:15px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--tg-blue-soft)}
 .eyebrow::before{content:"";width:47px;height:8px;border-radius:8px;background:var(--tg-orange)}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;color:#fff}
-.logo img{height:64px}
-.logo span i{font-style:normal;color:var(--tg-text-muted)}
-.photo{position:absolute;background:url(assets/greater-mick.jpg) center/cover no-repeat}
-.cat{position:absolute}
+.title{font-weight:900;line-height:1;letter-spacing:-.02em;white-space:nowrap}
+.sub{font-weight:700;line-height:1.25;white-space:nowrap}
+.desc{color:var(--tg-blue-soft);line-height:1.5}
+
+.photo{-webkit-mask-image:var(--mv,none);mask-image:var(--mv,none)}
+.photo i{position:absolute;inset:0;background:url(assets/greater-mick.jpg) center/cover no-repeat;
+  -webkit-mask-image:var(--mh,none);mask-image:var(--mh,none)}
+
+.pills{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
 .pill{display:inline-flex;align-items:center;height:44px;padding:0 24px;border-radius:44px;
   border:2px solid rgba(199,210,254,.5);background:rgba(199,210,254,.12);font-size:17px;color:var(--tg-blue-soft)}
-.info{display:flex;gap:14px}
-.stat{background:var(--tg-surface);border:3px solid var(--tg-border);border-radius:14px;padding:16px 20px}
-.stat small{display:block;font-size:14px;color:var(--tg-text-muted);letter-spacing:.06em}
-.stat b{display:block;font-size:28px;font-weight:700;white-space:nowrap;margin-top:2px}
-.price{background:rgba(37,99,255,.20);border:3px solid var(--tg-blue);border-radius:14px;padding:16px 24px;display:flex;align-items:center;gap:22px}
-.price .now small{font-size:15px;color:var(--tg-blue-soft);font-weight:700;letter-spacing:.06em}
-.price .now b{display:block;font-size:64px;font-weight:900;color:var(--tg-orange);line-height:1}
-.price .now b sub{font-size:22px;vertical-align:baseline;font-weight:700;margin-left:4px}
-.price .was{font-size:17px;color:var(--tg-text-muted);line-height:1.5}
-.price .was s{font-size:24px;font-weight:700;color:var(--tg-text-muted)}
-.chip-save{display:inline-block;margin-top:6px;padding:4px 12px;border-radius:8px;border:2px solid var(--tg-orange-pale);color:var(--tg-orange-pale);font-size:14px;font-weight:700}
+
+/* stat card: font-size = ขนาดตัวเลขหลัก */
+.stat{font-size:28px;background:var(--tg-surface);border:3px solid var(--tg-border);border-radius:14px;padding:.55em .7em}
+.stat small{display:block;font-size:.5em;color:var(--tg-text-muted);letter-spacing:.06em}
+.stat b{display:block;font-weight:700;white-space:nowrap;margin-top:.08em}
+
+/* price box: font-size = base 16 */
+.price{font-size:16px;background:#14244F;border:3px solid var(--tg-blue);border-radius:14px;padding:1em 1.5em;display:flex;align-items:center;gap:1.4em}
+.price .now small{font-size:.94em;color:var(--tg-blue-soft);font-weight:700;letter-spacing:.06em}
+.price .now b{display:block;font-size:4em;font-weight:900;color:var(--tg-orange);line-height:1;white-space:nowrap}
+.price .now b sub{font-size:.34em;vertical-align:baseline;font-weight:700;margin-left:.15em}
+.price .was{font-size:1.06em;color:var(--tg-text-muted);line-height:1.5}
+.price .was s{font-size:1.4em;font-weight:700}
+.chip-save{display:inline-block;margin-top:.35em;padding:.25em .75em;border-radius:8px;border:2px solid var(--tg-orange-pale);color:var(--tg-orange-pale);font-size:.85em;font-weight:700}
+.price.col{flex-direction:column;align-items:flex-start;gap:.6em}
+
 .cta{display:flex;align-items:center;gap:18px;font-size:17px;color:var(--tg-text)}
-.cta .btn{background:var(--tg-orange);color:#fff;font-weight:700;border-radius:44px;padding:12px 28px;font-size:19px}
+.cta .btn{background:var(--tg-orange);color:#fff;font-weight:700;border-radius:44px;padding:.7em 1.6em;font-size:1.12em;white-space:nowrap}
 .cta b{font-weight:700}
-.tagline{font-size:13.5px;letter-spacing:.2em;color:var(--tg-text-muted)}
+.cta.between{justify-content:space-between}
+.cta.col{flex-direction:column;align-items:flex-start;gap:12px}
 
-/* ===== 4:5 Feed post 1080×1350 ===== */
-#post{width:1080px;height:1350px}
-#post .top{position:absolute;top:56px;left:64px;right:64px;display:flex;justify-content:space-between;align-items:center}
-#post .top .eyebrow{font-size:15px}
-#post .photo{right:0;top:290px;width:760px;height:733px}
-#post .photo{background:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 75%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 75%,transparent 100%)}
-#post .photo i{position:absolute;inset:0;background:url(assets/greater-mick.jpg) center/cover no-repeat;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 32%);mask-image:linear-gradient(90deg,transparent 0,#000 32%)}
-#post .head{position:absolute;top:150px;left:64px;right:64px}
-#post h1{font-size:150px;font-weight:900;line-height:1;letter-spacing:-.02em}
-#post h2{font-size:46px;font-weight:700;line-height:1.25;margin-top:18px}
-#post .sub{font-size:21px;color:var(--tg-blue-soft);margin-top:14px;line-height:1.5}
-#post .pills{position:absolute;left:64px;top:600px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
-#post .cat{width:210px;left:290px;top:745px;transform:rotate(-6deg)}
-#post .bottom{position:absolute;left:64px;right:64px;top:1000px;display:flex;flex-direction:column;gap:18px}
-#post .info .stat{flex:1}
-#post .price{flex:1.6}
-#post .cta{justify-content:space-between;margin-top:6px}
+/* B: วงกลมราคา / ที่นั่ง — font-size = base */
+.badge{border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.15;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.badge small{font-size:.95em;font-weight:700}
+.badge b{font-size:3.4em;font-weight:900;line-height:1.05}
+.badge span{font-size:.95em;font-weight:700}
+.badge s{font-size:.9em;margin-top:.3em}
+.badge.price-b{background:var(--tg-orange);color:#fff;transform:rotate(8deg)}
+.badge.seat-b{background:#F8FAFF;color:var(--tg-ink);transform:rotate(-6deg)}
+.badge.seat-b b{color:var(--tg-blue)}
+.bar{display:flex;align-items:center;justify-content:space-between;background:rgba(22,32,60,.94);border:3px solid var(--tg-border);border-radius:20px;padding:22px 30px}
+.bar .when small{display:block;font-size:15px;color:var(--tg-text-muted);letter-spacing:.06em}
+.bar .when b{font-size:34px;font-weight:700}
+.bar .when em{font-style:normal;font-size:17px;color:var(--tg-blue-soft)}
+.bar .cta{flex-direction:column;align-items:flex-end;gap:10px}
 
-/* ===== 16:9 1440×810 ===== */
-#wide{width:1440px;height:810px}
-#wide .photo{right:0;top:0;width:840px;height:810px;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 28%);mask-image:linear-gradient(90deg,transparent 0,#000 28%)}
-#wide .logo{position:absolute;top:44px;left:64px}
-#wide .eyebrow{position:absolute;top:122px;left:64px;font-size:15px}
-#wide h1{position:absolute;top:160px;left:64px;font-size:120px;font-weight:900;line-height:1;letter-spacing:-.02em}
-#wide h2{position:absolute;top:292px;left:64px;font-size:40px;font-weight:700}
-#wide .sub{position:absolute;top:352px;left:64px;font-size:19px;color:var(--tg-blue-soft);line-height:1.5}
-#wide .info{position:absolute;top:438px;left:64px;width:700px}
-#wide .stat{flex:1}
-#wide .price{position:absolute;top:566px;left:64px;width:700px}
-#wide .price .now b{font-size:58px}
-#wide .cta{position:absolute;left:64px;bottom:44px}
-#wide .cat{width:170px;right:40px;bottom:30px}
+/* C: ตั๋ว — font-size = base */
+.ticket{background:#F8FAFF;color:var(--tg-ink);border-radius:22px;box-shadow:0 24px 50px rgba(0,0,0,.5);transform:rotate(-3deg)}
+.t-top{padding:1.2em 1.5em 1em}
+.t-label{font-size:.68em;font-weight:700;letter-spacing:.3em;color:var(--tg-blue)}
+.t-row{display:flex;align-items:flex-end;justify-content:space-between;gap:1em;margin-top:.5em}
+.t-row small{display:block;font-size:.7em;color:var(--tg-ink-body)}
+.t-row b{font-size:1.35em;font-weight:700;white-space:nowrap}
+.t-row .seats{text-align:right}
+.t-row .seats b{font-size:1.2em}
+.t-row .seats em{font-style:normal;font-weight:900;font-size:2.3em;color:var(--tg-blue);line-height:1;margin-right:.1em}
+.t-cut{position:relative;border-top:3px dashed #C7D2FE;margin:0 1.2em}
+.t-cut::before,.t-cut::after{content:"";position:absolute;top:-19px;width:36px;height:36px;border-radius:50%;background:var(--tg-bg)}
+.t-cut::before{left:calc(-1.2em - 18px)}.t-cut::after{right:calc(-1.2em - 18px)}
+.t-bot{padding:.9em 1.5em 1.2em;display:flex;align-items:center;gap:1.2em}
+.t-bot small{display:block;font-size:.7em;font-weight:700;color:var(--tg-ink-body);letter-spacing:.06em}
+.t-bot b{display:block;font-size:3.1em;font-weight:900;color:var(--tg-orange);line-height:1;white-space:nowrap}
+.t-bot b sub{font-size:.33em;vertical-align:baseline;font-weight:700;margin-left:.15em;color:var(--tg-ink)}
+.t-bot .was{font-size:.85em;color:var(--tg-ink-body);line-height:1.5}
+.t-bot .was s{font-size:1.25em;font-weight:700}
+.t-bot .chip{display:inline-block;margin-top:.3em;padding:.2em .7em;border-radius:8px;border:2px solid var(--tg-orange);color:var(--tg-orange);font-weight:700;font-size:.9em}
+
+.label{position:static;font-size:14px;letter-spacing:.2em;color:var(--tg-text-muted);margin-bottom:-28px}
 </style>
 </head>
 <body>
 
-<!-- ===== 4:5 ===== -->
-<section class="banner" id="post">
-  <div class="photo"><i></i></div>
-  <div class="top">
-    <div class="logo"><img src="assets/logo-togreater.png" alt=""></div>
-    <div class="eyebrow">New Course · 07.11.26</div>
-  </div>
-  <div class="head">
-    <h1>Cut<span class="hl">Greater</span></h1>
-    <h2>AI ตัดต่อ VDO<br><span class="hl">คลิปพร้อมขาย</span>ในวันเดียว</h2>
-    <p class="sub">คอร์สเวิร์กช็อปสำหรับเจ้าของธุรกิจ<br>ตัดต่อเองได้ ไม่ต้องเป็นสายเทค</p>
-  </div>
-  <div class="pills">
-    <span class="pill">ง่ายๆ</span>
-    <span class="pill">ใช้ได้จริง</span>
-    <span class="pill">เข้าใจธุรกิจ</span>
-  </div>
-  <img class="cat" src="assets/cat-sparkle.png" alt="">
-  <div class="bottom">
-    <div class="info">
-      <div class="stat"><small>วันเรียน</small><b>เสาร์ 7 พ.ย. 2026</b></div>
-      <div class="stat"><small>รับจำกัด</small><b><span class="hl">5</span> ที่นั่งเท่านั้น</b></div>
-    </div>
-    <div class="info">
-      <div class="price">
-        <div class="now"><small>ราคารอบแรก</small><b>6,990<sub>บาท/ท่าน</sub></b></div>
-        <div class="was">ราคาเต็ม <s>8,500</s><br><span class="chip-save">ประหยัด 1,510.-</span></div>
-      </div>
-    </div>
-    <div class="cta">
-      <span class="btn">จองที่นั่ง LINE @togreater</span>
-      <span>โทร <b>095-064-7272</b> (คุณเกรท)</span>
-    </div>
-  </div>
+<!-- =================== A · CLASSIC =================== -->
+<div class="label">A · CLASSIC</div>
+<section class="banner s11" id="a11">
+  <div class="photo" style="left:400px;top:230px;width:680px;height:656px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 75%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
+  <div class="logo" style="left:64px;top:40px;height:64px" data-c="logo"></div>
+  <div class="eyebrow" style="right:64px;top:68px" data-c="eyebrow"></div>
+  <div class="title" style="left:64px;top:130px;font-size:132px" data-c="title"></div>
+  <div class="sub" style="left:64px;top:282px;font-size:42px" data-c="sub2"></div>
+  <div class="desc" style="left:64px;top:405px;font-size:20px" data-c="desc2"></div>
+  <div class="stat" style="left:64px;top:510px;width:360px" data-c="date"></div>
+  <div class="stat" style="left:64px;top:625px;width:360px" data-c="seats"></div>
+  <div class="price" style="left:64px;top:775px;width:952px" data-c="price"></div>
+  <div class="cta between" style="left:64px;right:64px;top:950px" data-c="cta"></div>
 </section>
 
-<!-- ===== 16:9 ===== -->
-<section class="banner" id="wide">
-  <div class="photo"></div>
-  <div class="logo"><img src="assets/logo-togreater.png" alt=""></div>
-  <div class="eyebrow">New Course · 07.11.26</div>
-  <h1>Cut<span class="hl">Greater</span></h1>
-  <h2>AI ตัดต่อ VDO <span class="hl">คลิปพร้อมขาย</span>ในวันเดียว</h2>
-  <p class="sub">คอร์สเวิร์กช็อปสำหรับเจ้าของธุรกิจ · ตัดต่อเองได้ ไม่ต้องเป็นสายเทค</p>
-  <div class="info">
-    <div class="stat"><small>วันเรียน</small><b>เสาร์ 7 พ.ย. 2026</b></div>
-    <div class="stat"><small>รับจำกัด</small><b><span class="hl">5</span> ที่นั่งเท่านั้น</b></div>
-  </div>
-  <div class="price">
-    <div class="now"><small>ราคารอบแรก</small><b>6,990<sub>บาท/ท่าน</sub></b></div>
-    <div class="was">ราคาเต็ม <s>8,500</s><br><span class="chip-save">ประหยัด 1,510.-</span></div>
-  </div>
-  <div class="cta">
-    <span class="btn">จองที่นั่ง LINE @togreater</span>
-    <span>โทร <b>095-064-7272</b></span>
-  </div>
-  <img class="cat" src="assets/cat-sparkle.png" alt="">
+<section class="banner s45" id="a45">
+  <div class="photo" style="right:0;top:290px;width:760px;height:733px;--mv:linear-gradient(180deg,transparent 0,#000 22%,#000 75%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 32%)"><i></i></div>
+  <div class="logo" style="left:64px;top:48px;height:68px" data-c="logo"></div>
+  <div class="eyebrow" style="right:64px;top:78px" data-c="eyebrow"></div>
+  <div class="title" style="left:64px;top:160px;font-size:150px" data-c="title"></div>
+  <div class="sub" style="left:64px;top:320px;font-size:46px" data-c="sub2"></div>
+  <div class="desc" style="left:64px;top:450px;font-size:21px" data-c="desc2"></div>
+  <div class="pills" style="left:64px;top:600px" data-c="pills"></div>
+  <img src="assets/cat-sparkle.png" alt="" style="left:290px;top:745px;width:210px;transform:rotate(-6deg)">
+  <div class="stat" style="left:64px;top:1000px;width:468px" data-c="date"></div>
+  <div class="stat" style="left:548px;top:1000px;width:468px" data-c="seats"></div>
+  <div class="price" style="left:64px;top:1125px;width:952px" data-c="price"></div>
+  <div class="cta between" style="left:64px;right:64px;top:1275px" data-c="cta"></div>
+</section>
+
+<section class="banner s169" id="a169">
+  <div class="photo" style="right:0;top:0;width:840px;height:810px;--mh:linear-gradient(90deg,transparent 0,#000 28%)"><i></i></div>
+  <div class="logo" style="left:64px;top:30px;height:70px" data-c="logo"></div>
+  <div class="eyebrow" style="left:64px;top:122px" data-c="eyebrow"></div>
+  <div class="title" style="left:64px;top:160px;font-size:120px" data-c="title"></div>
+  <div class="sub" style="left:64px;top:292px;font-size:40px" data-c="sub1"></div>
+  <div class="desc" style="left:64px;top:352px;font-size:19px" data-c="desc1"></div>
+  <div class="stat" style="left:64px;top:438px;width:342px" data-c="date"></div>
+  <div class="stat" style="left:422px;top:438px;width:342px" data-c="seats"></div>
+  <div class="price" style="left:64px;top:566px;width:700px;font-size:15px" data-c="price"></div>
+  <div class="cta" style="left:64px;top:712px" data-c="cta"></div>
+  <img src="assets/cat-sparkle.png" alt="" style="right:40px;bottom:30px;width:170px">
+</section>
+
+<!-- =================== B · SPOTLIGHT =================== -->
+<div class="label">B · SPOTLIGHT</div>
+<section class="banner s11" id="b11">
+  <div class="photo" style="left:170px;top:320px;width:740px;height:714px;--mv:linear-gradient(180deg,transparent 0,#000 14%,#000 72%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
+  <div class="logo" style="left:64px;top:40px;height:60px" data-c="logo"></div>
+  <div class="eyebrow" style="right:64px;top:66px" data-c="eyebrow"></div>
+  <div class="title center" style="top:120px;font-size:130px" data-c="title"></div>
+  <div class="sub center" style="top:262px;font-size:36px" data-c="sub1"></div>
+  <div class="badge seat-b" style="left:50px;top:430px;width:190px;height:190px;font-size:15px" data-c="seatbadge"></div>
+  <div class="badge price-b" style="right:40px;top:400px;width:236px;height:236px;font-size:16px" data-c="pricebadge"></div>
+  <img src="assets/cat-sparkle.png" alt="" style="left:80px;top:665px;width:140px;transform:rotate(-6deg)">
+  <div class="bar" style="left:64px;right:64px;top:880px" data-c="bar"></div>
+</section>
+
+<section class="banner s45" id="b45">
+  <div class="photo" style="left:120px;top:380px;width:840px;height:810px;--mv:linear-gradient(180deg,transparent 0,#000 14%,#000 72%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
+  <div class="logo center" style="top:40px;height:68px" data-c="logo"></div>
+  <div class="eyebrow center" style="top:132px" data-c="eyebrow"></div>
+  <div class="title center" style="top:170px;font-size:150px" data-c="title"></div>
+  <div class="sub center" style="top:332px;font-size:42px" data-c="sub1"></div>
+  <div class="badge seat-b" style="left:56px;top:640px;width:210px;height:210px;font-size:16px" data-c="seatbadge"></div>
+  <div class="badge price-b" style="right:48px;top:560px;width:262px;height:262px;font-size:18px" data-c="pricebadge"></div>
+  <img src="assets/cat-sparkle.png" alt="" style="left:100px;top:880px;width:170px;transform:rotate(-6deg)">
+  <div class="bar" style="left:64px;right:64px;top:1120px" data-c="bar"></div>
+</section>
+
+<section class="banner s169" id="b169">
+  <div class="photo" style="left:360px;top:250px;width:720px;height:694px;--mv:linear-gradient(180deg,transparent 0,#000 14%);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
+  <div class="logo" style="left:64px;top:34px;height:64px" data-c="logo"></div>
+  <div class="eyebrow center" style="top:48px" data-c="eyebrow"></div>
+  <div class="title center" style="top:80px;font-size:112px" data-c="title"></div>
+  <div class="sub center" style="top:204px;font-size:34px" data-c="sub1"></div>
+  <div class="stat" style="left:64px;top:320px;width:320px" data-c="date"></div>
+  <div class="stat" style="left:64px;top:440px;width:320px" data-c="seats"></div>
+  <div class="desc" style="left:64px;top:568px;font-size:18px" data-c="desc2"></div>
+  <img src="assets/cat-sparkle.png" alt="" style="left:64px;bottom:20px;width:130px;transform:rotate(-6deg)">
+  <div class="price col" style="right:64px;top:320px;width:330px" data-c="price"></div>
+  <div class="cta col" style="right:64px;top:620px;width:330px" data-c="cta"></div>
+</section>
+
+<!-- =================== C · TICKET =================== -->
+<div class="label">C · TICKET</div>
+<section class="banner s11" id="c11">
+  <div class="photo" style="left:430px;top:290px;width:650px;height:627px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 78%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
+  <div class="logo" style="left:64px;top:40px;height:60px" data-c="logo"></div>
+  <div class="eyebrow" style="right:64px;top:66px" data-c="eyebrow"></div>
+  <div class="title" style="left:64px;top:122px;font-size:124px" data-c="title"></div>
+  <div class="sub" style="left:64px;top:262px;font-size:38px" data-c="sub2"></div>
+  <div class="desc" style="left:64px;top:370px;font-size:19px" data-c="desc2"></div>
+  <div class="ticket" style="left:52px;top:655px;width:540px;font-size:20px" data-c="ticket"></div>
+  <div class="cta between" style="left:64px;right:64px;top:975px" data-c="cta"></div>
+</section>
+
+<section class="banner s45" id="c45">
+  <div class="photo" style="right:0;top:390px;width:820px;height:790px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 80%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
+  <div class="logo" style="left:64px;top:44px;height:66px" data-c="logo"></div>
+  <div class="eyebrow" style="right:64px;top:72px" data-c="eyebrow"></div>
+  <div class="title" style="left:64px;top:150px;font-size:148px" data-c="title"></div>
+  <div class="sub" style="left:64px;top:310px;font-size:46px" data-c="sub2"></div>
+  <div class="desc" style="left:64px;top:440px;font-size:21px" data-c="desc2"></div>
+  <div class="ticket" style="left:60px;top:880px;width:660px;font-size:24px" data-c="ticket"></div>
+  <img src="assets/cat-sparkle.png" alt="" style="left:610px;top:770px;width:160px;transform:rotate(8deg)">
+  <div class="cta between" style="left:64px;right:64px;top:1265px" data-c="cta"></div>
+</section>
+
+<section class="banner s169" id="c169">
+  <div class="photo" style="left:0;top:0;width:840px;height:810px;--mh:linear-gradient(90deg,#000 0,#000 66%,transparent 96%)"><i></i></div>
+  <div class="logo" style="left:790px;top:30px;height:60px" data-c="logo"></div>
+  <div class="eyebrow" style="right:64px;top:52px" data-c="eyebrow"></div>
+  <div class="title" style="left:790px;top:112px;font-size:100px" data-c="title"></div>
+  <div class="sub" style="left:790px;top:226px;font-size:31px" data-c="sub1"></div>
+  <div class="desc" style="left:790px;top:274px;font-size:17px" data-c="desc1"></div>
+  <div class="ticket" style="left:800px;top:345px;width:576px;font-size:20px" data-c="ticket"></div>
+  <div class="cta" style="left:790px;top:700px" data-c="cta"></div>
 </section>
 
 <script>
-/* เปิดด้วย #post หรือ #wide = แสดงเฉพาะแบนเนอร์นั้น (ใช้ตอน export PNG) */
+/* เนื้อหาเดียวกันทุกแบนเนอร์ — แก้ที่นี่ที่เดียว */
+const SEATS='10', DATE='เสาร์ 7 พ.ย. 2026', NOW='6,990', WAS='8,500', SAVE='1,510';
+const T={
+  logo:()=>`<img src="assets/logo-togreater.png" alt="ToGreater">`,
+  eyebrow:()=>`New Course · 07.11.26`,
+  title:()=>`Cut<span class="hl">Greater</span>`,
+  sub1:()=>`AI ตัดต่อ VDO <span class="hl">คลิปพร้อมขาย</span>ในวันเดียว`,
+  sub2:()=>`AI ตัดต่อ VDO<br><span class="hl">คลิปพร้อมขาย</span>ในวันเดียว`,
+  desc1:()=>`คอร์สเวิร์กช็อปสำหรับเจ้าของธุรกิจ · ตัดต่อเองได้ ไม่ต้องเป็นสายเทค`,
+  desc2:()=>`คอร์สเวิร์กช็อปสำหรับเจ้าของธุรกิจ<br>ตัดต่อเองได้ ไม่ต้องเป็นสายเทค`,
+  pills:()=>`<span class="pill">ง่ายๆ</span><span class="pill">ใช้ได้จริง</span><span class="pill">เข้าใจธุรกิจ</span>`,
+  date:()=>`<small>วันเรียน</small><b>${DATE}</b>`,
+  seats:()=>`<small>รับจำกัด</small><b><span class="hl">${SEATS}</span> ที่นั่งเท่านั้น</b>`,
+  price:()=>`<div class="now"><small>ราคารอบแรก</small><b>${NOW}<sub>บาท/ท่าน</sub></b></div>
+             <div class="was">ราคาเต็ม <s>${WAS}</s><br><span class="chip-save">ประหยัด ${SAVE}.-</span></div>`,
+  cta:()=>`<span class="btn">จองที่นั่ง LINE @togreater</span><span>โทร <b>095-064-7272</b> (คุณเกรท)</span>`,
+  seatbadge:()=>`<small>รับเพียง</small><b>${SEATS}</b><span>ที่นั่ง</span>`,
+  pricebadge:()=>`<small>ราคารอบแรก</small><b>${NOW}</b><span>บาท/ท่าน</span><s>ราคาเต็ม ${WAS}</s>`,
+  bar:()=>`<div class="when"><small>วันเรียน</small><b>${DATE}</b><br><em>เวิร์กช็อป 1 วัน · ลงมือทำจริง</em></div>
+           <div class="cta"><span class="btn">จองที่นั่ง LINE @togreater</span><span>โทร <b>095-064-7272</b> (คุณเกรท)</span></div>`,
+  ticket:()=>`<div class="t-top"><div class="t-label">ADMIT ONE · CUTGREATER WORKSHOP</div>
+               <div class="t-row"><div><small>วันเรียน</small><b>${DATE}</b></div>
+               <div class="seats"><small>รับจำกัด</small><b><em>${SEATS}</em>ที่นั่ง</b></div></div></div>
+             <div class="t-cut"></div>
+             <div class="t-bot"><div><small>ราคารอบแรก</small><b>${NOW}<sub>บาท/ท่าน</sub></b></div>
+               <div class="was">ราคาเต็ม <s>${WAS}</s><br><span class="chip">ประหยัด ${SAVE}.-</span></div></div>`,
+};
+document.querySelectorAll('[data-c]').forEach(el=>el.innerHTML=T[el.dataset.c]());
+
+/* เปิดด้วย #<id> เช่น #a45 = แสดงเฉพาะแบนเนอร์นั้น (ใช้ตอน export PNG) */
 const only=location.hash.slice(1);
-if(only){document.body.style.cssText='padding:0;gap:0;background:none';
-  document.querySelectorAll('.banner').forEach(b=>{if(b.id!==only)b.remove()})}
+if(only){document.body.style.cssText='padding:0;gap:0;background:none;display:block';
+  document.querySelectorAll('body>*:not(script)').forEach(b=>{if(b.id!==only)b.remove()})}
 </script>
 </body>
 </html>
