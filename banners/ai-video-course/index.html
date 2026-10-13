@@ -104,6 +104,8 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 .t-bot .chip{display:inline-block;margin-top:.3em;padding:.2em .7em;border-radius:8px;border:2px solid var(--tg-orange);color:var(--tg-orange);font-weight:700;font-size:.95em}
 
 /* โลโก้เครื่องมือ (ลอยแบบไอคอนแอป) — width = ขนาดไอคอน */
+.headrow{display:flex;align-items:center;gap:24px}
+.headrow .title{font-size:var(--fs)}
 .tools{display:flex;gap:18px;align-items:flex-start}
 .tools.col{flex-direction:column;gap:14px}
 .tool{width:var(--w);display:flex;flex-direction:column;align-items:center;gap:8px;transform:rotate(-6deg)}
@@ -122,24 +124,21 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 <section class="banner s11" id="a11">
   <div class="photo" style="left:420px;top:220px;width:660px;height:637px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 75%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
   <div class="logo" style="left:64px;top:36px;height:64px" data-c="logo"></div>
-  <div class="eyebrow" style="right:64px;top:64px" data-c="eyebrow"></div>
   <div class="stack" style="left:64px;top:112px;gap:14px">
-    <div class="title" style="font-size:120px" data-c="title"></div>
+    <div class="headrow" style="--fs:120px;--w:100px" data-c="head"></div>
     <div class="sub" style="font-size:42px" data-c="sub"></div>
   </div>
   <div class="stat" style="left:64px;top:478px;width:420px;font-size:40px" data-c="date"></div>
   <div class="stat" style="left:64px;top:614px;width:420px;font-size:40px" data-c="seats"></div>
   <div class="price" style="left:64px;top:770px;width:952px;font-size:20px" data-c="price"></div>
   <div class="cta" style="left:64px;top:958px;font-size:26px" data-c="cta"></div>
-  <div class="tools col" style="right:56px;top:120px;--w:100px" data-c="tools"></div>
 </section>
 
 <section class="banner s45" id="a45">
   <div class="photo" style="right:0;top:440px;width:760px;height:733px;--mv:linear-gradient(180deg,transparent 0,#000 22%,#000 75%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 32%)"><i></i></div>
   <div class="logo" style="left:64px;top:44px;height:68px" data-c="logo"></div>
-  <div class="eyebrow" style="right:64px;top:74px" data-c="eyebrow"></div>
   <div class="stack" style="left:64px;top:140px">
-    <div class="title" style="font-size:150px" data-c="title"></div>
+    <div class="headrow" style="--fs:150px;--w:110px" data-c="head"></div>
     <div class="sub" style="font-size:52px" data-c="sub"></div>
     <div class="desc" style="font-size:28px" data-c="desc2"></div>
   </div>
@@ -148,15 +147,13 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="stat" style="left:548px;top:925px;width:468px;font-size:42px" data-c="seats"></div>
   <div class="price" style="left:64px;top:1072px;width:952px;font-size:20px" data-c="price"></div>
   <div class="cta" style="left:64px;top:1250px;font-size:28px" data-c="cta"></div>
-  <div class="tools col" style="right:72px;top:150px;--w:104px" data-c="tools"></div>
 </section>
 
 <section class="banner s169" id="a169">
   <div class="photo" style="right:0;top:0;width:840px;height:810px;--mh:linear-gradient(90deg,transparent 0,#000 28%)"><i></i></div>
   <div class="logo" style="left:64px;top:26px;height:62px" data-c="logo"></div>
   <div class="stack" style="left:64px;top:104px;gap:12px">
-    <div class="eyebrow" data-c="eyebrow"></div>
-    <div class="title" style="font-size:96px" data-c="title"></div>
+    <div class="headrow" style="--fs:96px;--w:88px" data-c="head"></div>
     <div class="sub" style="font-size:34px" data-c="sub"></div>
   </div>
   <div class="stat" style="left:64px;top:426px;width:342px;font-size:34px" data-c="date"></div>
@@ -164,7 +161,6 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="price" style="left:64px;top:562px;width:700px;font-size:17px" data-c="price"></div>
   <div class="cta" style="left:64px;top:708px;font-size:25px" data-c="cta"></div>
   <img src="assets/cat-sparkle.png" alt="" style="right:40px;bottom:30px;width:170px">
-  <div class="tools col" style="right:64px;top:36px;--w:96px" data-c="tools"></div>
 </section>
 
 <!-- =================== B · SPOTLIGHT =================== -->
@@ -172,39 +168,34 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 <section class="banner s11" id="b11">
   <div class="photo" style="left:170px;top:400px;width:740px;height:714px;--mv:linear-gradient(180deg,transparent 0,#000 14%,#000 70%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
   <div class="logo" style="left:64px;top:36px;height:60px" data-c="logo"></div>
-  <div class="eyebrow" style="right:64px;top:62px" data-c="eyebrow"></div>
   <div class="stack center" style="top:100px;gap:14px">
-    <div class="title" style="font-size:112px" data-c="title"></div>
+    <div class="headrow" style="--fs:112px;--w:100px" data-c="head"></div>
     <div class="sub" style="font-size:40px" data-c="sub"></div>
   </div>
   <div class="badge seat-b" style="left:30px;top:480px;width:250px;height:250px;font-size:20px" data-c="seatbadge"></div>
   <div class="badge price-b" style="right:26px;top:455px;width:286px;height:286px;font-size:20px" data-c="pricebadge"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:96px;top:740px;width:120px;transform:rotate(-6deg)">
   <div class="bar" style="left:64px;right:64px;top:880px" data-c="bar"></div>
-  <div class="tools col" style="right:64px;top:118px;--w:92px" data-c="tools"></div>
 </section>
 
 <section class="banner s45" id="b45">
   <div class="photo" style="left:120px;top:540px;width:840px;height:810px;--mv:linear-gradient(180deg,transparent 0,#000 14%,#000 66%,transparent 84%);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
   <div class="logo center" style="top:34px;height:66px" data-c="logo"></div>
-  <div class="eyebrow center" style="top:120px" data-c="eyebrow"></div>
   <div class="stack center" style="top:158px;gap:16px">
-    <div class="title" style="font-size:150px" data-c="title"></div>
+    <div class="headrow" style="--fs:150px;--w:120px" data-c="head"></div>
     <div class="sub" style="font-size:50px" data-c="sub"></div>
   </div>
   <div class="badge seat-b" style="left:30px;top:700px;width:276px;height:276px;font-size:22px" data-c="seatbadge"></div>
   <div class="badge price-b" style="right:24px;top:640px;width:312px;height:312px;font-size:22px" data-c="pricebadge"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:80px;top:985px;width:140px;transform:rotate(-6deg)">
   <div class="bar" style="left:64px;right:64px;top:1130px" data-c="bar"></div>
-  <div class="tools col" style="right:64px;top:176px;--w:100px" data-c="tools"></div>
 </section>
 
 <section class="banner s169" id="b169">
   <div class="photo" style="left:380px;top:300px;width:680px;height:656px;--mv:linear-gradient(180deg,transparent 0,#000 14%);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
   <div class="logo" style="left:64px;top:30px;height:62px" data-c="logo"></div>
-  <div class="eyebrow center" style="top:34px" data-c="eyebrow"></div>
   <div class="stack center" style="top:66px;gap:12px">
-    <div class="title" style="font-size:86px" data-c="title"></div>
+    <div class="headrow" style="--fs:86px;--w:80px" data-c="head"></div>
     <div class="sub" style="font-size:30px" data-c="sub"></div>
   </div>
   <div class="stat" style="left:64px;top:330px;width:330px;font-size:36px" data-c="date"></div>
@@ -212,7 +203,6 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <img src="assets/cat-sparkle.png" alt="" style="left:64px;bottom:20px;width:130px;transform:rotate(-6deg)">
   <div class="price col" style="right:64px;top:330px;width:340px;font-size:18px" data-c="price"></div>
   <div class="cta" style="right:64px;top:610px;font-size:26px" data-c="cta"></div>
-  <div class="tools" style="left:960px;top:70px;--w:84px" data-c="tools"></div>
 </section>
 
 <!-- =================== C · TICKET =================== -->
@@ -220,49 +210,46 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 <section class="banner s11" id="c11">
   <div class="photo" style="left:450px;top:300px;width:630px;height:608px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 78%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
   <div class="logo" style="left:64px;top:36px;height:60px" data-c="logo"></div>
-  <div class="eyebrow" style="right:64px;top:62px" data-c="eyebrow"></div>
   <div class="stack" style="left:64px;top:110px;gap:14px">
-    <div class="title" style="font-size:112px" data-c="title"></div>
+    <div class="headrow" style="--fs:112px;--w:96px" data-c="head"></div>
     <div class="sub" style="font-size:40px" data-c="sub"></div>
     <div class="desc" style="font-size:23px" data-c="desc2"></div>
   </div>
   <div class="ticket" style="left:48px;top:610px;width:580px;font-size:22px" data-c="ticket"></div>
   <div class="cta" style="left:64px;top:968px;font-size:26px" data-c="cta"></div>
-  <div class="tools col" style="right:64px;top:126px;--w:100px" data-c="tools"></div>
 </section>
 
 <section class="banner s45" id="c45">
   <div class="photo" style="right:0;top:520px;width:800px;height:772px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 80%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
   <div class="logo" style="left:64px;top:40px;height:66px" data-c="logo"></div>
-  <div class="eyebrow" style="right:64px;top:68px" data-c="eyebrow"></div>
   <div class="stack" style="left:64px;top:140px">
-    <div class="title" style="font-size:150px" data-c="title"></div>
+    <div class="headrow" style="--fs:150px;--w:110px" data-c="head"></div>
     <div class="sub" style="font-size:52px" data-c="sub"></div>
     <div class="desc" style="font-size:27px" data-c="desc2"></div>
   </div>
   <div class="ticket" style="left:52px;top:850px;width:700px;font-size:26px" data-c="ticket"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:650px;top:750px;width:150px;transform:rotate(8deg)">
   <div class="cta" style="left:64px;top:1250px;font-size:28px" data-c="cta"></div>
-  <div class="tools col" style="right:70px;top:150px;--w:108px" data-c="tools"></div>
 </section>
 
 <section class="banner s169" id="c169">
   <div class="photo" style="left:0;top:0;width:840px;height:810px;--mh:linear-gradient(90deg,#000 0,#000 66%,transparent 96%)"><i></i></div>
   <div class="logo" style="left:790px;top:26px;height:56px" data-c="logo"></div>
-  <div class="eyebrow" style="right:64px;top:46px" data-c="eyebrow"></div>
   <div class="stack" style="left:790px;top:92px;gap:12px">
-    <div class="title" style="font-size:80px" data-c="title"></div>
+    <div class="headrow" style="--fs:80px;--w:76px" data-c="head"></div>
     <div class="sub" style="font-size:30px" data-c="sub"></div>
   </div>
   <div class="ticket" style="left:800px;top:375px;width:576px;font-size:20px" data-c="ticket"></div>
   <div class="cta" style="left:790px;top:708px;font-size:25px" data-c="cta"></div>
-  <div class="tools col" style="left:640px;top:50px;--w:96px" data-c="tools"></div>
 </section>
 
 <script>
 /* เนื้อหาเดียวกันทุกแบนเนอร์ — แก้ที่นี่ที่เดียว */
 const SEATS='10', DATE='เสาร์ 7 พ.ย. 2026', NOW='6,990', WAS='8,500', SAVE='1,510';
 const T={
+  head:()=>`<div class="tool"><img class="ic" src="assets/capcut-icon.png" alt=""><img class="wm" src="assets/capcut-wordmark-white.png" alt="CapCut"></div>
+             <div class="title">${T.title()}</div>
+             <div class="tool"><img class="ic" src="assets/claude-icon.svg" alt=""><span class="wt">Claude</span></div>`,
   tools:()=>`<div class="tool"><img class="ic" src="assets/capcut-icon.png" alt=""><img class="wm" src="assets/capcut-wordmark-white.png" alt="CapCut"></div>
              <div class="tool"><img class="ic" src="assets/claude-icon.svg" alt=""><span class="wt">Claude</span></div>`,
   logo:()=>`<img src="assets/logo-togreater.png" alt="ToGreater">`,
