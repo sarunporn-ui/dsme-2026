@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>1 Day AI ตัดคลิป v4</title>
+<style>
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_Rg.ttf); font-weight:400; }
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_Bd.ttf); font-weight:700; }
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_He.ttf); font-weight:900; }
+
+  :root{ --navy:#0F172A; --blue:#2563FF; --blue-deep:#1B47C2; --orange:#FF7A3D; --w:#fff; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#000; }
+  body{ font-family:"LINE Seed Sans TH",sans-serif; }
+  .poster{ position:relative; width:1080px; height:1350px; overflow:hidden; color:#fff; }
+  .abs{ position:absolute; }
+
+  /* ---------- Background: สีเดียว + วงแหวนซ้อน ---------- */
+  .bg{ position:absolute; inset:0; overflow:hidden;
+      background:radial-gradient(ellipse 70% 50% at 85% 10%, #4A7DFF 0%, transparent 60%), linear-gradient(160deg, #2E6BFF 0%, #2350E0 45%, #1B3FB8 100%); }
+  .ring{ position:absolute; border-radius:50%; left:50%; top:50%; transform:translate(-50%,-50%); }
+  .rings{ position:absolute; left:820px; top:980px; width:0; height:0; }
+  .r1{ width:1500px; height:1500px; background:rgba(255,255,255,.07); }
+  .r2{ width:1120px; height:1120px; background:rgba(10,30,120,.22); }
+  .r3{ width:760px;  height:760px;  background:rgba(255,255,255,.10); }
+  .r4{ width:420px;  height:420px;  background:rgba(10,30,120,.24); }
+  .bg::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:260px; background:linear-gradient(transparent, rgba(15,23,42,.45)); }
+
+  /* ---------- Logo row ---------- */
+  .logos{ left:50%; top:46px; transform:translateX(-50%); display:flex; align-items:center; gap:30px; white-space:nowrap; }
+  .lg{ display:flex; align-items:center; gap:10px; font-weight:900; font-size:30px; }
+  .lg img{ height:46px; display:block; }
+  .lg .app{ width:46px; height:46px; border-radius:12px; overflow:hidden; background:#fff; }
+  .lg .app img{ width:118%; height:118%; margin:-9%; }
+  .lg .app.cat img{ width:80%; height:auto; margin:10% auto 0; }
+  .lg small{ font-size:15px; font-weight:700; line-height:1.15; display:block; opacity:.9; }
+  .vr{ width:2px; height:40px; background:rgba(255,255,255,.4); }
+
+  /* ---------- Person ---------- */
+  .people{ left:-20px; top:452px; width:760px; filter:drop-shadow(0 30px 40px rgba(10,20,80,.35)); }
+
+  /* ---------- Right column ---------- */
+  .eyebrow{ left:640px; top:196px; font-size:30px; line-height:1.25; font-style:italic; }
+  .eyebrow b{ font-weight:900; }
+  .h{ left:636px; font-weight:900; color:#fff; line-height:1; white-space:nowrap; text-shadow:0 10px 30px rgba(10,20,80,.35); }
+  .h1{ top:292px; font-size:140px; }
+  .h2{ top:418px; font-size:150px; }
+  .h3{ top:574px; font-size:112px; }
+
+  .bubble{ left:610px; top:690px; width:430px; background:#fff; color:var(--navy); padding:22px 26px 16px; font-size:34px; font-weight:700; line-height:1.3;
+      transform:skewX(-6deg); box-shadow:0 18px 30px rgba(10,20,80,.3); }
+  .bubble span{ display:block; transform:skewX(6deg); }
+  .bubble em{ font-style:normal; color:var(--orange); font-weight:900; }
+  .bubble::before{ content:""; position:absolute; left:-30px; top:40px; border:18px solid transparent; border-right:30px solid #fff; border-left:0; }
+
+  .chips{ left:770px; top:860px; display:flex; flex-direction:column; gap:14px; align-items:flex-end; width:270px; }
+  .chip{ background:rgba(15,23,42,.55); border:2px solid rgba(255,255,255,.35); border-radius:40px; padding:12px 22px 8px; font-size:26px; white-space:nowrap; }
+  .chip b{ font-weight:900; color:#FFD3BC; }
+
+  /* price badge */
+  .price{ left:70px; top:200px; width:250px; height:250px; border-radius:50%; background:var(--orange); border:6px solid #fff;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-8deg); box-shadow:0 22px 36px rgba(10,20,80,.35); }
+  .price small{ font-size:24px; font-weight:700; }
+  .price b{ font-size:72px; font-weight:900; line-height:1.05; }
+  .price s{ font-size:20px; opacity:.9; }
+
+  /* ---------- Bottom bar ---------- */
+  .bar{ left:60px; top:1262px; width:960px; height:58px; display:flex; }
+  .seg{ display:flex; align-items:stretch; flex:1; }
+  .seg .ic{ background:var(--navy); width:110px; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:10px 0 0 10px; }
+  .seg .tx{ flex:1; background:rgba(255,255,255,.22); display:flex; align-items:center; padding:4px 18px 0; font-weight:700; font-size:24px; white-space:nowrap; border-radius:0 10px 10px 0; }
+  .seg + .seg{ margin-left:16px; }
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="bg" id="bg">
+    <div class="rings"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring r4"></div></div>
+  </div>
+
+  <div class="abs logos" id="logos">
+    <div class="lg"><div class="app cat" id="lgcat"><img src="assets/logo-cat.png" alt=""></div><span>ToGreater</span></div>
+    <div class="vr"></div>
+    <div class="lg"><div class="app" id="lgcapcut"><img src="assets/capcut.png" alt=""></div><span>CapCut</span></div>
+    <div class="vr"></div>
+    <div class="lg"><div class="app" id="lgclaude"><img src="assets/claude.png" alt=""></div><span>Claude</span></div>
+  </div>
+
+  <div class="abs price" id="price"><small>ราคารอบแรก</small><b>6,990</b><small>บาท/ท่าน</small><s>ราคาเต็ม 8,500</s></div>
+
+  <img class="abs people" id="people" src="assets/instructors-bighead.png" alt="ผู้สอน">
+
+  <div class="abs eyebrow" id="eyebrow"><b>#ToGreater</b>,<br>คอร์สสด 1 วันจบ</div>
+  <div class="abs h h1" id="h1">1 Day</div>
+  <div class="abs h h2" id="h2">AI</div>
+  <div class="abs h h3" id="h3">ตัดคลิป</div>
+
+  <div class="abs bubble" id="bubble"><span>ทำคลิป ตัดต่อ <em>พร้อมขาย</em><br>ด้วย CapCut + Claude</span></div>
+
+  <div class="abs chips" id="chips">
+    <div class="chip" id="c1">วันเรียน <b>เสาร์ 7 พ.ย. 69</b></div>
+    <div class="chip" id="c2">รับเพียง <b>10 ที่นั่ง</b></div>
+  </div>
+
+  <div class="abs bar" id="bar">
+    <div class="seg"><div class="ic" id="ib1">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg></div>
+      <div class="tx" id="tb1">สนใจ คอมเมนต์เลย</div></div>
+    <div class="seg"><div class="ic" id="ib2"><span style="font-weight:900;font-size:22px">LINE</span></div>
+      <div class="tx" id="tb2">@togreater</div></div>
+    <div class="seg"><div class="ic" id="ib3">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
+      <div class="tx" id="tb3">095-064-7272</div></div>
+  </div>
+</div>
+</body>
+</html>
