@@ -28,7 +28,9 @@ img('laptop','Laptop CapCut UI');
 img('stCapcut','Sticker CapCut'); img('stCat','Sticker cat');
 s.addText([{ text:'CapCut + Claude + 1 วัน = ' }, { text:'คลิปพร้อมขาย', options:{ color:C.orange } }],
   T({ ...box(t.l1), align:'center', fontSize:pt(32), bold:true, color:C.w, objectName:'Copy 1' }));
-s.addText('คอร์สสด 1 วันจบ · สนใจ คอมเมนต์เลย!', T({ ...box(t.l2), align:'center', fontSize:pt(30), color:C.soft, objectName:'Copy 2' }));
-s.addText([{ text:'เสาร์ 7 พ.ย. 69 · รับ 10 ที่นั่ง · รอบแรก 9,900.- ' }, { text:'(ปกติ 12,900)', options:{ strike:'sngStrike', bold:false } }],
-  T({ ...box(t.l3), align:'center', fontSize:pt(28), bold:true, color:C.w, fill:{ color:C.blue }, objectName:'Copy 3' }));
+s.addText([{ text:'ราคารอบแรก', options:{ bold:true, color:C.soft, breakLine:true } }, { text:'ปกติ 12,900', options:{ strike:'sngStrike', color:'94A3B8' } }],
+  T({ ...box(t.plab,0,30), x:i(t.plab.x-30), align:'right', fontSize:pt(26), objectName:'Price label' }));
+s.addText([{ text:'9,900' }, { text:'.-', options:{ fontSize:pt(44) } }], T({ ...box(t.pval,0,40), fontFace:FH, fontSize:pt(112), color:C.orange,
+  shadow:{ type:'outer', color:'FF7A3D', opacity:0.35, blur:24, offset:8, angle:90 }, objectName:'Price' }));
+s.addText('คอร์สสด 1 วันจบ · เสาร์ 7 พ.ย. 69 · รับ 10 ที่นั่ง · สนใจ คอมเมนต์เลย!', T({ ...box(t.l3), align:'center', fontSize:pt(28), bold:true, color:C.w, fill:{ color:C.blue }, objectName:'Info bar' }));
 pres.writeFile({ fileName: D + 'ai-capcut-1day-v5.pptx' }).then(f => console.log('wrote', f));

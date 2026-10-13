@@ -25,6 +25,6 @@ const D='/home/user/dsme-2026/poster/', O=D+'pptx-assets-v5/';
   const tx=await pg.evaluate(()=>{
     const g=s=>{const q=document.querySelector(s).getBoundingClientRect();return {x:q.x,y:q.y,w:q.width,h:q.height}};
     const o={}; ['hey','bar','big','copy'].forEach(i=>{const e=document.getElementById(i); o[i]={x:e.offsetLeft,y:e.offsetTop,w:e.offsetWidth,h:e.offsetHeight};});
-    o.logotext=g('#logo span'); o.nameW=g('#nameW'); o.nameM=g('#nameM'); o.l1=g('#copy .l1'); o.l2=g('#copy .l2'); o.l3=g('#copy .l3'); return o; });
+    o.logotext=g('#logo span'); o.nameW=g('#nameW'); o.plab=g('#plab'); o.pval=g('#pval'); o.nameM=g('#nameM'); o.l1=g('#copy .l1'); o.l2=g('#copy .l2'); o.l3=g('#copy .l3'); return o; });
   console.log(JSON.stringify({img:out,txt:tx})); await b.close();
 })();
