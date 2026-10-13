@@ -1,0 +1,168 @@
+{
+  "type": "flex",
+  "altText": "ลงทะเบียน LINE AI สำเร็จแล้ว 🎉 {{fullName}}",
+  "contents": {
+    "type": "bubble",
+    "size": "mega",
+    "hero": {
+      "type": "image",
+      "url": "{{imgBase}}/line-flex/img/hero-registered.jpg",
+      "size": "full",
+      "aspectRatio": "1040:540",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "md",
+      "paddingAll": "20px",
+      "backgroundColor": "#0F172A",
+      "contents": [
+        {
+          "type": "text",
+          "text": "สวัสดีคุณ {{fullName}} 💙",
+          "wrap": true,
+          "size": "lg",
+          "weight": "bold",
+          "color": "#E6EEFF"
+        },
+        {
+          "type": "text",
+          "text": "น้องแมว ToGreater รับข้อมูลไว้แล้ว เดี๋ยวส่งรายละเอียดวันเรียนให้ทาง LINE นี้เลยนะ",
+          "wrap": true,
+          "size": "sm",
+          "color": "#C7D2FE"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "backgroundColor": "#16203C",
+          "cornerRadius": "14px",
+          "paddingAll": "16px",
+          "borderWidth": "2px",
+          "borderColor": "#3A4870",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ธุรกิจ",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#B6C2D9",
+                  "flex": 3
+                },
+                {
+                  "type": "text",
+                  "text": "{{businessName}}",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#E6EEFF",
+                  "weight": "bold",
+                  "flex": 7
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "สนใจ",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#B6C2D9",
+                  "flex": 3
+                },
+                {
+                  "type": "text",
+                  "text": "{{service}}",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#E6EEFF",
+                  "weight": "bold",
+                  "flex": 7
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "อยากให้ AI",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#B6C2D9",
+                  "flex": 3
+                },
+                {
+                  "type": "text",
+                  "text": "{{aiGoal}}",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#E6EEFF",
+                  "weight": "bold",
+                  "flex": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "paddingAll": "16px",
+      "backgroundColor": "#0F172A",
+      "contents": [
+        {
+          "type": "button",
+          "style": "primary",
+          "color": "#2563FF",
+          "height": "md",
+          "action": {
+            "label": "ดูรายละเอียด Workshop",
+            "type": "uri",
+            "uri": "{{workshopUrl}}"
+          }
+        },
+        {
+          "type": "button",
+          "style": "secondary",
+          "color": "#DCE6FF",
+          "height": "md",
+          "action": {
+            "label": "สอบถามแอดมิน",
+            "type": "message",
+            "text": "สอบถามเรื่อง Workshop LINE AI"
+          }
+        },
+        {
+          "type": "text",
+          "text": "TOGREATER · AI for Entrepreneur",
+          "wrap": true,
+          "size": "xxs",
+          "color": "#B6C2D9",
+          "align": "center",
+          "margin": "md"
+        }
+      ]
+    },
+    "styles": {
+      "footer": {
+        "separator": false
+      }
+    }
+  }
+}

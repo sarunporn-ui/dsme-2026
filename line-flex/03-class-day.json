@@ -1,0 +1,144 @@
+{
+  "type": "flex",
+  "altText": "Workshop LINE AI เริ่ม {{time}} วันนี้ กดเข้าห้องได้เลย",
+  "contents": {
+    "type": "bubble",
+    "size": "mega",
+    "hero": {
+      "type": "image",
+      "url": "{{imgBase}}/line-flex/img/hero-classday.jpg",
+      "size": "full",
+      "aspectRatio": "1040:540",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "md",
+      "paddingAll": "20px",
+      "backgroundColor": "#0F172A",
+      "contents": [
+        {
+          "type": "text",
+          "text": "อีกไม่นานเริ่มแล้ว!",
+          "wrap": true,
+          "size": "lg",
+          "weight": "bold",
+          "color": "#E6EEFF"
+        },
+        {
+          "type": "text",
+          "text": "กดปุ่มด้านล่างเพื่อเข้าห้องเรียน แนะนำเข้าก่อนเวลา 10 นาที",
+          "wrap": true,
+          "size": "sm",
+          "color": "#C7D2FE"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "backgroundColor": "#16203C",
+          "cornerRadius": "14px",
+          "paddingAll": "16px",
+          "borderWidth": "2px",
+          "borderColor": "#3A4870",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "เริ่ม",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#B6C2D9",
+                  "flex": 3
+                },
+                {
+                  "type": "text",
+                  "text": "{{time}}",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#E6EEFF",
+                  "weight": "bold",
+                  "flex": 7
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ที่ไหน",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#B6C2D9",
+                  "flex": 3
+                },
+                {
+                  "type": "text",
+                  "text": "{{location}}",
+                  "wrap": true,
+                  "size": "sm",
+                  "color": "#E6EEFF",
+                  "weight": "bold",
+                  "flex": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "paddingAll": "16px",
+      "backgroundColor": "#0F172A",
+      "contents": [
+        {
+          "type": "button",
+          "style": "primary",
+          "color": "#2563FF",
+          "height": "md",
+          "action": {
+            "label": "เข้าห้องเรียน",
+            "type": "uri",
+            "uri": "{{joinUrl}}"
+          }
+        },
+        {
+          "type": "button",
+          "style": "secondary",
+          "color": "#DCE6FF",
+          "height": "md",
+          "action": {
+            "label": "เข้าไม่ได้ ช่วยด้วย",
+            "type": "message",
+            "text": "เข้าห้องเรียน Workshop ไม่ได้"
+          }
+        },
+        {
+          "type": "text",
+          "text": "TOGREATER · AI for Entrepreneur",
+          "wrap": true,
+          "size": "xxs",
+          "color": "#B6C2D9",
+          "align": "center",
+          "margin": "md"
+        }
+      ]
+    },
+    "styles": {
+      "footer": {
+        "separator": false
+      }
+    }
+  }
+}

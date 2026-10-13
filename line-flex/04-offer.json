@@ -1,0 +1,389 @@
+{
+  "type": "flex",
+  "altText": "ขอบคุณที่มาเรียน 💙 ไปต่อกับ ToGreater ได้ 4 ทาง",
+  "contents": {
+    "type": "carousel",
+    "contents": [
+      {
+        "type": "bubble",
+        "size": "mega",
+        "hero": {
+          "type": "image",
+          "url": "{{imgBase}}/line-flex/img/hero-offer.jpg",
+          "size": "full",
+          "aspectRatio": "1040:540",
+          "aspectMode": "cover"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "md",
+          "paddingAll": "20px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "text",
+              "text": "ขอบคุณคุณ {{fullName}} ที่มาเรียนนะ 💙",
+              "wrap": true,
+              "size": "md",
+              "weight": "bold",
+              "color": "#E6EEFF"
+            },
+            {
+              "type": "text",
+              "text": "อยากให้ LINE + AI ทำงานแทนได้จริงในธุรกิจ เลือกทางที่ใช่ได้เลย ปัด → ดูบริการ",
+              "wrap": true,
+              "size": "sm",
+              "color": "#C7D2FE"
+            },
+            {
+              "type": "text",
+              "text": "ง่ายๆ · ใช้ได้จริง · เข้าใจธุรกิจ",
+              "wrap": true,
+              "size": "xs",
+              "color": "#FF7A3D",
+              "weight": "bold"
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "paddingAll": "16px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "button",
+              "style": "primary",
+              "color": "#2563FF",
+              "height": "md",
+              "action": {
+                "label": "คุยกับโค้ชเกรท",
+                "type": "uri",
+                "uri": "tel:0950647272"
+              }
+            },
+            {
+              "type": "button",
+              "style": "secondary",
+              "color": "#DCE6FF",
+              "height": "md",
+              "action": {
+                "label": "ทักแอดมิน",
+                "type": "message",
+                "text": "อยากปรึกษาโค้ชเกรท"
+              }
+            },
+            {
+              "type": "text",
+              "text": "TOGREATER · AI for Entrepreneur",
+              "wrap": true,
+              "size": "xxs",
+              "color": "#B6C2D9",
+              "align": "center",
+              "margin": "md"
+            }
+          ]
+        },
+        "styles": {
+          "footer": {
+            "separator": false
+          }
+        }
+      },
+      {
+        "type": "bubble",
+        "size": "mega",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "md",
+          "paddingAll": "20px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "text",
+              "text": "01",
+              "wrap": true,
+              "size": "xxl",
+              "weight": "bold",
+              "color": "#FF7A3D"
+            },
+            {
+              "type": "text",
+              "text": "Broadcast Package",
+              "wrap": true,
+              "size": "lg",
+              "weight": "bold",
+              "color": "#E6EEFF"
+            },
+            {
+              "type": "text",
+              "text": "ส่งข้อความ LINE OA ให้ลูกค้ากลับมาซื้อซ้ำ",
+              "wrap": true,
+              "size": "sm",
+              "color": "#C7D2FE"
+            },
+            {
+              "type": "image",
+              "url": "{{imgBase}}/line-flex/img/cat-owner.png",
+              "size": "full",
+              "aspectRatio": "1:1",
+              "aspectMode": "fit",
+              "margin": "lg"
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "paddingAll": "16px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "button",
+              "style": "primary",
+              "color": "#2563FF",
+              "height": "md",
+              "action": {
+                "label": "สนใจบริการนี้",
+                "type": "message",
+                "text": "สนใจ Broadcast Package"
+              }
+            },
+            {
+              "type": "text",
+              "text": "TOGREATER · AI for Entrepreneur",
+              "wrap": true,
+              "size": "xxs",
+              "color": "#B6C2D9",
+              "align": "center",
+              "margin": "md"
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "size": "mega",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "md",
+          "paddingAll": "20px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "text",
+              "text": "02",
+              "wrap": true,
+              "size": "xxl",
+              "weight": "bold",
+              "color": "#2563FF"
+            },
+            {
+              "type": "text",
+              "text": "บริการยิง Ads",
+              "wrap": true,
+              "size": "lg",
+              "weight": "bold",
+              "color": "#E6EEFF"
+            },
+            {
+              "type": "text",
+              "text": "ดึงลูกค้าใหม่เข้า LINE OA ด้วยโฆษณา",
+              "wrap": true,
+              "size": "sm",
+              "color": "#C7D2FE"
+            },
+            {
+              "type": "image",
+              "url": "{{imgBase}}/line-flex/img/cat-manager.png",
+              "size": "full",
+              "aspectRatio": "1:1",
+              "aspectMode": "fit",
+              "margin": "lg"
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "paddingAll": "16px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "button",
+              "style": "primary",
+              "color": "#2563FF",
+              "height": "md",
+              "action": {
+                "label": "สนใจบริการนี้",
+                "type": "message",
+                "text": "สนใจ บริการยิง Ads"
+              }
+            },
+            {
+              "type": "text",
+              "text": "TOGREATER · AI for Entrepreneur",
+              "wrap": true,
+              "size": "xxs",
+              "color": "#B6C2D9",
+              "align": "center",
+              "margin": "md"
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "size": "mega",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "md",
+          "paddingAll": "20px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "text",
+              "text": "03",
+              "wrap": true,
+              "size": "xxl",
+              "weight": "bold",
+              "color": "#2563FF"
+            },
+            {
+              "type": "text",
+              "text": "LINE Training",
+              "wrap": true,
+              "size": "lg",
+              "weight": "bold",
+              "color": "#E6EEFF"
+            },
+            {
+              "type": "text",
+              "text": "สอนทีมใช้ LINE OA ขายของได้เอง",
+              "wrap": true,
+              "size": "sm",
+              "color": "#C7D2FE"
+            },
+            {
+              "type": "image",
+              "url": "{{imgBase}}/line-flex/img/cat-step.png",
+              "size": "full",
+              "aspectRatio": "1:1",
+              "aspectMode": "fit",
+              "margin": "lg"
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "paddingAll": "16px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "button",
+              "style": "primary",
+              "color": "#2563FF",
+              "height": "md",
+              "action": {
+                "label": "สนใจบริการนี้",
+                "type": "message",
+                "text": "สนใจ LINE Training"
+              }
+            },
+            {
+              "type": "text",
+              "text": "TOGREATER · AI for Entrepreneur",
+              "wrap": true,
+              "size": "xxs",
+              "color": "#B6C2D9",
+              "align": "center",
+              "margin": "md"
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "size": "mega",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "md",
+          "paddingAll": "20px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "text",
+              "text": "04",
+              "wrap": true,
+              "size": "xxl",
+              "weight": "bold",
+              "color": "#2563FF"
+            },
+            {
+              "type": "text",
+              "text": "AI Training",
+              "wrap": true,
+              "size": "lg",
+              "weight": "bold",
+              "color": "#E6EEFF"
+            },
+            {
+              "type": "text",
+              "text": "สอนใช้ AI ช่วยงานจริงในธุรกิจ",
+              "wrap": true,
+              "size": "sm",
+              "color": "#C7D2FE"
+            },
+            {
+              "type": "image",
+              "url": "{{imgBase}}/line-flex/img/cat-laptop.png",
+              "size": "full",
+              "aspectRatio": "1:1",
+              "aspectMode": "fit",
+              "margin": "lg"
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "paddingAll": "16px",
+          "backgroundColor": "#0F172A",
+          "contents": [
+            {
+              "type": "button",
+              "style": "primary",
+              "color": "#2563FF",
+              "height": "md",
+              "action": {
+                "label": "สนใจบริการนี้",
+                "type": "message",
+                "text": "สนใจ AI Training"
+              }
+            },
+            {
+              "type": "text",
+              "text": "TOGREATER · AI for Entrepreneur",
+              "wrap": true,
+              "size": "xxs",
+              "color": "#B6C2D9",
+              "align": "center",
+              "margin": "md"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
