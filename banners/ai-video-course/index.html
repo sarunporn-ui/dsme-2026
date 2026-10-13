@@ -100,9 +100,13 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 .t-bot .chip{display:inline-block;margin-top:.3em;padding:.2em .7em;border-radius:8px;border:2px solid var(--tg-orange);color:var(--tg-orange);font-weight:700;font-size:.95em}
 
 /* โลโก้เครื่องมือ (ลอยแบบไอคอนแอป) — width = ขนาดไอคอน */
-.tool{display:flex;flex-direction:column;align-items:center;gap:10px;transform:rotate(-6deg)}
+.tools{display:flex;gap:18px;align-items:flex-start}
+.tools.col{flex-direction:column;gap:14px}
+.tool{width:var(--w);display:flex;flex-direction:column;align-items:center;gap:8px;transform:rotate(-6deg)}
+.tool+.tool{transform:rotate(6deg)}
 .tool .ic{width:100%;filter:drop-shadow(0 16px 30px rgba(0,0,0,.5))}
 .tool .wm{width:82%}
+.tool .wt{font-weight:700;color:#fff;font-size:calc(var(--w) * .27);line-height:1}
 
 .label{position:static;font-size:14px;letter-spacing:.2em;color:var(--tg-text-muted);margin-bottom:-28px}
 </style>
@@ -124,7 +128,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="stat" style="left:64px;top:672px;width:400px" data-c="seats"></div>
   <div class="price" style="left:64px;top:806px;width:952px" data-c="price"></div>
   <div class="cta between" style="left:64px;right:64px;top:975px" data-c="cta"></div>
-  <div class="tool" style="right:56px;top:262px;width:112px" data-c="capcut"></div>
+  <div class="tools col" style="right:56px;top:250px;--w:100px" data-c="tools"></div>
 </section>
 
 <section class="banner s45" id="a45">
@@ -141,7 +145,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="stat" style="left:548px;top:915px;width:468px;font-size:38px" data-c="seats"></div>
   <div class="price" style="left:64px;top:1062px;width:952px;font-size:20px" data-c="price"></div>
   <div class="cta between" style="left:64px;right:64px;top:1250px;font-size:22px" data-c="cta"></div>
-  <div class="tool" style="right:72px;top:330px;width:120px" data-c="capcut"></div>
+  <div class="tools col" style="right:72px;top:320px;--w:104px" data-c="tools"></div>
 </section>
 
 <section class="banner s169" id="a169">
@@ -158,7 +162,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="price" style="left:64px;top:562px;width:700px;font-size:17px" data-c="price"></div>
   <div class="cta" style="left:64px;top:712px;font-size:20px" data-c="cta"></div>
   <img src="assets/cat-sparkle.png" alt="" style="right:40px;bottom:30px;width:170px">
-  <div class="tool" style="right:64px;top:40px;width:104px" data-c="capcut"></div>
+  <div class="tools col" style="right:64px;top:36px;--w:96px" data-c="tools"></div>
 </section>
 
 <!-- =================== B · SPOTLIGHT =================== -->
@@ -175,7 +179,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="badge price-b" style="right:34px;top:400px;width:256px;height:256px;font-size:18px" data-c="pricebadge"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:70px;top:680px;width:140px;transform:rotate(-6deg)">
   <div class="bar" style="left:64px;right:64px;top:868px" data-c="bar"></div>
-  <div class="tool" style="left:250px;top:340px;width:96px" data-c="capcut"></div>
+  <div class="tools" style="left:250px;top:336px;--w:92px" data-c="tools"></div>
 </section>
 
 <section class="banner s45" id="b45">
@@ -190,7 +194,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="badge price-b" style="right:40px;top:580px;width:284px;height:284px;font-size:20px" data-c="pricebadge"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:90px;top:905px;width:170px;transform:rotate(-6deg)">
   <div class="bar" style="left:64px;right:64px;top:1110px" data-c="bar"></div>
-  <div class="tool" style="left:300px;top:430px;width:112px" data-c="capcut"></div>
+  <div class="tools" style="left:290px;top:426px;--w:100px" data-c="tools"></div>
 </section>
 
 <section class="banner s169" id="b169">
@@ -207,7 +211,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <img src="assets/cat-sparkle.png" alt="" style="left:64px;bottom:16px;width:120px;transform:rotate(-6deg)">
   <div class="price col" style="right:64px;top:300px;width:340px;font-size:18px" data-c="price"></div>
   <div class="cta col" style="right:64px;top:600px;width:340px;font-size:20px" data-c="cta"></div>
-  <div class="tool" style="left:410px;top:296px;width:96px" data-c="capcut"></div>
+  <div class="tools" style="left:404px;top:292px;--w:88px" data-c="tools"></div>
 </section>
 
 <!-- =================== C · TICKET =================== -->
@@ -223,7 +227,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   </div>
   <div class="ticket" style="left:48px;top:615px;width:570px;font-size:21px" data-c="ticket"></div>
   <div class="cta between" style="left:64px;right:64px;top:978px" data-c="cta"></div>
-  <div class="tool" style="right:64px;top:140px;width:104px" data-c="capcut"></div>
+  <div class="tools col" style="right:64px;top:136px;--w:100px" data-c="tools"></div>
 </section>
 
 <section class="banner s45" id="c45">
@@ -238,7 +242,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="ticket" style="left:52px;top:850px;width:690px;font-size:25px" data-c="ticket"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:630px;top:745px;width:160px;transform:rotate(8deg)">
   <div class="cta between" style="left:64px;right:64px;top:1255px;font-size:22px" data-c="cta"></div>
-  <div class="tool" style="right:70px;top:330px;width:120px" data-c="capcut"></div>
+  <div class="tools col" style="right:70px;top:320px;--w:108px" data-c="tools"></div>
 </section>
 
 <section class="banner s169" id="c169">
@@ -251,14 +255,15 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   </div>
   <div class="ticket" style="left:800px;top:350px;width:576px;font-size:20px" data-c="ticket"></div>
   <div class="cta" style="left:790px;top:712px;font-size:20px" data-c="cta"></div>
-  <div class="tool" style="left:640px;top:56px;width:104px" data-c="capcut"></div>
+  <div class="tools col" style="left:640px;top:50px;--w:96px" data-c="tools"></div>
 </section>
 
 <script>
 /* เนื้อหาเดียวกันทุกแบนเนอร์ — แก้ที่นี่ที่เดียว */
 const SEATS='10', DATE='เสาร์ 7 พ.ย. 2026', NOW='6,990', WAS='8,500', SAVE='1,510';
 const T={
-  capcut:()=>`<img class="ic" src="assets/capcut-icon.png" alt=""><img class="wm" src="assets/capcut-wordmark-white.png" alt="CapCut">`,
+  tools:()=>`<div class="tool"><img class="ic" src="assets/capcut-icon.png" alt=""><img class="wm" src="assets/capcut-wordmark-white.png" alt="CapCut"></div>
+             <div class="tool"><img class="ic" src="assets/claude-icon.svg" alt=""><span class="wt">Claude</span></div>`,
   logo:()=>`<img src="assets/logo-togreater.png" alt="ToGreater">`,
   eyebrow:()=>`New Course · 07.11.26`,
   title:()=>`<span class="hl">1 วัน</span> AI ตัดคลิป`,
