@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>1 Day AI ตัดคลิป v5</title>
+<style>
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_Rg.ttf); font-weight:400; }
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_Bd.ttf); font-weight:700; }
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_He.ttf); font-weight:900; }
+
+  :root{ --bg:#0F172A; --glow:#162B60; --blue:#2563FF; --blue-deep:#1B47C2; --soft:#C7D2FE; --orange:#FF7A3D; --text:#E6EEFF;
+         --cc-bg:#141518; --cc-panel:#1D1E22; --cc-line:#2A2C31; --cc-cyan:#20D5EC; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#000; }
+  body{ font-family:"LINE Seed Sans TH",sans-serif; }
+  .poster{ position:relative; width:1080px; height:1350px; overflow:hidden; color:var(--text);
+      background:radial-gradient(ellipse 60% 70% at 100% 0%, var(--glow) 0%, transparent 70%), var(--bg); }
+  .abs{ position:absolute; }
+
+  /* ---------- Top ---------- */
+  .logo{ right:70px; top:56px; display:flex; align-items:center; gap:10px; }
+  .logo img{ height:54px; }
+  .logo span{ font-weight:900; font-size:32px; color:#fff; }
+  .hey{ left:92px; top:118px; font-weight:900; font-size:96px; color:var(--orange); transform:rotate(-9deg); line-height:1.2; }
+  .bar{ left:92px; top:238px; background:var(--blue); color:#fff; font-weight:900; font-size:66px; line-height:1.25; padding:4px 26px 0; white-space:nowrap; }
+  .big{ left:0; right:0; top:392px; text-align:center; font-weight:900; font-size:186px; line-height:1.3; color:#fff; letter-spacing:-3px; white-space:nowrap; }
+
+  /* ---------- หัวโตแอบมอง ---------- */
+  .peek-w{ left:-95px; top:455px; width:470px; transform:rotate(-10deg); }
+  .peek-m{ left:770px; top:480px; width:380px; transform:rotate(9deg); }
+
+  /* ---------- Laptop + CapCut UI ---------- */
+  .laptop{ left:225px; top:610px; width:630px; }
+  .lid{ position:relative; height:420px; background:#0b0c0e; border-radius:26px 26px 6px 6px; padding:18px; border:3px solid #3b3e45;
+      box-shadow:0 40px 70px rgba(0,0,0,.55); }
+  .cam{ position:absolute; left:50%; top:6px; width:8px; height:8px; border-radius:50%; background:#2b2e34; transform:translateX(-50%); }
+  .screen{ position:relative; height:100%; background:var(--cc-bg); border-radius:6px; overflow:hidden; font-size:11px; color:#B7BBC4; }
+  .base{ height:26px; margin:0 -46px; background:linear-gradient(#d9dce3,#9aa0aa 60%,#6c717b); border-radius:0 0 30px 30px; position:relative; }
+  .base::before{ content:""; position:absolute; left:50%; top:0; width:140px; height:10px; transform:translateX(-50%); background:#8b909a; border-radius:0 0 10px 10px; }
+
+  .tb{ height:26px; display:flex; align-items:center; gap:10px; padding:0 10px; border-bottom:1px solid var(--cc-line); background:#1A1B1F; }
+  .tb .dot{ width:8px; height:8px; border-radius:50%; }
+  .tb .ttl{ margin-left:auto; margin-right:auto; color:#9aa0aa; }
+  .tb .exp{ background:var(--cc-cyan); color:#05343b; font-weight:700; padding:3px 10px; border-radius:5px; }
+  .main{ display:grid; grid-template-columns:128px 1fr 104px; height:222px; border-bottom:1px solid var(--cc-line); }
+  .media{ background:var(--cc-panel); padding:8px; border-right:1px solid var(--cc-line); }
+  .tabs{ display:flex; gap:8px; margin-bottom:8px; font-size:10px; } .tabs b{ color:var(--cc-cyan); }
+  .thumbs{ display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .th{ height:44px; border-radius:4px; background:#2a2c31 center/cover no-repeat; position:relative; }
+  .th i{ position:absolute; right:3px; bottom:2px; font-style:normal; font-size:9px; color:#fff; background:rgba(0,0,0,.6); padding:0 3px; border-radius:2px; }
+  .prev{ display:flex; flex-direction:column; align-items:center; padding:8px; }
+  .canvas{ width:172px; height:186px; position:relative; overflow:hidden; border-radius:2px;
+      background:radial-gradient(circle at 50% 40%, #FF9A60, #FF7A3D 45%, #E0551C); }
+  .canvas img{ position:absolute; left:-25px; top:-6px; width:222px; }
+  .cap{ position:absolute; left:6px; right:6px; bottom:10px; text-align:center; font-weight:900; font-size:19px; color:#fff;
+      -webkit-text-stroke:5px #000; paint-order:stroke fill; line-height:1.15; }
+  .cap span{ color:#FFE14D; }
+  .ptime{ font-size:10px; margin-top:4px; color:#9aa0aa; } .ptime b{ color:#fff; }
+  .props{ background:var(--cc-panel); border-left:1px solid var(--cc-line); padding:8px; font-size:10px; }
+  .props p{ margin:5px 0; display:flex; justify-content:space-between; }
+  .props .on{ color:var(--cc-cyan); }
+  .slider{ height:4px; background:#33363c; border-radius:3px; margin:6px 0 10px; position:relative; }
+  .slider::after{ content:""; position:absolute; left:0; top:0; height:100%; width:var(--v); background:var(--cc-cyan); border-radius:3px; }
+  .ai-btn{ margin-top:10px; background:linear-gradient(90deg,#20D5EC,#7C5CFF); color:#fff; font-weight:700; text-align:center; padding:5px 0; border-radius:5px; }
+
+  .tl{ position:relative; height:calc(100% - 26px - 222px); background:var(--cc-bg); padding:6px 8px 0 46px; }
+  .ruler{ height:14px; display:flex; justify-content:space-between; font-size:9px; color:#6f747d; border-bottom:1px solid var(--cc-line); }
+  .track{ position:relative; height:24px; margin-top:5px; }
+  .clip{ position:absolute; top:0; bottom:0; border-radius:4px; overflow:hidden; font-size:9px; color:#fff; padding:2px 5px; white-space:nowrap; }
+  .clip.v{ background:#2E5BFF center/auto 100% repeat-x; border:1px solid #5d82ff; height:30px; }
+  .clip.v.sel{ border:2px solid #fff; }
+  .clip.t{ background:#D64BA8; height:20px; }
+  .clip.s{ background:#E8913A; height:20px; }
+  .clip.a{ background:#1F8F68; height:22px; }
+  .clip.a::after{ content:""; position:absolute; left:0; right:0; top:6px; bottom:3px;
+      background:repeating-linear-gradient(90deg, rgba(160,255,210,.85) 0 2px, transparent 2px 4px); clip-path:polygon(0 60%,5% 20%,10% 70%,15% 30%,20% 80%,25% 10%,30% 60%,35% 35%,40% 75%,45% 20%,50% 65%,55% 30%,60% 85%,65% 15%,70% 60%,75% 40%,80% 70%,85% 25%,90% 60%,95% 35%,100% 55%,100% 100%,0 100%); }
+  .ticon{ position:absolute; left:-38px; top:6px; font-size:12px; color:#7c818a; }
+  .head{ position:absolute; top:0; bottom:0; left:46%; width:2px; background:#fff; }
+  .head::before{ content:""; position:absolute; left:-5px; top:-2px; border:6px solid transparent; border-top:8px solid #fff; }
+
+  /* ---------- Stickers ---------- */
+  .st-capcut{ left:770px; top:960px; width:118px; height:118px; border-radius:28px; overflow:hidden; background:#fff; border:6px solid #fff;
+      transform:rotate(10deg); box-shadow:0 20px 34px rgba(0,0,0,.5); }
+  .st-capcut img{ width:118%; height:118%; margin:-9%; display:block; }
+  .st-cat{ left:120px; top:985px; width:140px; transform:rotate(-12deg);
+      filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 16px rgba(0,0,0,.45)); }
+  .st-claude{ left:910px; top:350px; width:96px; height:96px; border-radius:22px; overflow:hidden; background:#fff; border:5px solid #fff; transform:rotate(-8deg); box-shadow:0 16px 26px rgba(0,0,0,.45); }
+  .st-claude img{ width:118%; height:118%; margin:-9%; display:block; }
+
+  /* ---------- Bottom ---------- */
+  .copy{ left:0; right:0; top:1140px; text-align:center; font-style:italic; }
+  .copy .l1{ font-size:32px; font-weight:700; color:#fff; }
+  .copy .l1 em{ font-style:italic; color:var(--orange); }
+  .copy .l2{ font-size:30px; color:var(--soft); margin-top:6px; }
+  .copy .l3{ display:inline-block; margin-top:14px; background:var(--blue); color:#fff; font-size:28px; font-weight:700; padding:8px 22px 4px; }
+  .copy .l3 s{ opacity:.8; font-weight:400; }
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="abs logo" id="logo"><img src="assets/logo-cat.png" alt=""><span>ToGreater</span></div>
+
+  <div class="abs hey" id="hey">เฮ้ย!</div>
+  <div class="abs bar" id="bar">อยากทำคลิปขายเป็นไหม?</div>
+  <div class="abs big" id="big">AI ตัดคลิป</div>
+
+  <img class="abs peek-w" id="peekW" src="assets/peek-woman.png" alt="">
+  <img class="abs peek-m" id="peekM" src="assets/peek-man.png" alt="">
+
+  <div class="abs laptop" id="laptop">
+    <div class="lid"><div class="cam"></div>
+      <div class="screen" id="screen">
+        <div class="tb"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+          <span class="ttl">คลิปขายของ_v8_final_จริงๆ_ล่าสุด.mp4</span><span class="exp">Export</span></div>
+        <div class="main">
+          <div class="media">
+            <div class="tabs"><b>Media</b><span>Audio</span><span>Text</span><span>AI</span></div>
+            <div class="thumbs">
+              <div class="th" style="background-image:url(assets/duo-preview.png);background-position:12% 25%;background-size:220%"><i>0:03</i></div>
+              <div class="th" style="background-image:url(assets/duo-preview.png);background-position:80% 15%;background-size:240%"><i>0:05</i></div>
+              <div class="th" style="background-image:url(assets/duo-preview.png);background-position:50% 30%;background-size:120%"><i>0:12</i></div>
+              <div class="th" style="background-image:url(assets/duo-preview.png);background-position:20% 20%;background-size:300%"><i>0:02</i></div>
+              <div class="th" style="background-image:url(assets/duo-preview.png);background-position:85% 20%;background-size:320%"><i>0:04</i></div>
+              <div class="th" style="background-image:url(assets/duo-preview.png);background-position:50% 60%;background-size:160%"><i>0:08</i></div>
+            </div>
+          </div>
+          <div class="prev">
+            <div class="canvas"><img src="assets/duo-preview.png" alt="">
+              <div class="cap">หัวโตเพราะ<br><span>ตัดคลิปไม่ทัน!</span></div></div>
+            <div class="ptime"><b>00:00:07:12</b> / 00:00:30:00</div>
+          </div>
+          <div class="props">
+            <p><span>Video</span><span class="on">Basic</span></p>
+            <p><span>Scale</span><span>130%</span></p><div class="slider" style="--v:72%"></div>
+            <p><span>หัวโต</span><span class="on">MAX</span></p><div class="slider" style="--v:100%"></div>
+            <p><span>Auto captions</span><span class="on">ON</span></p>
+            <div class="ai-btn">✦ AI ตัดให้เลย</div>
+          </div>
+        </div>
+        <div class="tl">
+          <div class="ruler"><span>00:00</span><span>00:05</span><span>00:10</span><span>00:15</span><span>00:20</span><span>00:25</span></div>
+          <div class="track"><span class="ticon">T</span>
+            <div class="clip t" style="left:4%;width:22%">หัวโตเพราะ...</div><div class="clip t" style="left:40%;width:18%">ตัดคลิปไม่ทัน!</div><div class="clip s" style="left:64%;width:14%">✨ สติกเกอร์</div></div>
+          <div class="track" style="height:32px"><span class="ticon">▶</span>
+            <div class="clip v" style="left:0;width:30%;background-image:url(assets/duo-preview.png)">intro</div>
+            <div class="clip v sel" style="left:31%;width:34%;background-image:url(assets/duo-preview.png)">หัวโต_take3</div>
+            <div class="clip v" style="left:66%;width:30%;background-image:url(assets/duo-preview.png)">ปิดการขาย</div></div>
+          <div class="track"><span class="ticon">♪</span>
+            <div class="clip a" style="left:0;width:96%">เพลงฮิต TikTok.mp3</div></div>
+          <div class="head"></div>
+        </div>
+      </div>
+    </div>
+    <div class="base"></div>
+  </div>
+
+  <div class="abs st-capcut" id="stCapcut"><img src="assets/capcut.png" alt="CapCut"></div>
+  <img class="abs st-cat" id="stCat" src="assets/cat-sparkle.png" alt="">
+  <div class="abs st-claude" id="stClaude"><img src="assets/claude.png" alt="Claude"></div>
+
+  <div class="abs copy" id="copy">
+    <div class="l1">CapCut + Claude + 1 วัน = <em>คลิปพร้อมขาย</em></div>
+    <div class="l2">คอร์สสด 1 วันจบ · สนใจ คอมเมนต์เลย!</div>
+    <div class="l3">เสาร์ 7 พ.ย. 69 · รับ 10 ที่นั่ง · รอบแรก 6,990.- <s>(ปกติ 8,500)</s></div>
+  </div>
+</div>
+</body>
+</html>
