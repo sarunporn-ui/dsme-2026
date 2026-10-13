@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CutGreater Banners</title>
+<title>1 วัน AI ตัดคลิป</title>
 <style>
 @font-face{font-family:"LINE Seed Sans TH";src:url(assets/fonts/LINESeedSansTH_Rg.ttf);font-weight:400}
 @font-face{font-family:"LINE Seed Sans TH";src:url(assets/fonts/LINESeedSansTH_Bd.ttf);font-weight:700}
@@ -32,7 +32,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 .logo{display:flex}.logo img{height:100%}
 .eyebrow{display:flex;align-items:center;gap:16px;font-size:18px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--tg-blue-soft)}
 .eyebrow::before{content:"";width:52px;height:9px;border-radius:9px;background:var(--tg-orange)}
-.title{font-weight:900;line-height:1;letter-spacing:-.02em;white-space:nowrap}
+.title{font-weight:900;line-height:1.12;letter-spacing:-.02em;white-space:nowrap}
 .sub{font-weight:700;line-height:1.3;white-space:nowrap}
 /* Title frame (CI 3.6): กรอบ outline ทรงแคปซูล */
 .frame{display:inline-block;border:5px solid var(--tg-text-muted);border-radius:999px;padding:.08em .7em .14em;margin:0 .15em .18em 0}
@@ -121,10 +121,10 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
     <div class="desc" style="font-size:25px" data-c="desc2"></div>
   </div>
   <div class="stat" style="left:64px;top:545px;width:400px" data-c="date"></div>
-  <div class="stat" style="left:64px;top:658px;width:400px" data-c="seats"></div>
-  <div class="price" style="left:64px;top:790px;width:952px" data-c="price"></div>
+  <div class="stat" style="left:64px;top:672px;width:400px" data-c="seats"></div>
+  <div class="price" style="left:64px;top:806px;width:952px" data-c="price"></div>
   <div class="cta between" style="left:64px;right:64px;top:975px" data-c="cta"></div>
-  <div class="tool" style="right:56px;top:140px;width:112px" data-c="capcut"></div>
+  <div class="tool" style="right:56px;top:262px;width:112px" data-c="capcut"></div>
 </section>
 
 <section class="banner s45" id="a45">
@@ -132,7 +132,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="logo" style="left:64px;top:44px;height:68px" data-c="logo"></div>
   <div class="eyebrow" style="right:64px;top:74px" data-c="eyebrow"></div>
   <div class="stack" style="left:64px;top:150px">
-    <div class="title" style="font-size:150px" data-c="title"></div>
+    <div class="title" style="font-size:140px" data-c="title"></div>
     <div class="sub" style="font-size:54px" data-c="sub2"></div>
     <div class="desc" style="font-size:28px" data-c="desc2"></div>
   </div>
@@ -183,7 +183,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="logo center" style="top:34px;height:66px" data-c="logo"></div>
   <div class="eyebrow center" style="top:120px" data-c="eyebrow"></div>
   <div class="stack center" style="top:158px;gap:18px">
-    <div class="title" style="font-size:150px" data-c="title"></div>
+    <div class="title" style="font-size:140px" data-c="title"></div>
     <div class="sub" style="font-size:46px" data-c="sub1"></div>
   </div>
   <div class="badge seat-b" style="left:44px;top:650px;width:232px;height:232px;font-size:18px" data-c="seatbadge"></div>
@@ -231,7 +231,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="logo" style="left:64px;top:40px;height:66px" data-c="logo"></div>
   <div class="eyebrow" style="right:64px;top:68px" data-c="eyebrow"></div>
   <div class="stack" style="left:64px;top:146px">
-    <div class="title" style="font-size:148px" data-c="title"></div>
+    <div class="title" style="font-size:140px" data-c="title"></div>
     <div class="sub" style="font-size:52px" data-c="sub2"></div>
     <div class="desc" style="font-size:27px" data-c="desc2"></div>
   </div>
@@ -246,7 +246,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="logo" style="left:790px;top:26px;height:56px" data-c="logo"></div>
   <div class="eyebrow" style="right:64px;top:46px" data-c="eyebrow"></div>
   <div class="stack" style="left:790px;top:100px;gap:14px">
-    <div class="title" style="font-size:98px" data-c="title"></div>
+    <div class="title" style="font-size:88px" data-c="title"></div>
     <div class="sub" style="font-size:36px" data-c="sub2"></div>
   </div>
   <div class="ticket" style="left:800px;top:350px;width:576px;font-size:20px" data-c="ticket"></div>
@@ -261,9 +261,9 @@ const T={
   capcut:()=>`<img class="ic" src="assets/capcut-icon.png" alt=""><img class="wm" src="assets/capcut-wordmark-white.png" alt="CapCut">`,
   logo:()=>`<img src="assets/logo-togreater.png" alt="ToGreater">`,
   eyebrow:()=>`New Course · 07.11.26`,
-  title:()=>`Cut<span class="hl">Greater</span>`,
-  sub1:()=>`<span class="frame">AI ตัดต่อ VDO</span><span class="hl">คลิปพร้อมขาย</span>ในวันเดียว`,
-  sub2:()=>`<span class="frame">AI ตัดต่อ VDO</span><br><span class="hl">คลิปพร้อมขาย</span>ในวันเดียว`,
+  title:()=>`<span class="hl">1 วัน</span> AI ตัดคลิป`,
+  sub1:()=>`<span class="frame">ตัดต่อ VDO ด้วย AI</span>ทำ<span class="hl">คลิปพร้อมขาย</span>ได้เอง`,
+  sub2:()=>`<span class="frame">ตัดต่อ VDO ด้วย AI</span><br>ทำ<span class="hl">คลิปพร้อมขาย</span>ได้เอง`,
   desc1:()=>`คอร์สเวิร์กช็อปสำหรับเจ้าของธุรกิจ · ตัดต่อเองได้ ไม่ต้องเป็นสายเทค`,
   desc2:()=>`คอร์สเวิร์กช็อปสำหรับเจ้าของธุรกิจ<br>ตัดต่อเองได้ ไม่ต้องเป็นสายเทค`,
   date:()=>`<small>วันเรียน</small><b>${DATE}</b>`,
@@ -275,7 +275,7 @@ const T={
   pricebadge:()=>`<small>ราคารอบแรก</small><b>${NOW}</b><span>บาท/ท่าน</span><s>ราคาเต็ม ${WAS}</s>`,
   bar:()=>`<div class="when"><small>วันเรียน</small><b>${DATE}</b><br><em>เวิร์กช็อป 1 วัน · ลงมือทำจริง</em></div>
            <div class="cta"><span class="btn">จองที่นั่ง LINE @togreater</span><span>โทร <b>095-064-7272</b> (คุณเกรท)</span></div>`,
-  ticket:()=>`<div class="t-top"><div class="t-label">ADMIT ONE · CUTGREATER WORKSHOP</div>
+  ticket:()=>`<div class="t-top"><div class="t-label">ADMIT ONE · AI VIDEO WORKSHOP</div>
                <div class="t-row"><div><small>วันเรียน</small><b>${DATE}</b></div>
                <div class="seats"><small>รับจำกัด</small><b><em>${SEATS}</em>ที่นั่ง</b></div></div></div>
              <div class="t-cut"></div>
