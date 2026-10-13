@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CutGreater Banner</title>
+<style>
+@font-face{font-family:"LINE Seed Sans TH";src:url(assets/fonts/LINESeedSansTH_Rg.ttf);font-weight:400}
+@font-face{font-family:"LINE Seed Sans TH";src:url(assets/fonts/LINESeedSansTH_Bd.ttf);font-weight:700}
+@font-face{font-family:"LINE Seed Sans TH";src:url(assets/fonts/LINESeedSansTH_He.ttf);font-weight:900}
+:root{
+  --tg-bg:#0F172A;--tg-bg-glow:#162B60;--tg-surface:#16203C;
+  --tg-blue:#2563FF;--tg-blue-deep:#1B47C2;--tg-blue-soft:#C7D2FE;
+  --tg-orange:#FF7A3D;--tg-orange-pale:#FFB088;
+  --tg-text:#E6EEFF;--tg-text-muted:#B6C2D9;
+  --tg-border:rgba(199,210,254,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--tg-text);display:flex;flex-direction:column;align-items:center;gap:40px;padding:40px 0}
+.hl{color:var(--tg-orange)}
+.banner{position:relative;overflow:hidden;flex:none;
+  background:radial-gradient(ellipse 60% 70% at 100% 0%,var(--tg-bg-glow) 0%,transparent 70%),var(--tg-bg)}
+.eyebrow{display:flex;align-items:center;gap:16px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--tg-blue-soft)}
+.eyebrow::before{content:"";width:47px;height:8px;border-radius:8px;background:var(--tg-orange)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;color:#fff}
+.logo img{height:64px}
+.logo span i{font-style:normal;color:var(--tg-text-muted)}
+.photo{position:absolute;background:url(assets/greater-mick.jpg) center/cover no-repeat}
+.cat{position:absolute}
+.pill{display:inline-flex;align-items:center;height:44px;padding:0 24px;border-radius:44px;
+  border:2px solid rgba(199,210,254,.5);background:rgba(199,210,254,.12);font-size:17px;color:var(--tg-blue-soft)}
+.info{display:flex;gap:14px}
+.stat{background:var(--tg-surface);border:3px solid var(--tg-border);border-radius:14px;padding:16px 20px}
+.stat small{display:block;font-size:14px;color:var(--tg-text-muted);letter-spacing:.06em}
+.stat b{display:block;font-size:28px;font-weight:700;white-space:nowrap;margin-top:2px}
+.price{background:rgba(37,99,255,.20);border:3px solid var(--tg-blue);border-radius:14px;padding:16px 24px;display:flex;align-items:center;gap:22px}
+.price .now small{font-size:15px;color:var(--tg-blue-soft);font-weight:700;letter-spacing:.06em}
+.price .now b{display:block;font-size:64px;font-weight:900;color:var(--tg-orange);line-height:1}
+.price .now b sub{font-size:22px;vertical-align:baseline;font-weight:700;margin-left:4px}
+.price .was{font-size:17px;color:var(--tg-text-muted);line-height:1.5}
+.price .was s{font-size:24px;font-weight:700;color:var(--tg-text-muted)}
+.chip-save{display:inline-block;margin-top:6px;padding:4px 12px;border-radius:8px;border:2px solid var(--tg-orange-pale);color:var(--tg-orange-pale);font-size:14px;font-weight:700}
+.cta{display:flex;align-items:center;gap:18px;font-size:17px;color:var(--tg-text)}
+.cta .btn{background:var(--tg-orange);color:#fff;font-weight:700;border-radius:44px;padding:12px 28px;font-size:19px}
+.cta b{font-weight:700}
+.tagline{font-size:13.5px;letter-spacing:.2em;color:var(--tg-text-muted)}
+
+/* ===== 4:5 Feed post 1080×1350 ===== */
+#post{width:1080px;height:1350px}
+#post .top{position:absolute;top:56px;left:64px;right:64px;display:flex;justify-content:space-between;align-items:center}
+#post .top .eyebrow{font-size:15px}
+#post .photo{right:0;top:290px;width:760px;height:733px}
+#post .photo{background:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 75%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 75%,transparent 100%)}
+#post .photo i{position:absolute;inset:0;background:url(assets/greater-mick.jpg) center/cover no-repeat;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 32%);mask-image:linear-gradient(90deg,transparent 0,#000 32%)}
+#post .head{position:absolute;top:150px;left:64px;right:64px}
+#post h1{font-size:150px;font-weight:900;line-height:1;letter-spacing:-.02em}
+#post h2{font-size:46px;font-weight:700;line-height:1.25;margin-top:18px}
+#post .sub{font-size:21px;color:var(--tg-blue-soft);margin-top:14px;line-height:1.5}
+#post .pills{position:absolute;left:64px;top:600px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+#post .cat{width:210px;left:290px;top:745px;transform:rotate(-6deg)}
+#post .bottom{position:absolute;left:64px;right:64px;top:1000px;display:flex;flex-direction:column;gap:18px}
+#post .info .stat{flex:1}
+#post .price{flex:1.6}
+#post .cta{justify-content:space-between;margin-top:6px}
+
+/* ===== 16:9 1440×810 ===== */
+#wide{width:1440px;height:810px}
+#wide .photo{right:0;top:0;width:840px;height:810px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 28%);mask-image:linear-gradient(90deg,transparent 0,#000 28%)}
+#wide .logo{position:absolute;top:44px;left:64px}
+#wide .eyebrow{position:absolute;top:122px;left:64px;font-size:15px}
+#wide h1{position:absolute;top:160px;left:64px;font-size:120px;font-weight:900;line-height:1;letter-spacing:-.02em}
+#wide h2{position:absolute;top:292px;left:64px;font-size:40px;font-weight:700}
+#wide .sub{position:absolute;top:352px;left:64px;font-size:19px;color:var(--tg-blue-soft);line-height:1.5}
+#wide .info{position:absolute;top:438px;left:64px;width:700px}
+#wide .stat{flex:1}
+#wide .price{position:absolute;top:566px;left:64px;width:700px}
+#wide .price .now b{font-size:58px}
+#wide .cta{position:absolute;left:64px;bottom:44px}
+#wide .cat{width:170px;right:40px;bottom:30px}
+</style>
+</head>
+<body>
+
+<!-- ===== 4:5 ===== -->
+<section class="banner" id="post">
+  <div class="photo"><i></i></div>
+  <div class="top">
+    <div class="logo"><img src="assets/logo-togreater.png" alt=""></div>
+    <div class="eyebrow">New Course · 07.11.26</div>
+  </div>
+  <div class="head">
+    <h1>Cut<span class="hl">Greater</span></h1>
+    <h2>AI ตัดต่อ VDO<br><span class="hl">คลิปพร้อมขาย</span>ในวันเดียว</h2>
+    <p class="sub">คอร์สเวิร์กช็อปสำหรับเจ้าของธุรกิจ<br>ตัดต่อเองได้ ไม่ต้องเป็นสายเทค</p>
+  </div>
+  <div class="pills">
+    <span class="pill">ง่ายๆ</span>
+    <span class="pill">ใช้ได้จริง</span>
+    <span class="pill">เข้าใจธุรกิจ</span>
+  </div>
+  <img class="cat" src="assets/cat-sparkle.png" alt="">
+  <div class="bottom">
+    <div class="info">
+      <div class="stat"><small>วันเรียน</small><b>เสาร์ 7 พ.ย. 2026</b></div>
+      <div class="stat"><small>รับจำกัด</small><b><span class="hl">5</span> ที่นั่งเท่านั้น</b></div>
+    </div>
+    <div class="info">
+      <div class="price">
+        <div class="now"><small>ราคารอบแรก</small><b>6,990<sub>บาท/ท่าน</sub></b></div>
+        <div class="was">ราคาเต็ม <s>8,500</s><br><span class="chip-save">ประหยัด 1,510.-</span></div>
+      </div>
+    </div>
+    <div class="cta">
+      <span class="btn">จองที่นั่ง LINE @togreater</span>
+      <span>โทร <b>095-064-7272</b> (คุณเกรท)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 16:9 ===== -->
+<section class="banner" id="wide">
+  <div class="photo"></div>
+  <div class="logo"><img src="assets/logo-togreater.png" alt=""></div>
+  <div class="eyebrow">New Course · 07.11.26</div>
+  <h1>Cut<span class="hl">Greater</span></h1>
+  <h2>AI ตัดต่อ VDO <span class="hl">คลิปพร้อมขาย</span>ในวันเดียว</h2>
+  <p class="sub">คอร์สเวิร์กช็อปสำหรับเจ้าของธุรกิจ · ตัดต่อเองได้ ไม่ต้องเป็นสายเทค</p>
+  <div class="info">
+    <div class="stat"><small>วันเรียน</small><b>เสาร์ 7 พ.ย. 2026</b></div>
+    <div class="stat"><small>รับจำกัด</small><b><span class="hl">5</span> ที่นั่งเท่านั้น</b></div>
+  </div>
+  <div class="price">
+    <div class="now"><small>ราคารอบแรก</small><b>6,990<sub>บาท/ท่าน</sub></b></div>
+    <div class="was">ราคาเต็ม <s>8,500</s><br><span class="chip-save">ประหยัด 1,510.-</span></div>
+  </div>
+  <div class="cta">
+    <span class="btn">จองที่นั่ง LINE @togreater</span>
+    <span>โทร <b>095-064-7272</b></span>
+  </div>
+  <img class="cat" src="assets/cat-sparkle.png" alt="">
+</section>
+
+<script>
+/* เปิดด้วย #post หรือ #wide = แสดงเฉพาะแบนเนอร์นั้น (ใช้ตอน export PNG) */
+const only=location.hash.slice(1);
+if(only){document.body.style.cssText='padding:0;gap:0;background:none';
+  document.querySelectorAll('.banner').forEach(b=>{if(b.id!==only)b.remove()})}
+</script>
+</body>
+</html>
