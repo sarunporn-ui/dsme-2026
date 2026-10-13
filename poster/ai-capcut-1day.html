@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>1 Day AI ตัดคลิป</title>
+<style>
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_Rg.ttf); font-weight:400; }
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_Bd.ttf); font-weight:700; }
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_He.ttf); font-weight:900; }
+
+  :root{
+    --bg:#0F172A; --glow:#162B60; --blue:#2563FF; --blue-deep:#1B47C2;
+    --orange:#FF7A3D; --text:#E6EEFF; --ink:#0F172A; --soft:#C7D2FE;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#000; }
+  body{ font-family:"LINE Seed Sans TH",sans-serif; }
+
+  .poster{
+    position:relative; width:1080px; height:1350px; overflow:hidden; color:var(--text);
+    background:
+      /* grid ย่อย + grid หลัก แบบกระดาษ blueprint */
+      linear-gradient(rgba(199,210,254,.07) 1px, transparent 1px) 0 0/27px 27px,
+      linear-gradient(90deg, rgba(199,210,254,.07) 1px, transparent 1px) 0 0/27px 27px,
+      linear-gradient(rgba(199,210,254,.16) 2px, transparent 2px) 0 0/135px 135px,
+      linear-gradient(90deg, rgba(199,210,254,.16) 2px, transparent 2px) 0 0/135px 135px,
+      radial-gradient(ellipse 70% 60% at 50% 45%, #1d3a86 0%, transparent 70%),
+      radial-gradient(ellipse 60% 70% at 100% 0%, var(--glow) 0%, transparent 70%),
+      var(--bg);
+  }
+  /* ขอบไม้บรรทัดแบบ cutting mat */
+  .ruler{ position:absolute; background:
+      repeating-linear-gradient(90deg, rgba(199,210,254,.45) 0 2px, transparent 2px 27px); opacity:.6; }
+  .ruler.top{ top:0; left:0; right:0; height:14px; }
+  .ruler.bottom{ bottom:0; left:0; right:0; height:14px; }
+  .ruler.left{ top:0; bottom:0; left:0; width:14px;
+      background:repeating-linear-gradient(0deg, rgba(199,210,254,.45) 0 2px, transparent 2px 27px); }
+
+  .abs{ position:absolute; }
+  .shadow{ box-shadow: 0 18px 30px rgba(0,0,0,.45); }
+  /* sticker ตัดขอบขาว */
+  .sticker{ filter:
+      drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff)
+      drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff)
+      drop-shadow(0 16px 18px rgba(0,0,0,.5)); }
+
+  /* ---------- Text blocks (สไตล์ป้ายเอียง) ---------- */
+  .bar{ position:absolute; font-weight:900; line-height:1; white-space:nowrap; padding:22px 34px 14px; }
+  .bar-1day{ left:110px; top:300px; transform:rotate(-6deg); background:var(--orange); color:#fff; font-size:112px; letter-spacing:-2px; }
+  .bar-ai{ left:150px; top:440px; transform:rotate(-4deg); background:var(--blue); color:#fff; font-size:136px; padding:28px 40px 8px; }
+  .bar-sub{ left:250px; top:660px; transform:rotate(2deg); background:#fff; color:var(--ink); font-size:56px; font-weight:700; padding:24px 34px 16px; }
+  .bar-sub em{ font-style:normal; color:var(--orange); font-weight:900; }
+
+  .handle{ left:330px; top:220px; transform:rotate(-2deg); display:flex; align-items:center; }
+  .handle span{ background:#0b1020; color:#fff; font-weight:700; font-size:28px; padding:12px 26px 8px; border:2px solid rgba(255,255,255,.18); }
+  .handle img{ width:74px; height:74px; margin-left:-10px; transform:rotate(8deg); }
+
+  .tag-comment{ left:590px; top:1250px; transform:rotate(-4deg); background:var(--orange); color:#fff; border:5px solid #fff; border-radius:60px !important;
+      font-weight:700; font-size:34px; padding:12px 70px 6px 32px; }
+  .cursor{ left:945px; top:1258px; width:84px; transform:rotate(-14deg); }
+
+  .note{ left:300px; top:765px; transform:rotate(2deg); font-size:26px; color:var(--soft); }
+
+  /* ---------- Icons ---------- */
+  .app{ width:150px; height:150px; border-radius:36px; overflow:hidden; background:#fff; border:7px solid #fff; }
+  .app img{ width:118%; height:118%; margin:-9%; display:block; }
+  .app-capcut{ left:80px; top:790px; transform:rotate(-10deg); }
+  .app-claude{ left:900px; top:590px; width:136px; height:136px; transform:rotate(9deg); }
+  .app-label{ font-weight:700; font-size:22px; color:#fff; background:#0b1020; padding:6px 14px 2px; }
+
+  /* toggle */
+  .toggle{ left:770px; top:300px; width:200px; height:96px; border-radius:60px; background:var(--blue);
+      transform:rotate(-6deg); border:6px solid #fff; }
+  .toggle::after{ content:""; position:absolute; right:6px; top:6px; width:72px; height:72px; border-radius:50%;
+      background:radial-gradient(circle at 35% 30%, #fff, #dfe6f5); box-shadow:0 6px 10px rgba(0,0,0,.3); }
+  .toggle b{ position:absolute; left:26px; top:26px; font-size:34px; color:#fff; font-weight:900; }
+
+  /* ---------- Badges ---------- */
+  .badge{ border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:7px solid #fff; }
+  .badge-price{ left:770px; top:880px; width:270px; height:270px; background:var(--orange); color:#fff; transform:rotate(10deg); }
+  .badge-price small{ font-size:24px; font-weight:700; }
+  .badge-price strong{ font-size:76px; font-weight:900; line-height:1; margin-top:6px; }
+  .badge-price s{ font-size:22px; opacity:.9; margin-top:4px; }
+  .badge-seat{ left:60px; top:1005px; width:220px; height:220px; background:#fff; color:var(--ink); transform:rotate(-8deg); border-color:var(--blue); }
+  .badge-seat small{ font-size:24px; font-weight:700; }
+  .badge-seat strong{ font-size:96px; font-weight:900; color:var(--blue); line-height:.95; }
+
+  /* ---------- Photo polaroid ---------- */
+  .photo{ left:345px; top:795px; width:360px; background:#fff; padding:14px 14px 0; transform:rotate(-3deg); }
+  .photo img{ width:100%; display:block; }
+  .photo .cap{ color:var(--ink); font-weight:700; font-size:22px; padding:12px 4px 14px; text-align:center; }
+
+  /* date label */
+  .date{ left:50px; top:1262px; transform:rotate(-2deg); display:flex; align-items:center; }
+  .date .k{ background:var(--orange); color:#fff; font-weight:700; font-size:24px; padding:12px 18px 8px; }
+  .date .v{ background:#0b1020; color:#fff; font-weight:900; font-size:40px; padding:6px 22px 0; border:2px solid rgba(255,255,255,.2); }
+
+  /* timeline prop (แทนแถบเครื่องมือใน ref) */
+  .timeline{ left:-30px; top:30px; width:420px; padding:16px; background:#0b1020; border-radius:18px; transform:rotate(-12deg);
+      border:2px solid rgba(255,255,255,.12); }
+  .track{ display:flex; gap:6px; margin:8px 0; }
+  .clip{ height:30px; border-radius:6px; }
+  .playhead{ position:absolute; left:210px; top:6px; bottom:6px; width:3px; background:#fff; }
+
+  .logo{ left:50%; top:50px; transform:translateX(-50%) rotate(-3deg); display:flex; align-items:center; gap:12px;
+      background:#0b1020; border:5px solid #fff; padding:10px 16px; border-radius:24px; }
+  .logo img{ width:78px; display:block; }
+  .logo span{ color:var(--ink); font-weight:900; font-size:30px; }
+  .logo span i{ font-style:normal; color:var(--blue); }
+
+  .cat-laptop{ left:840px; top:20px; width:230px; transform:rotate(8deg); }
+  .cat-sparkle{ left:640px; top:1090px; width:130px; transform:rotate(-8deg); z-index:5; }
+  .spark{ position:absolute; color:#fff; font-size:44px; }
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="ruler top"></div><div class="ruler bottom"></div><div class="ruler left"></div>
+
+  <!-- Prop: Timeline ตัดต่อ (มุมซ้ายบน แบบ laptop ใน ref) -->
+  <div class="abs timeline shadow">
+    <div class="track"><div class="clip" style="width:150px;background:#2563FF"></div><div class="clip" style="width:90px;background:#3b82f6"></div><div class="clip" style="width:130px;background:#2563FF"></div></div>
+    <div class="track"><div class="clip" style="width:70px;background:#FF7A3D"></div><div class="clip" style="width:180px;background:#FF8A4C"></div><div class="clip" style="width:100px;background:#FF7A3D"></div></div>
+    <div class="track"><div class="clip" style="width:380px;height:18px;background:repeating-linear-gradient(90deg,#22c55e 0 4px,#14532d 4px 7px)"></div></div>
+    <div class="playhead"></div>
+  </div>
+
+  <img class="abs cat-laptop sticker" src="assets/cat-laptop.png" alt="">
+
+  <div class="abs logo shadow">
+    <img src="assets/logo-togreater.png" alt="ToGreater">
+  </div>
+
+  <div class="abs handle">
+    <span>คอร์สสด 1 วันจบ</span>
+  </div>
+
+  <div class="abs toggle shadow"><b>AI</b></div>
+
+  <!-- Headline blocks -->
+  <div class="bar bar-1day shadow">1 Day</div>
+  <div class="bar bar-ai shadow">AI ตัดคลิป</div>
+  <div class="bar bar-sub shadow">ทำคลิป ตัดต่อ <em>พร้อมขาย</em></div>
+
+  <div class="abs app app-claude shadow"><img src="assets/claude.png" alt="Claude"></div>
+  <div class="abs app-label" style="left:910px;top:740px;transform:rotate(9deg)">Claude</div>
+  <div class="abs app app-capcut shadow"><img src="assets/capcut.png" alt="CapCut"></div>
+  <div class="abs app-label" style="left:95px;top:952px;transform:rotate(-10deg)">CapCut</div>
+
+  <div class="abs tag-comment shadow">สนใจ คอมเมนต์เลย</div>
+  <svg class="abs cursor" viewBox="0 0 64 64" style="filter:drop-shadow(0 8px 8px rgba(0,0,0,.5))">
+    <path d="M22 6c-3 0-5 2-5 5v26l-5-5c-2-2-5-2-7 0s-2 5 0 7l15 16c2 2 5 3 8 3h14c6 0 11-5 11-11V29c0-3-2-5-5-5s-5 2-5 5v-2c0-3-2-5-5-5s-5 2-5 5v-2c0-3-2-5-5-5-2 0-3 1-4 2V11c0-3-2-5-5-5z" fill="#fff" stroke="#0b1020" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M32 40v10M39 40v10M46 40v10" stroke="#0b1020" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <!-- รูปผู้สอน แบบ polaroid -->
+  <div class="abs photo shadow">
+    <img src="assets/instructors.jpg" alt="ผู้สอน">
+    <div class="cap">สอนจริง ทำตามได้จริง</div>
+  </div>
+
+  <img class="abs cat-sparkle sticker" src="assets/cat-sparkle.png" alt="">
+
+  <div class="abs badge badge-seat shadow">
+    <small>รับเพียง</small><strong>10</strong><small>ที่นั่ง</small>
+  </div>
+
+  <div class="abs badge badge-price shadow">
+    <small>ราคารอบแรก</small><strong>6,990</strong><small>บาท/ท่าน</small><s>ราคาเต็ม 8,500</s>
+  </div>
+
+  <div class="abs date shadow">
+    <span class="k">วันเรียน</span><span class="v">เสาร์ 7 พ.ย. 2026</span>
+  </div>
+
+  <span class="spark" style="left:70px;top:270px">✦</span>
+  <span class="spark" style="left:990px;top:440px;font-size:30px">✦</span>
+  <span class="spark" style="left:730px;top:800px;font-size:28px">✦</span>
+</div>
+</body>
+</html>
