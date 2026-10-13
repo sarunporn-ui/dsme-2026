@@ -55,9 +55,9 @@
   .handle span{ background:#0b1020; color:#fff; font-weight:700; font-size:28px; padding:12px 26px 8px; border:2px solid rgba(255,255,255,.18); }
   .handle img{ width:74px; height:74px; margin-left:-10px; transform:rotate(8deg); }
 
-  .tag-comment{ left:590px; top:1250px; transform:rotate(-4deg); background:var(--orange); color:#fff; border:5px solid #fff; border-radius:60px !important;
+  .tag-comment{ z-index:3; left:590px; top:1250px; transform:rotate(-4deg); background:var(--orange); color:#fff; border:5px solid #fff; border-radius:60px !important;
       font-weight:700; font-size:34px; padding:12px 70px 6px 32px; }
-  .cursor{ left:945px; top:1258px; width:84px; transform:rotate(-14deg); }
+  .cursor{ z-index:3; left:945px; top:1258px; width:84px; transform:rotate(-14deg); }
 
   .note{ left:300px; top:765px; transform:rotate(2deg); font-size:26px; color:var(--soft); }
 
@@ -76,7 +76,7 @@
   .toggle b{ position:absolute; left:26px; top:26px; font-size:34px; color:#fff; font-weight:900; }
 
   /* ---------- Badges ---------- */
-  .badge{ border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:7px solid #fff; }
+  .badge{ z-index:3; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:7px solid #fff; }
   .badge-price{ left:770px; top:880px; width:270px; height:270px; background:var(--orange); color:#fff; transform:rotate(10deg); }
   .badge-price small{ font-size:24px; font-weight:700; }
   .badge-price strong{ font-size:76px; font-weight:900; line-height:1; margin-top:6px; }
@@ -86,12 +86,10 @@
   .badge-seat strong{ font-size:96px; font-weight:900; color:var(--blue); line-height:.95; }
 
   /* ---------- Photo polaroid ---------- */
-  .photo{ left:345px; top:795px; width:360px; background:#fff; padding:14px 14px 0; transform:rotate(-3deg); }
-  .photo img{ width:100%; display:block; }
-  .photo .cap{ color:var(--ink); font-weight:700; font-size:22px; padding:12px 4px 14px; text-align:center; }
+  .people{ left:250px; top:800px; width:600px; z-index:1; }
 
   /* date label */
-  .date{ left:50px; top:1262px; transform:rotate(-2deg); display:flex; align-items:center; }
+  .date{ z-index:3; left:50px; top:1262px; transform:rotate(-2deg); display:flex; align-items:center; }
   .date .k{ background:var(--orange); color:#fff; font-weight:700; font-size:24px; padding:12px 18px 8px; }
   .date .v{ background:#0b1020; color:#fff; font-weight:900; font-size:40px; padding:6px 22px 0; border:2px solid rgba(255,255,255,.2); }
 
@@ -109,7 +107,7 @@
   .logo span i{ font-style:normal; color:var(--blue); }
 
   .cat-laptop{ left:840px; top:20px; width:230px; transform:rotate(8deg); }
-  .cat-sparkle{ left:640px; top:1090px; width:130px; transform:rotate(-8deg); z-index:5; }
+  .cat-sparkle{ left:225px; top:870px; width:110px; transform:rotate(-8deg); z-index:5; }
   .spark{ position:absolute; color:#fff; font-size:44px; }
 </style>
 </head>
@@ -153,11 +151,8 @@
     <path d="M32 40v10M39 40v10M46 40v10" stroke="#0b1020" stroke-width="3" stroke-linecap="round"/>
   </svg>
 
-  <!-- รูปผู้สอน แบบ polaroid -->
-  <div class="abs photo shadow">
-    <img src="assets/instructors.jpg" alt="ผู้สอน">
-    <div class="cap">สอนจริง ทำตามได้จริง</div>
-  </div>
+  <!-- รูปผู้สอน ไดคัท แบบสติกเกอร์ -->
+  <img class="abs people sticker" src="assets/instructors.png" alt="ผู้สอน">
 
   <img class="abs cat-sparkle sticker" src="assets/cat-sparkle.png" alt="">
 
