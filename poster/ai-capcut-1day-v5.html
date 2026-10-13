@@ -22,12 +22,12 @@
   .logo img{ height:54px; }
   .logo span{ font-weight:900; font-size:32px; color:#fff; }
   .hey{ left:92px; top:118px; font-weight:900; font-size:96px; color:var(--orange); transform:rotate(-9deg); line-height:1.2; }
-  .bar{ left:92px; top:238px; background:var(--blue); color:#fff; font-weight:900; font-size:66px; line-height:1.25; padding:4px 26px 0; white-space:nowrap; }
-  .big{ left:0; right:0; top:392px; text-align:center; font-weight:900; font-size:186px; line-height:1.3; color:#fff; letter-spacing:-3px; white-space:nowrap; }
+  .bar{ left:111px; top:238px; width:827px; height:124px; display:flex; align-items:center; justify-content:center; background:var(--blue); color:#fff; font-weight:700; font-size:66px; padding-top:6px; white-space:nowrap; }
+  .big{ left:0; right:0; top:372px; text-align:center; font-weight:900; font-size:186px; line-height:1.3; color:#fff; letter-spacing:-3px; white-space:nowrap; }
 
   /* ---------- หัวโตแอบมอง ---------- */
-  .peek-w{ left:-95px; top:455px; width:470px; transform:rotate(-10deg); }
-  .peek-m{ left:770px; top:480px; width:380px; transform:rotate(9deg); }
+  .peek-w{ left:-95px; top:385px; width:470px; transform:rotate(-10deg); }
+  .peek-m{ left:770px; top:420px; width:380px; transform:rotate(9deg); }
 
   /* ---------- Laptop + CapCut UI ---------- */
   .laptop{ left:225px; top:610px; width:630px; }
@@ -78,19 +78,24 @@
   .head{ position:absolute; top:0; bottom:0; left:46%; width:2px; background:#fff; }
   .head::before{ content:""; position:absolute; left:-5px; top:-2px; border:6px solid transparent; border-top:8px solid #fff; }
 
+  /* ชื่อผู้สอน */
+  .name{ font-weight:700; font-size:22px; line-height:1.15; color:#fff; text-align:center; text-shadow:0 2px 10px rgba(0,0,0,.6); }
+  .name-w{ left:14px; top:1000px; width:150px; }
+  .name-m{ left:925px; top:1040px; width:140px; }
+
   /* ---------- Stickers ---------- */
   .st-capcut{ left:770px; top:960px; width:118px; height:118px; border-radius:28px; overflow:hidden; background:#fff; border:6px solid #fff;
       transform:rotate(10deg); box-shadow:0 20px 34px rgba(0,0,0,.5); }
   .st-capcut img{ width:118%; height:118%; margin:-9%; display:block; }
-  .st-cat{ left:120px; top:985px; width:140px; transform:rotate(-12deg);
+  .st-cat{ left:105px; top:1090px; width:120px; transform:rotate(-12deg);
       filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 16px rgba(0,0,0,.45)); }
-  .st-claude{ left:910px; top:350px; width:96px; height:96px; border-radius:22px; overflow:hidden; background:#fff; border:5px solid #fff; transform:rotate(-8deg); box-shadow:0 16px 26px rgba(0,0,0,.45); }
+  .st-claude{ left:888px; top:282px; width:96px; height:96px; border-radius:22px; overflow:hidden; background:#fff; border:5px solid #fff; transform:rotate(-8deg); box-shadow:0 16px 26px rgba(0,0,0,.45); }
   .st-claude img{ width:118%; height:118%; margin:-9%; display:block; }
 
   /* ---------- Bottom ---------- */
-  .copy{ left:0; right:0; top:1140px; text-align:center; font-style:italic; }
+  .copy{ left:0; right:0; top:1140px; text-align:center; }
   .copy .l1{ font-size:32px; font-weight:700; color:#fff; }
-  .copy .l1 em{ font-style:italic; color:var(--orange); }
+  .copy .l1 em{ font-style:normal; color:var(--orange); }
   .copy .l2{ font-size:30px; color:var(--soft); margin-top:6px; }
   .copy .l3{ display:inline-block; margin-top:14px; background:var(--blue); color:#fff; font-size:28px; font-weight:700; padding:8px 22px 4px; }
   .copy .l3 s{ opacity:.8; font-weight:400; }
@@ -101,7 +106,7 @@
   <div class="abs logo" id="logo"><img src="assets/logo-cat.png" alt=""><span>ToGreater</span></div>
 
   <div class="abs hey" id="hey">เฮ้ย!</div>
-  <div class="abs bar" id="bar">อยากทำคลิปขายเป็นไหม?</div>
+  <div class="abs bar" id="bar">ตัดเองมันเมื่อยมือ !!!</div>
   <div class="abs big" id="big">AI ตัดคลิป</div>
 
   <img class="abs peek-w" id="peekW" src="assets/peek-woman.png" alt="">
@@ -154,6 +159,9 @@
     <div class="base"></div>
   </div>
 
+  <div class="abs name name-w" id="nameW">น้องเกรท<br>ToGreater</div>
+  <div class="abs name name-m" id="nameM">พี่มิค<br>AI ง่ายง่าย</div>
+
   <div class="abs st-capcut" id="stCapcut"><img src="assets/capcut.png" alt="CapCut"></div>
   <img class="abs st-cat" id="stCat" src="assets/cat-sparkle.png" alt="">
   <div class="abs st-claude" id="stClaude"><img src="assets/claude.png" alt="Claude"></div>
@@ -161,7 +169,7 @@
   <div class="abs copy" id="copy">
     <div class="l1">CapCut + Claude + 1 วัน = <em>คลิปพร้อมขาย</em></div>
     <div class="l2">คอร์สสด 1 วันจบ · สนใจ คอมเมนต์เลย!</div>
-    <div class="l3">เสาร์ 7 พ.ย. 69 · รับ 10 ที่นั่ง · รอบแรก 6,990.- <s>(ปกติ 8,500)</s></div>
+    <div class="l3">เสาร์ 7 พ.ย. 69 · รับ 10 ที่นั่ง · รอบแรก 9,900.- <s>(ปกติ 12,900)</s></div>
   </div>
 </div>
 </body>
