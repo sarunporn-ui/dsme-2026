@@ -76,6 +76,14 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 .badge.price-b{background:var(--tg-orange);color:#fff;transform:rotate(8deg)}
 .badge.seat-b{background:#F8FAFF;color:var(--tg-ink);transform:rotate(-6deg)}
 .badge.seat-b b{color:var(--tg-blue)}
+/* B: วันที่กลางล่าง + ปุ่มคอมเมนต์ใต้วันที่ */
+.bar2{left:0;right:0;margin:0 auto;width:fit-content;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;
+  background:rgba(22,32,60,.94);border:3px solid var(--tg-border);border-radius:24px;padding:16px 44px 22px}
+.bar2 small{font-size:18px;color:var(--tg-text-muted)}
+.bar2 b{font-size:var(--ds);font-weight:900;line-height:1.15;white-space:nowrap}
+.bar2 .cta{font-size:calc(var(--ds) * .46);margin-top:10px}
+.cta .btn{display:inline-flex;align-items:center;gap:.45em}
+.cta .btn svg{width:1.25em;height:1.25em;flex:none}
 .bar{display:flex;align-items:center;justify-content:space-between;background:rgba(22,32,60,.94);border:3px solid var(--tg-border);border-radius:20px;padding:22px 30px}
 .bar .when small{display:block;font-size:18px;color:var(--tg-text-muted)}
 .bar .when b{font-size:54px;font-weight:900;line-height:1.15}
@@ -175,7 +183,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="badge seat-b" style="left:30px;top:480px;width:250px;height:250px;font-size:20px" data-c="seatbadge"></div>
   <div class="badge price-b" style="right:26px;top:455px;width:286px;height:286px;font-size:20px" data-c="pricebadge"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:96px;top:740px;width:120px;transform:rotate(-6deg)">
-  <div class="bar" style="left:64px;right:64px;top:880px" data-c="bar"></div>
+  <div class="bar2" style="top:838px;--ds:52px" data-c="datecta"></div>
 </section>
 
 <section class="banner s45" id="b45">
@@ -188,7 +196,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="badge seat-b" style="left:30px;top:700px;width:276px;height:276px;font-size:22px" data-c="seatbadge"></div>
   <div class="badge price-b" style="right:24px;top:640px;width:312px;height:312px;font-size:22px" data-c="pricebadge"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:80px;top:985px;width:140px;transform:rotate(-6deg)">
-  <div class="bar" style="left:64px;right:64px;top:1130px" data-c="bar"></div>
+  <div class="bar2" style="top:1078px;--ds:62px" data-c="datecta"></div>
 </section>
 
 <section class="banner s169" id="b169">
@@ -198,11 +206,10 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
     <div class="headrow" style="--fs:86px;--w:80px" data-c="head"></div>
     <div class="sub" style="font-size:30px" data-c="sub"></div>
   </div>
-  <div class="stat" style="left:64px;top:330px;width:330px;font-size:36px" data-c="date"></div>
-  <div class="stat" style="left:64px;top:460px;width:330px;font-size:36px" data-c="seats"></div>
+  <div class="stat" style="left:64px;top:330px;width:330px;font-size:36px" data-c="seats"></div>
+  <div class="bar2" style="top:592px;--ds:44px" data-c="datecta"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:64px;bottom:20px;width:130px;transform:rotate(-6deg)">
-  <div class="price col" style="right:64px;top:330px;width:340px;font-size:18px" data-c="price"></div>
-  <div class="cta" style="right:64px;top:610px;font-size:26px" data-c="cta"></div>
+  <div class="price col" style="right:64px;top:330px;width:372px;font-size:18px" data-c="price"></div>
 </section>
 
 <!-- =================== C · TICKET =================== -->
@@ -246,6 +253,8 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 <script>
 /* เนื้อหาเดียวกันทุกแบนเนอร์ — แก้ที่นี่ที่เดียว */
 const SEATS='10', DATE='เสาร์ 7 พ.ย. 2026', NOW='6,990', WAS='8,500', SAVE='1,510';
+/* ไอคอนเมาส์คลิก (Lucide: mouse-pointer-click, ISC) */
+const CLICK=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z" fill="currentColor"/></svg>`;
 const T={
   head:()=>`<div class="tool"><img class="ic" src="assets/capcut-icon.png" alt=""><img class="wm" src="assets/capcut-wordmark-white.png" alt="CapCut"></div>
              <div class="title">${T.title()}</div>
@@ -264,7 +273,8 @@ const T={
   seats:()=>`<small>รับจำกัด</small><b><span class="hl">${SEATS}</span> ที่นั่งเท่านั้น</b>`,
   price:()=>`<div class="now"><small>ราคารอบแรก</small><b>${NOW}<sub>บาท/ท่าน</sub></b></div>
              <div class="was">ราคาเต็ม <s>${WAS}</s><br><span class="chip-save">ประหยัด ${SAVE}.-</span></div>`,
-  cta:()=>`<span class="btn">สนใจ คอมเมนต์</span>`,
+  cta:()=>`<span class="btn">สนใจ คอมเมนต์${CLICK}</span>`,
+  datecta:()=>`<small>วันเรียน</small><b>${DATE}</b><div class="cta">${T.cta()}</div>`,
   seatbadge:()=>`<small>รับเพียง</small><b>${SEATS}</b><span>ที่นั่ง</span>`,
   pricebadge:()=>`<small>ราคารอบแรก</small><b>${NOW}</b><span>บาท/ท่าน</span><s>ราคาเต็ม ${WAS}</s>`,
   bar:()=>`<div class="when"><small>วันเรียน</small><b>${DATE}</b><br><em>เวิร์กช็อป 1 วัน · ลงมือทำจริง</em></div>
