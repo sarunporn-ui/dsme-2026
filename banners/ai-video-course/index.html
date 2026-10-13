@@ -97,6 +97,11 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 .t-bot .was s{font-size:1.25em;font-weight:700}
 .t-bot .chip{display:inline-block;margin-top:.3em;padding:.2em .7em;border-radius:8px;border:2px solid var(--tg-orange);color:var(--tg-orange);font-weight:700;font-size:.9em}
 
+/* โลโก้เครื่องมือ (ลอยแบบไอคอนแอป) — width = ขนาดไอคอน */
+.tool{display:flex;flex-direction:column;align-items:center;gap:10px;transform:rotate(-6deg)}
+.tool .ic{width:100%;filter:drop-shadow(0 16px 30px rgba(0,0,0,.5))}
+.tool .wm{width:82%}
+
 .label{position:static;font-size:14px;letter-spacing:.2em;color:var(--tg-text-muted);margin-bottom:-28px}
 </style>
 </head>
@@ -115,6 +120,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="stat" style="left:64px;top:625px;width:360px" data-c="seats"></div>
   <div class="price" style="left:64px;top:775px;width:952px" data-c="price"></div>
   <div class="cta between" style="left:64px;right:64px;top:950px" data-c="cta"></div>
+  <div class="tool" style="right:56px;top:150px;width:112px" data-c="capcut"></div>
 </section>
 
 <section class="banner s45" id="a45">
@@ -130,6 +136,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="stat" style="left:548px;top:1000px;width:468px" data-c="seats"></div>
   <div class="price" style="left:64px;top:1125px;width:952px" data-c="price"></div>
   <div class="cta between" style="left:64px;right:64px;top:1275px" data-c="cta"></div>
+  <div class="tool" style="right:72px;top:330px;width:120px" data-c="capcut"></div>
 </section>
 
 <section class="banner s169" id="a169">
@@ -144,6 +151,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="price" style="left:64px;top:566px;width:700px;font-size:15px" data-c="price"></div>
   <div class="cta" style="left:64px;top:712px" data-c="cta"></div>
   <img src="assets/cat-sparkle.png" alt="" style="right:40px;bottom:30px;width:170px">
+  <div class="tool" style="right:64px;top:40px;width:104px" data-c="capcut"></div>
 </section>
 
 <!-- =================== B · SPOTLIGHT =================== -->
@@ -158,6 +166,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="badge price-b" style="right:40px;top:400px;width:236px;height:236px;font-size:16px" data-c="pricebadge"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:80px;top:665px;width:140px;transform:rotate(-6deg)">
   <div class="bar" style="left:64px;right:64px;top:880px" data-c="bar"></div>
+  <div class="tool" style="left:236px;top:322px;width:96px" data-c="capcut"></div>
 </section>
 
 <section class="banner s45" id="b45">
@@ -170,6 +179,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="badge price-b" style="right:48px;top:560px;width:262px;height:262px;font-size:18px" data-c="pricebadge"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:100px;top:880px;width:170px;transform:rotate(-6deg)">
   <div class="bar" style="left:64px;right:64px;top:1120px" data-c="bar"></div>
+  <div class="tool" style="left:300px;top:404px;width:112px" data-c="capcut"></div>
 </section>
 
 <section class="banner s169" id="b169">
@@ -184,6 +194,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <img src="assets/cat-sparkle.png" alt="" style="left:64px;bottom:20px;width:130px;transform:rotate(-6deg)">
   <div class="price col" style="right:64px;top:320px;width:330px" data-c="price"></div>
   <div class="cta col" style="right:64px;top:620px;width:330px" data-c="cta"></div>
+  <div class="tool" style="left:400px;top:276px;width:96px" data-c="capcut"></div>
 </section>
 
 <!-- =================== C · TICKET =================== -->
@@ -197,6 +208,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="desc" style="left:64px;top:370px;font-size:19px" data-c="desc2"></div>
   <div class="ticket" style="left:52px;top:655px;width:540px;font-size:20px" data-c="ticket"></div>
   <div class="cta between" style="left:64px;right:64px;top:975px" data-c="cta"></div>
+  <div class="tool" style="right:64px;top:140px;width:104px" data-c="capcut"></div>
 </section>
 
 <section class="banner s45" id="c45">
@@ -209,6 +221,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="ticket" style="left:60px;top:880px;width:660px;font-size:24px" data-c="ticket"></div>
   <img src="assets/cat-sparkle.png" alt="" style="left:610px;top:770px;width:160px;transform:rotate(8deg)">
   <div class="cta between" style="left:64px;right:64px;top:1265px" data-c="cta"></div>
+  <div class="tool" style="right:70px;top:320px;width:120px" data-c="capcut"></div>
 </section>
 
 <section class="banner s169" id="c169">
@@ -220,12 +233,14 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
   <div class="desc" style="left:790px;top:274px;font-size:17px" data-c="desc1"></div>
   <div class="ticket" style="left:800px;top:345px;width:576px;font-size:20px" data-c="ticket"></div>
   <div class="cta" style="left:790px;top:700px" data-c="cta"></div>
+  <div class="tool" style="left:640px;top:56px;width:104px" data-c="capcut"></div>
 </section>
 
 <script>
 /* เนื้อหาเดียวกันทุกแบนเนอร์ — แก้ที่นี่ที่เดียว */
 const SEATS='10', DATE='เสาร์ 7 พ.ย. 2026', NOW='6,990', WAS='8,500', SAVE='1,510';
 const T={
+  capcut:()=>`<img class="ic" src="assets/capcut-icon.png" alt=""><img class="wm" src="assets/capcut-wordmark-white.png" alt="CapCut">`,
   logo:()=>`<img src="assets/logo-togreater.png" alt="ToGreater">`,
   eyebrow:()=>`New Course · 07.11.26`,
   title:()=>`Cut<span class="hl">Greater</span>`,
