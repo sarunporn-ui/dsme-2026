@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>1 Day AI ตัดคลิป v2</title>
+<style>
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_Rg.ttf); font-weight:400; }
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_Bd.ttf); font-weight:700; }
+  @font-face { font-family:"LINE Seed Sans TH"; src:url(assets/LINESeedSansTH_He.ttf); font-weight:900; }
+  @font-face { font-family:"Charm"; src:url(assets/Charm-Bold.ttf); font-weight:700; }
+
+  :root{ --blue:#2563FF; --blue-2:#1E7BF0; --orange:#FF7A3D; --ink:#0F172A; --body:#5B6475; --mist:#E3EDFF; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:#000; font-family:"LINE Seed Sans TH",sans-serif; }
+  .poster{ position:relative; width:1080px; height:1350px; overflow:hidden; background:#F5F9FF; }
+  .abs{ position:absolute; }
+
+  /* ---------- Background: แถบแนวตั้งฟ้าจาง + แสงฟ้า ---------- */
+  .bg{ position:absolute; inset:0; }
+  .stripes{ position:absolute; inset:-20px; filter:blur(10px); background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.95) 0 46px, rgba(207,224,255,.75) 70px, rgba(255,255,255,.95) 96px 128px); }
+  .glow-b{ position:absolute; left:-10%; right:-10%; bottom:-260px; height:520px; border-radius:50%;
+      background:radial-gradient(closest-side, rgba(37,99,255,.38), rgba(37,99,255,0)); }
+  .glow-r{ position:absolute; right:-200px; top:-160px; width:620px; height:620px; border-radius:50%;
+      background:radial-gradient(closest-side, rgba(37,99,255,.28), rgba(37,99,255,0)); }
+  .glow-p{ position:absolute; left:560px; top:300px; width:520px; height:520px; border-radius:50%;
+      background:radial-gradient(closest-side, rgba(120,170,255,.55), rgba(120,170,255,0)); }
+
+  /* ---------- Logo ---------- */
+  .logo{ left:96px; top:150px; display:flex; align-items:center; gap:16px; }
+  .logo img{ height:74px; }
+  .logo span{ font-weight:900; font-size:52px; color:var(--ink); letter-spacing:-1px; }
+  .logo span b{ color:var(--blue); font-weight:900; }
+
+  /* ---------- Hero ภาพผู้สอน + ของลอย ---------- */
+  .people{ left:625px; top:300px; width:440px;
+      -webkit-mask-image:linear-gradient(#000 72%, transparent 100%); mask-image:linear-gradient(#000 72%, transparent 100%); }
+  .app{ width:118px; height:118px; border-radius:30px; overflow:hidden; background:#fff;
+      box-shadow:0 22px 34px rgba(37,99,255,.28), inset 0 0 0 1px rgba(15,23,42,.06); }
+  .app img{ width:118%; height:118%; margin:-9%; display:block; }
+  .app-claude{ left:905px; top:250px; transform:rotate(10deg); }
+  .app-capcut{ left:500px; top:300px; width:96px; height:96px; border-radius:24px; transform:rotate(-12deg); }
+
+  .chip-arrows{ left:640px; top:215px; display:flex; transform:rotate(-10deg); box-shadow:0 10px 20px rgba(37,99,255,.15); border-radius:8px; overflow:hidden; }
+  .chip-arrows i{ width:62px; height:44px; display:grid; place-items:center; font-style:normal; font-size:24px; color:var(--ink); background:#fff; }
+  .chip-arrows i + i{ background:#EEF2F8; color:#8A94A6; }
+
+  .pill3d{ left:430px; top:480px; width:76px; height:42px; border-radius:30px; transform:rotate(-28deg);
+      background:linear-gradient(180deg,#9CC2FF,#4F8BFF); box-shadow:0 10px 18px rgba(37,99,255,.35); }
+  .pill3d::after{ content:""; position:absolute; right:5px; top:5px; width:32px; height:32px; border-radius:50%; background:#fff; }
+  .lines{ left:520px; top:440px; transform:rotate(-24deg); color:var(--blue); }
+
+  .label{ left:770px; top:690px; background:var(--blue-2); color:#fff; font-weight:700; font-size:34px; padding:16px 26px 10px;
+      box-shadow:6px 8px 0 rgba(37,99,255,.18); }
+
+  /* toolbar ตัดต่อเอียง */
+  .toolbar{ left:800px; top:900px; width:330px; height:88px; transform:rotate(-32deg); }
+  .tb{ position:absolute; inset:0; background:#1F2430; border-radius:22px; border:4px solid #0B0E15;
+      box-shadow:0 26px 40px rgba(15,23,42,.35); display:flex; align-items:center; gap:14px; padding:0 16px; }
+  .tb .ic{ width:56px; height:56px; border-radius:12px; display:grid; place-items:center; color:#C9D1E0; font-size:28px; font-weight:700; }
+  .tb .ic.on{ background:var(--blue); color:#fff; }
+  .tb .sep{ width:2px; height:48px; background:#3A4152; }
+  .handle{ position:absolute; width:16px; height:16px; background:#fff; border:3px solid var(--blue-2); }
+
+  /* ---------- Headline ---------- */
+  .script{ left:100px; top:470px; font-family:"Charm"; font-weight:700; font-size:130px; color:var(--orange); transform:rotate(-8deg); line-height:1; z-index:3; }
+  .sel{ left:96px; top:600px; width:650px; height:184px; border:3px solid #B9C3D3; transform:rotate(-2.5deg); }
+  .sel .handle{ width:22px; height:22px; }
+  .h-blue{ left:118px; top:592px; font-weight:900; font-size:126px; line-height:1.45; color:var(--blue-2); transform:rotate(-2.5deg);
+      text-shadow:0 14px 26px rgba(30,123,240,.25); white-space:nowrap; }
+  .h-orange{ left:100px; top:800px; font-weight:900; font-size:96px; line-height:1.2; color:var(--orange); white-space:nowrap;
+      text-shadow:0 12px 22px rgba(255,122,61,.22); }
+  .body{ left:104px; top:940px; width:640px; font-size:30px; line-height:1.5; color:var(--body); }
+  .circle{ position:relative; color:var(--ink); font-weight:700; }
+  .circle::after{ content:""; position:absolute; left:-12px; right:-12px; top:-4px; bottom:-2px; border:3px solid var(--orange); border-radius:50%; transform:rotate(-3deg); }
+
+  /* ---------- Info row ---------- */
+  .info{ left:96px; top:1090px; display:flex; gap:34px; }
+  .it{ display:flex; gap:16px; align-items:center; }
+  .tile{ width:66px; height:66px; border-radius:12px; background:var(--blue-2); display:grid; place-items:center; box-shadow:0 10px 18px rgba(30,123,240,.3); flex:none; }
+  .it p{ font-size:24px; line-height:1.25; color:#7A8496; }
+  .it p b{ display:block; font-size:30px; color:var(--ink); font-weight:900; }
+  .it p b.o{ color:var(--orange); }
+  .it p s{ font-size:20px; }
+
+  /* ---------- Bottom ---------- */
+  .cta{ left:96px; top:1218px; background:var(--blue-2); color:#fff; font-weight:700; font-size:34px; padding:24px 42px 16px; border-radius:60px;
+      box-shadow:0 18px 30px rgba(30,123,240,.35); }
+  .swirl{ left:470px; top:1200px; }
+  .contact{ right:80px; top:1210px; text-align:right; }
+  .contact .l1{ font-weight:900; font-size:36px; color:var(--blue-2); }
+  .contact .l1 em{ font-style:normal; color:var(--orange); }
+  .contact .l2{ font-size:26px; color:#5B6475; margin-top:4px; }
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="bg" id="bg">
+    <div class="stripes"></div><div class="glow-r"></div><div class="glow-b"></div><div class="glow-p"></div>
+  </div>
+
+  <div class="abs logo" id="logo"><img src="assets/logo-cat.png" alt=""><span><b>To</b>Greater</span></div>
+
+  <!-- ของลอย -->
+  <div class="abs chip-arrows" id="chip"><i>↓</i><i>→</i></div>
+  <div class="abs pill3d" id="pill"></div>
+  <svg class="abs lines" id="lines" width="70" height="70" viewBox="0 0 70 70"><path d="M44 6l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#2563FF"/><path d="M6 40h50M14 52h40M24 64h26" stroke="#2563FF" stroke-width="5" stroke-linecap="round"/></svg>
+
+  <img class="abs people" id="people" src="assets/instructors.png" alt="ผู้สอน">
+  <div class="abs app app-capcut" id="capcut"><img src="assets/capcut.png" alt="CapCut"></div>
+  <div class="abs app app-claude" id="claude"><img src="assets/claude.png" alt="Claude"></div>
+  <div class="abs label" id="label">คอร์สสด 1 วันจบ</div>
+
+  <div class="abs toolbar" id="toolbar">
+    <div class="tb">
+      <div class="ic on">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg>
+      </div>
+      <div class="ic">T</div><div class="ic">♪</div><div class="sep"></div><div class="ic" style="font-size:22px">AI</div>
+    </div>
+    <span class="handle" style="left:-10px;top:-10px"></span><span class="handle" style="right:-10px;top:-10px"></span>
+    <span class="handle" style="left:-10px;bottom:-10px"></span><span class="handle" style="right:-10px;bottom:-10px"></span>
+  </div>
+
+  <!-- Headline -->
+  <div class="abs sel" id="sel">
+    <span class="handle" style="left:-13px;top:-13px"></span><span class="handle" style="right:-13px;top:-13px"></span>
+    <span class="handle" style="left:-13px;bottom:-13px"></span><span class="handle" style="right:-13px;bottom:-13px"></span>
+  </div>
+  <div class="abs h-blue" id="hblue">AI ตัดคลิป</div>
+  <div class="abs script" id="script">1 Day</div>
+  <div class="abs h-orange" id="horange">ตัดต่อ พร้อมขาย</div>
+  <p class="abs body" id="body">ใช้ Claude ช่วยคิดสคริปต์ + CapCut ตัดต่อ<br>ทำคลิปขายของได้เอง <span class="circle">ใช้ได้จริง</span> จบใน 1 วัน</p>
+
+  <!-- Info -->
+  <div class="abs info" id="info">
+    <div class="it"><div class="tile">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8" cy="15" r="1" fill="#fff"/><circle cx="12" cy="15" r="1" fill="#fff"/><circle cx="16" cy="15" r="1" fill="#fff"/></svg>
+    </div><p>วันเรียน<b class="o">เสาร์ 7 พ.ย. 69</b></p></div>
+    <div class="it"><div class="tile">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M17 14.5c2.3 0 4 1.4 4.6 4"/></svg>
+    </div><p>รับเพียง<b>10 ที่นั่ง</b></p></div>
+    <div class="it"><div class="tile">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.6" fill="#fff"/></svg>
+    </div><p>ราคารอบแรก<b class="o">6,990.-</b><s>ราคาเต็ม 8,500</s></p></div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="abs cta" id="cta">สนใจ คอมเมนต์เลย</div>
+  <svg class="abs swirl" id="swirl" width="200" height="120" viewBox="0 0 200 120">
+    <defs><radialGradient id="og" cx=".4" cy=".4"><stop offset="0" stop-color="#FFB088"/><stop offset="1" stop-color="#FF7A3D"/></radialGradient></defs>
+    <circle cx="70" cy="70" r="40" fill="url(#og)" opacity=".9"/>
+    <path d="M58 92c-8-22 4-48 16-46 12 2 2 30-10 30s-8-30 30-42c22-7 48-6 70-2" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+    <path d="M100 34c22-7 48-6 70-2" fill="none" stroke="#1E7BF0" stroke-width="4" stroke-linecap="round"/>
+    <path d="M160 20l12 12-14 8" fill="none" stroke="#1E7BF0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div class="abs contact" id="contact">
+    <div class="l1">LINE <em>@togreater</em></div>
+    <div class="l2">โทร 095-064-7272 (คุณเกรท)</div>
+  </div>
+</div>
+</body>
+</html>
