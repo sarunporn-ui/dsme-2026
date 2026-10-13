@@ -38,9 +38,11 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 .frame{display:inline-block;border:5px solid var(--tg-text-muted);border-radius:999px;padding:.08em .7em .14em;margin:0 .15em .18em 0}
 .desc{color:var(--tg-text);line-height:1.45}
 
-.photo{-webkit-mask-image:var(--mv,none);mask-image:var(--mv,none)}
-.photo i{position:absolute;inset:0;background:url(assets/greater-mick.jpg) center/cover no-repeat;
-  -webkit-mask-image:var(--mh,none);mask-image:var(--mh,none)}
+/* รูปผู้สอนครึ่งตัว (ตัดพื้นแล้ว) วางชิดล่างของกรอบ + แสงฟ้าด้านหลัง จางที่ช่วงเอว */
+.photo{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 99%);mask-image:linear-gradient(180deg,#000 70%,transparent 99%)}
+.photo::before{content:"";position:absolute;left:8%;right:8%;top:12%;bottom:0;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(37,99,255,.55),rgba(37,99,255,.18) 60%,transparent);filter:blur(8px)}
+.photo i{position:absolute;inset:0;background:url(assets/greater-mick-half.png) center top/100% auto no-repeat}
 
 /* stat card: font-size = ขนาดตัวเลขหลัก */
 .stat{font-size:34px;background:var(--tg-surface);border:3px solid var(--tg-border);border-radius:14px;padding:.45em .65em}
@@ -130,7 +132,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 <!-- =================== A · CLASSIC =================== -->
 <div class="label">A · CLASSIC</div>
 <section class="banner s11" id="a11">
-  <div class="photo" style="left:420px;top:220px;width:660px;height:637px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 75%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
+  <div class="photo" style="left:480px;top:300px;width:600px;height:482px"><i></i></div>
   <div class="logo" style="left:64px;top:36px;height:64px" data-c="logo"></div>
   <div class="stack" style="left:64px;top:112px;gap:14px">
     <div class="headrow" style="--fs:120px;--w:125px" data-c="head"></div>
@@ -143,7 +145,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 </section>
 
 <section class="banner s45" id="a45">
-  <div class="photo" style="right:0;top:440px;width:760px;height:733px;--mv:linear-gradient(180deg,transparent 0,#000 22%,#000 75%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 32%)"><i></i></div>
+  <div class="photo" style="left:380px;top:520px;width:700px;height:562px"><i></i></div>
   <div class="logo" style="left:64px;top:44px;height:68px" data-c="logo"></div>
   <div class="stack" style="left:64px;top:140px">
     <div class="headrow" style="--fs:150px;--w:124px" data-c="head"></div>
@@ -158,7 +160,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 </section>
 
 <section class="banner s169" id="a169">
-  <div class="photo" style="right:0;top:0;width:840px;height:810px;--mh:linear-gradient(90deg,transparent 0,#000 28%)"><i></i></div>
+  <div class="photo" style="left:640px;top:30px;width:820px;height:658px"><i></i></div>
   <div class="logo" style="left:64px;top:26px;height:62px" data-c="logo"></div>
   <div class="stack" style="left:64px;top:104px;gap:12px">
     <div class="headrow" style="--fs:96px;--w:108px" data-c="head"></div>
@@ -174,7 +176,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 <!-- =================== B · SPOTLIGHT =================== -->
 <div class="label">B · SPOTLIGHT</div>
 <section class="banner s11" id="b11">
-  <div class="photo" style="left:170px;top:400px;width:740px;height:714px;--mv:linear-gradient(180deg,transparent 0,#000 14%,#000 70%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
+  <div class="photo" style="left:190px;top:430px;width:700px;height:562px"><i></i></div>
   <div class="logo" style="left:64px;top:36px;height:60px" data-c="logo"></div>
   <div class="stack center" style="top:100px;gap:14px">
     <div class="headrow" style="--fs:112px;--w:128px" data-c="head"></div>
@@ -187,7 +189,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 </section>
 
 <section class="banner s45" id="b45">
-  <div class="photo" style="left:120px;top:540px;width:840px;height:810px;--mv:linear-gradient(180deg,transparent 0,#000 14%,#000 66%,transparent 84%);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
+  <div class="photo" style="left:140px;top:560px;width:800px;height:642px"><i></i></div>
   <div class="logo center" style="top:34px;height:66px" data-c="logo"></div>
   <div class="stack center" style="top:158px;gap:16px">
     <div class="headrow" style="--fs:140px;--w:140px" data-c="head"></div>
@@ -200,7 +202,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 </section>
 
 <section class="banner s169" id="b169">
-  <div class="photo" style="left:380px;top:300px;width:680px;height:656px;--mv:linear-gradient(180deg,transparent 0,#000 14%);--mh:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent)"><i></i></div>
+  <div class="photo" style="left:380px;top:262px;width:680px;height:546px"><i></i></div>
   <div class="logo" style="left:64px;top:30px;height:62px" data-c="logo"></div>
   <div class="stack center" style="top:66px;gap:12px">
     <div class="headrow" style="--fs:86px;--w:104px" data-c="head"></div>
@@ -215,7 +217,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 <!-- =================== C · TICKET =================== -->
 <div class="label">C · TICKET</div>
 <section class="banner s11" id="c11">
-  <div class="photo" style="left:450px;top:300px;width:630px;height:608px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 78%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
+  <div class="photo" style="left:470px;top:290px;width:610px;height:490px"><i></i></div>
   <div class="logo" style="left:64px;top:36px;height:60px" data-c="logo"></div>
   <div class="stack" style="left:64px;top:110px;gap:14px">
     <div class="headrow" style="--fs:112px;--w:120px" data-c="head"></div>
@@ -227,7 +229,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 </section>
 
 <section class="banner s45" id="c45">
-  <div class="photo" style="right:0;top:520px;width:800px;height:772px;--mv:linear-gradient(180deg,transparent 0,#000 20%,#000 80%,transparent);--mh:linear-gradient(90deg,transparent 0,#000 30%)"><i></i></div>
+  <div class="photo" style="left:380px;top:490px;width:720px;height:578px"><i></i></div>
   <div class="logo" style="left:64px;top:40px;height:66px" data-c="logo"></div>
   <div class="stack" style="left:64px;top:140px">
     <div class="headrow" style="--fs:140px;--w:136px" data-c="head"></div>
@@ -240,7 +242,7 @@ body{background:#060b18;font-family:"LINE Seed Sans TH",sans-serif;color:var(--t
 </section>
 
 <section class="banner s169" id="c169">
-  <div class="photo" style="left:0;top:0;width:840px;height:810px;--mh:linear-gradient(90deg,#000 0,#000 66%,transparent 96%)"><i></i></div>
+  <div class="photo" style="left:0;top:60px;width:760px;height:610px"><i></i></div>
   <div class="logo" style="left:790px;top:26px;height:56px" data-c="logo"></div>
   <div class="stack" style="left:790px;top:92px;gap:12px">
     <div class="headrow" style="--fs:80px;--w:96px" data-c="head"></div>
