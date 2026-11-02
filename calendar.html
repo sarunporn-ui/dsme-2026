@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ตารางนัดหมาย</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'LINE Seed Sans TH';
+      src: url('https://cdn.jsdelivr.net/gh/mumu-f/line-seed-sans-th@main/fonts/LINESeedSansTH_W_Rg.woff2') format('woff2');
+      font-weight: 400; font-display: swap;
+    }
+    @font-face {
+      font-family: 'LINE Seed Sans TH';
+      src: url('https://cdn.jsdelivr.net/gh/mumu-f/line-seed-sans-th@main/fonts/LINESeedSansTH_W_Bd.woff2') format('woff2');
+      font-weight: 700; font-display: swap;
+    }
+    * { font-family: 'LINE Seed Sans TH', -apple-system, BlinkMacSystemFont, sans-serif !important; }
+    body { background-color: #f4f7ff; }
+
+    @keyframes pulseDot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.75); } }
+    .live-dot { animation: pulseDot 1.6s ease-in-out infinite; }
+    @keyframes flashNew { 0% { background-color: #dbeafe; } 100% { background-color: #ffffff; } }
+    .flash { animation: flashNew 2.4s ease-out; }
+    @media (prefers-reduced-motion: reduce) { .live-dot, .flash { animation: none !important; } }
+  </style>
+</head>
+<body class="min-h-screen p-4">
+  <div class="max-w-md mx-auto">
+
+    <!-- Header -->
+    <header class="bg-white p-5 rounded-3xl shadow-xl border border-slate-100 mb-4">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-2">GOOGLE CALENDAR • SYNC</div>
+          <h1 class="text-xl font-bold text-slate-800">ตารางนัดหมาย</h1>
+          <p id="rangeText" class="text-sm text-slate-500 mt-0.5">กำลังโหลด…</p>
+        </div>
+        <button id="refreshBtn" class="shrink-0 text-sm font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-xl" type="button">รีเฟรช</button>
+      </div>
+      <div class="flex items-center gap-2 mt-3 text-xs text-slate-500">
+        <span id="statusDot" class="w-2 h-2 rounded-full bg-slate-300"></span>
+        <span id="statusText">กำลังเชื่อมต่อ…</span>
+      </div>
+      <div id="demoBanner" class="hidden mt-3 text-xs bg-amber-50 text-amber-700 border border-amber-200 rounded-xl px-3 py-2">
+        โหมดตัวอย่าง: ยังไม่ได้ใส่ <code>CALENDAR_API_URL</code> ข้อมูลที่เห็นเป็นข้อมูลสมมติ
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <section class="grid grid-cols-3 gap-2 mb-4">
+      <div class="bg-white rounded-2xl p-3 text-center border border-slate-100 shadow-sm">
+        <div id="statToday" class="text-2xl font-bold text-blue-600">–</div>
+        <div class="text-xs text-slate-500">วันนี้</div>
+      </div>
+      <div class="bg-white rounded-2xl p-3 text-center border border-slate-100 shadow-sm">
+        <div id="statWeek" class="text-2xl font-bold text-slate-800">–</div>
+        <div class="text-xs text-slate-500">7 วันข้างหน้า</div>
+      </div>
+      <div class="bg-white rounded-2xl p-3 text-center border border-slate-100 shadow-sm">
+        <div id="statAll" class="text-2xl font-bold text-slate-800">–</div>
+        <div class="text-xs text-slate-500">ทั้งหมด</div>
+      </div>
+    </section>
+
+    <!-- List -->
+    <main id="eventList" aria-live="polite" class="space-y-5"></main>
+
+    <p class="text-center text-xs text-slate-400 mt-6 mb-2">นัดใหม่ใน Google Calendar จะขึ้นที่หน้านี้ภายในประมาณ 20–60 วินาที</p>
+  </div>
+
+  <script>
+    /* ===== ตั้งค่า ===== */
+    const CALENDAR_API_URL = "";   // ← วาง URL ของ Web App (ลงท้าย /exec) ที่ได้จาก apps-script/calendar-sync.gs
+    const ACCESS_KEY = "";         // ใส่ให้ตรงกับ CONFIG.ACCESS_KEY (ถ้าตั้งไว้)
+    const POLL_MS = 20000;         // เช็กการเปลี่ยนแปลงทุก 20 วินาที
+    const FULL_REFRESH_MS = 300000;// ดึงใหม่ทั้งชุดทุก 5 นาที (กันพลาด / ให้สถานะ "กำลังดำเนินอยู่" อัปเดต)
+    const TZ = "Asia/Bangkok";
+
+    /* ===== State ===== */
+    let version = "";
+    let events = [];
+    let knownIds = null;
+    let lastFull = 0;
+    let timer = null;
+    const isDemo = !CALENDAR_API_URL;
+
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+    const stripTags = (s) => String(s ?? "").replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]*>/g, "");
+
+    const dayKey = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
+    const fmtTime = (d) => new Intl.DateTimeFormat("th-TH", { timeZone: TZ, hour: "2-digit", minute: "2-digit" }).format(d);
+    const fmtDay = (d) => new Intl.DateTimeFormat("th-TH", { timeZone: TZ, weekday: "long", day: "numeric", month: "long" }).format(d);
+    const fmtShort = (d) => new Intl.DateTimeFormat("th-TH", { timeZone: TZ, day: "numeric", month: "short" }).format(d);
+
+    function setStatus(state, text) {
+      const dot = $("statusDot");
+      dot.className = "w-2 h-2 rounded-full " + (state === "live" ? "bg-green-500 live-dot" : state === "error" ? "bg-red-500" : "bg-slate-300");
+      $("statusText").textContent = text;
+    }
+
+    /* ===== Fetch ===== */
+    async function sync(force = false) {
+      if (isDemo) { applyEvents(demoEvents()); setStatus("live", "โหมดตัวอย่าง • " + fmtTime(new Date())); return; }
+
+      const full = force || Date.now() - lastFull > FULL_REFRESH_MS;
+      const url = new URL(CALENDAR_API_URL);
+      if (!full && version) url.searchParams.set("since", version);
+      if (ACCESS_KEY) url.searchParams.set("key", ACCESS_KEY);
+      url.searchParams.set("_", Date.now());
+
+      try {
+        const res = await fetch(url.toString(), { cache: "no-store" });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || "unknown");
+        version = data.version;
+        if (data.changed) { lastFull = Date.now(); applyEvents(data.events || []); }
+        setStatus("live", "ซิงก์แล้ว • อัปเดตล่าสุด " + fmtTime(new Date()));
+      } catch (err) {
+        console.error(err);
+        setStatus("error", "เชื่อมต่อไม่ได้ จะลองใหม่อัตโนมัติ");
+        if (!events.length) $("eventList").innerHTML = emptyCard("โหลดข้อมูลไม่สำเร็จ", "ตรวจสอบ URL ของ Web App และสิทธิ์การเข้าถึง (Anyone)");
+      }
+    }
+
+    function applyEvents(list) {
+      const ids = new Set(list.map(e => e.id + "|" + e.updated));
+      const fresh = knownIds ? [...ids].filter(x => !knownIds.has(x)) : [];
+      knownIds = ids;
+      events = list.slice().sort((a, b) => new Date(a.start) - new Date(b.start));
+      render(new Set(fresh.map(x => x.split("|")[0])));
+    }
+
+    /* ===== Render ===== */
+    function render(freshIds) {
+      const now = new Date();
+      const todayKey = dayKey(now);
+      const tomorrowKey = dayKey(new Date(now.getTime() + 864e5));
+      const weekEnd = now.getTime() + 7 * 864e5;
+
+      $("statToday").textContent = events.filter(e => dayKey(new Date(e.start)) === todayKey).length;
+      $("statWeek").textContent = events.filter(e => new Date(e.start).getTime() <= weekEnd && new Date(e.end) >= now).length;
+      $("statAll").textContent = events.length;
+      $("rangeText").textContent = events.length
+        ? `${fmtShort(new Date(events[0].start))} – ${fmtShort(new Date(events[events.length - 1].start))}`
+        : "ยังไม่มีนัดหมาย";
+
+      if (!events.length) { $("eventList").innerHTML = emptyCard("ยังไม่มีนัดหมาย", "สร้างนัดใน Google Calendar แล้วจะขึ้นที่นี่อัตโนมัติ"); return; }
+
+      const groups = new Map();
+      for (const e of events) {
+        const k = dayKey(new Date(e.start));
+        if (!groups.has(k)) groups.set(k, []);
+        groups.get(k).push(e);
+      }
+
+      let html = "";
+      for (const [k, list] of groups) {
+        const d = new Date(list[0].start);
+        const label = k === todayKey ? "วันนี้" : k === tomorrowKey ? "พรุ่งนี้" : fmtDay(d);
+        const sub = (k === todayKey || k === tomorrowKey) ? fmtDay(d) : "";
+        html += `<section>
+          <h2 class="flex items-baseline gap-2 px-1 mb-2">
+            <span class="text-sm font-bold ${k === todayKey ? "text-blue-600" : "text-slate-700"}">${esc(label)}</span>
+            <span class="text-xs text-slate-400">${esc(sub)}</span>
+          </h2>
+          <div class="space-y-2">${list.map(e => card(e, now, freshIds.has(e.id))).join("")}</div>
+        </section>`;
+      }
+      $("eventList").innerHTML = html;
+    }
+
+    function card(e, now, isFresh) {
+      const s = new Date(e.start), en = new Date(e.end);
+      const ongoing = s <= now && now < en;
+      const past = en <= now;
+      const time = e.allDay ? "ทั้งวัน" : `${fmtTime(s)} – ${fmtTime(en)}`;
+      const desc = stripTags(e.description).trim();
+      return `<article class="bg-white rounded-2xl p-4 border ${ongoing ? "border-blue-300 ring-2 ring-blue-100" : "border-slate-100"} shadow-sm ${past ? "opacity-50" : ""} ${isFresh ? "flash" : ""}">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <span class="text-xs font-semibold ${ongoing ? "text-blue-600" : "text-slate-500"}">${esc(time)}</span>
+          ${ongoing ? '<span class="text-[11px] font-semibold bg-blue-600 text-white px-2 py-0.5 rounded-full">กำลังดำเนินอยู่</span>'
+            : isFresh ? '<span class="text-[11px] font-semibold bg-green-100 text-green-700 px-2 py-0.5 rounded-full">อัปเดตใหม่</span>' : ""}
+        </div>
+        <h3 class="font-bold text-slate-800 leading-snug">${esc(e.title)}</h3>
+        ${e.location ? `<p class="text-sm text-slate-500 mt-1">📍 ${esc(e.location)}</p>` : ""}
+        ${desc ? `<p class="text-sm text-slate-500 mt-1 whitespace-pre-line line-clamp-3">${esc(desc)}</p>` : ""}
+      </article>`;
+    }
+
+    function emptyCard(title, sub) {
+      return `<div class="bg-white rounded-2xl p-6 text-center border border-slate-100 shadow-sm">
+        <div class="text-3xl mb-2">📅</div>
+        <p class="font-bold text-slate-700">${esc(title)}</p>
+        <p class="text-sm text-slate-500 mt-1">${esc(sub)}</p>
+      </div>`;
+    }
+
+    /* ===== Demo data (ใช้เมื่อยังไม่ได้ตั้งค่า URL) ===== */
+    function demoEvents() {
+      const at = (dayOffset, h, m) => { const d = new Date(); d.setDate(d.getDate() + dayOffset); d.setHours(h, m, 0, 0); return d; };
+      const now = new Date();
+      const mk = (id, title, s, durMin, location) => ({ id, title, start: s.toISOString(), end: new Date(s.getTime() + durMin * 6e4).toISOString(), allDay: false, location, description: "", updated: "demo" });
+      return [
+        mk("d1", "คุยงานกับลูกค้า Workshop LINE AI", new Date(now.getTime() - 15 * 6e4), 60, "Google Meet"),
+        mk("d2", "ประชุมทีม Marketing", at(0, 17, 0), 45, "ห้องประชุม 2"),
+        mk("d3", "FREE WORKSHOP: LINE AI รอบที่ 1", at(1, 10, 0), 180, "P4D Office"),
+        mk("d4", "ติดตามผลลูกค้า (Follow-up)", at(3, 14, 30), 30, ""),
+      ];
+    }
+
+    /* ===== Loop ===== */
+    function loop() {
+      clearTimeout(timer);
+      sync().finally(() => { if (!document.hidden) timer = setTimeout(loop, POLL_MS); });
+    }
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) loop(); else clearTimeout(timer); });
+    $("refreshBtn").addEventListener("click", () => { clearTimeout(timer); sync(true).finally(() => { timer = setTimeout(loop, POLL_MS); }); });
+    if (isDemo) $("demoBanner").classList.remove("hidden");
+    loop();
+  </script>
+</body>
+</html>
