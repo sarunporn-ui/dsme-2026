@@ -65,53 +65,61 @@ html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#9fbad6
 </div>
 <svg id="cat" width="1920" height="1080" style="position:absolute;inset:0;z-index:6;overflow:visible">
 <defs>
- <filter id="pencil" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="3.2"/></filter>
- <filter id="wc" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="9" result="n"/>
-  <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.35" result="a"/>
-  <feComposite in="SourceGraphic" in2="a" operator="in" result="m"/><feDisplacementMap in="m" in2="n" scale="7"/></filter>
+ <filter id="pencil" x="-15%" y="-15%" width="130%" height="130%">
+  <feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="2" seed="5" result="t"/>
+  <feDisplacementMap in="SourceGraphic" in2="t" scale="4.5" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="2" seed="8" result="g"/>
+  <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.1 2.05" result="ga"/>
+  <feComposite in="d" in2="ga" operator="in"/></filter>
+ <filter id="wc" x="-15%" y="-15%" width="130%" height="130%">
+  <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="9" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="9" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="1.1 .35" numOctaves="2" seed="4" result="g"/>
+  <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.9 2.25" result="ga"/>
+  <feComposite in="d" in2="ga" operator="in"/></filter>
 </defs>
 <g id="catRoot" transform="translate(1432,588) scale(1.1)"><g id="catPop">
  <ellipse cx="200" cy="440" rx="170" ry="16" fill="#5f7da0" opacity=".22"/>
  <g id="catTail"><path d="M292,415 C350,410 378,360 360,310 C352,288 330,286 334,304 C348,350 330,388 285,392" fill="#bdb4ad" filter="url(#wc)"/>
-  <path d="M292,415 C350,410 378,360 360,310 C352,288 330,286 334,304 C348,350 330,388 285,392" fill="none" stroke="#5b4840" stroke-width="3.2" filter="url(#pencil)"/>
-  <path d="M352,330 l14,-4 M356,352 l14,0" stroke="#5b4840" stroke-width="2.6" opacity=".6" filter="url(#pencil)"/></g>
+  <path d="M292,415 C350,410 378,360 360,310 C352,288 330,286 334,304 C348,350 330,388 285,392" fill="none" stroke="#4a3a33" stroke-width="5.0" filter="url(#pencil)"/>
+  <path d="M352,330 l14,-4 M356,352 l14,0" stroke="#4a3a33" stroke-width="4.0" opacity=".6" filter="url(#pencil)"/></g>
  <g id="catBody">
   <path d="M108,432 C88,335 118,250 200,246 C282,250 312,335 292,432 Z" fill="#bdb4ad" filter="url(#wc)"/>
   <path d="M150,432 C140,360 160,300 200,298 C240,300 260,360 250,432 Z" fill="#f3ece4" filter="url(#wc)"/>
-  <path d="M108,432 C88,335 118,250 200,246 C282,250 312,335 292,432 Z" fill="none" stroke="#5b4840" stroke-width="3.4" filter="url(#pencil)"/>
-  <ellipse cx="148" cy="432" rx="36" ry="15" fill="#f3ece4" stroke="#5b4840" stroke-width="3" filter="url(#pencil)"/>
-  <ellipse cx="252" cy="432" rx="36" ry="15" fill="#f3ece4" stroke="#5b4840" stroke-width="3" filter="url(#pencil)"/>
+  <path d="M108,432 C88,335 118,250 200,246 C282,250 312,335 292,432 Z" fill="none" stroke="#4a3a33" stroke-width="5.3" filter="url(#pencil)"/>
+  <ellipse cx="148" cy="432" rx="36" ry="15" fill="#f3ece4" stroke="#4a3a33" stroke-width="4.7" filter="url(#pencil)"/>
+  <ellipse cx="252" cy="432" rx="36" ry="15" fill="#f3ece4" stroke="#4a3a33" stroke-width="4.7" filter="url(#pencil)"/>
  </g>
  <g id="catHead">
-  <path d="M112,128 L116,52 Q120,44 128,50 L176,96 Z" fill="#bdb4ad" stroke="#5b4840" stroke-width="3.2" stroke-linejoin="round" filter="url(#pencil)"/>
-  <path d="M288,128 L284,52 Q280,44 272,50 L224,96 Z" fill="#bdb4ad" stroke="#5b4840" stroke-width="3.2" stroke-linejoin="round" filter="url(#pencil)"/>
+  <path d="M112,128 L116,52 Q120,44 128,50 L176,96 Z" fill="#bdb4ad" stroke="#4a3a33" stroke-width="5.0" stroke-linejoin="round" filter="url(#pencil)"/>
+  <path d="M288,128 L284,52 Q280,44 272,50 L224,96 Z" fill="#bdb4ad" stroke="#4a3a33" stroke-width="5.0" stroke-linejoin="round" filter="url(#pencil)"/>
   <path d="M124,110 L127,68 L155,96Z M276,110 L273,68 L245,96Z" fill="#efc3c8" filter="url(#wc)"/>
   <ellipse cx="200" cy="178" rx="108" ry="90" fill="#bdb4ad" filter="url(#wc)"/>
-  <ellipse cx="200" cy="178" rx="108" ry="90" fill="none" stroke="#5b4840" stroke-width="3.4" filter="url(#pencil)"/>
-  <path d="M184,98 l2,22 M200,94 l0,24 M216,98 l-2,22" stroke="#5b4840" stroke-width="3" opacity=".55" filter="url(#pencil)"/>
+  <ellipse cx="200" cy="178" rx="108" ry="90" fill="none" stroke="#4a3a33" stroke-width="5.3" filter="url(#pencil)"/>
+  <path d="M184,98 l2,22 M200,94 l0,24 M216,98 l-2,22" stroke="#4a3a33" stroke-width="4.7" opacity=".55" filter="url(#pencil)"/>
   <ellipse cx="146" cy="214" rx="16" ry="9" fill="#efb5bf" opacity=".8" filter="url(#wc)"/><ellipse cx="254" cy="214" rx="16" ry="9" fill="#efb5bf" opacity=".8" filter="url(#wc)"/>
-  <g id="catEyes"><path d="M152,192 q10,8 20,0 M228,192 q10,8 20,0" stroke="#5b4840" stroke-width="3.6" stroke-linecap="round" fill="none"/></g>
-  <g filter="url(#pencil)" stroke="#5b4840" stroke-width="3.2" fill="none">
+  <g id="catEyes"><path d="M152,192 q10,8 20,0 M228,192 q10,8 20,0" stroke="#4a3a33" stroke-width="5.6" stroke-linecap="round" fill="none"/></g>
+  <g filter="url(#pencil)" stroke="#4a3a33" stroke-width="5.0" fill="none">
    <circle cx="162" cy="188" r="30" fill="#ffffff" fill-opacity=".3"/><circle cx="238" cy="188" r="30" fill="#ffffff" fill-opacity=".3"/>
    <path d="M192,186 q8,-7 16,0 M132,184 l-22,-6 M268,184 l22,-6"/>
-   <path d="M150,172 l10,-4 M226,172 l10,-4" stroke="#ffffff" stroke-width="3" opacity=".9"/>
+   <path d="M150,172 l10,-4 M226,172 l10,-4" stroke="#ffffff" stroke-width="4.7" opacity=".9"/>
   </g>
-  <path d="M193,214 h14 l-7,8 z" fill="#e79aa8" stroke="#5b4840" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M200,222 q-6,9 -13,4 M200,222 q6,9 13,4" stroke="#5b4840" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-  <path d="M120,210 l-34,-6 M122,222 l-32,4 M280,210 l34,-6 M278,222 l32,4" stroke="#5b4840" stroke-width="2.2" opacity=".7" filter="url(#pencil)"/>
+  <path d="M193,214 h14 l-7,8 z" fill="#e79aa8" stroke="#4a3a33" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M200,222 q-6,9 -13,4 M200,222 q6,9 13,4" stroke="#4a3a33" stroke-width="4.0" fill="none" stroke-linecap="round"/>
+  <path d="M120,210 l-34,-6 M122,222 l-32,4 M280,210 l34,-6 M278,222 l32,4" stroke="#4a3a33" stroke-width="3.4" opacity=".7" filter="url(#pencil)"/>
  </g>
- <g id="catBow" filter="url(#pencil)"><path d="M200,262 C180,246 162,252 166,266 C170,280 188,274 200,264 C212,274 230,280 234,266 C238,252 220,246 200,262Z" fill="#b6cde6" stroke="#6f8fb0" stroke-width="2.6"/>
-  <path d="M196,266 C190,282 186,292 180,300 M204,266 C210,282 216,292 222,300" stroke="#6f8fb0" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="200" cy="264" r="5" fill="#8fb0d0" stroke="#6f8fb0" stroke-width="2"/></g>
+ <g id="catBow" filter="url(#pencil)"><path d="M200,262 C180,246 162,252 166,266 C170,280 188,274 200,264 C212,274 230,280 234,266 C238,252 220,246 200,262Z" fill="#b6cde6" stroke="#6f8fb0" stroke-width="4.0"/>
+  <path d="M196,266 C190,282 186,292 180,300 M204,266 C210,282 216,292 222,300" stroke="#6f8fb0" stroke-width="4.7" fill="none" stroke-linecap="round"/><circle cx="200" cy="264" r="5" fill="#8fb0d0" stroke="#6f8fb0" stroke-width="3.1"/></g>
  <g id="catBook">
   <path d="M84,306 Q200,286 316,306 L326,386 Q200,366 74,386 Z" fill="#8fb0d6" filter="url(#wc)"/>
-  <path d="M84,306 Q200,286 316,306 L326,386 Q200,366 74,386 Z" fill="none" stroke="#5b4840" stroke-width="3.2" stroke-linejoin="round" filter="url(#pencil)"/>
-  <path d="M200,300 Q146,284 98,296 L92,374 Q148,362 200,378 Z" fill="#fbf6ea" stroke="#5b4840" stroke-width="2.8" stroke-linejoin="round" filter="url(#pencil)"/>
-  <path d="M200,300 Q254,284 302,296 L308,374 Q252,362 200,378 Z" fill="#fbf6ea" stroke="#5b4840" stroke-width="2.8" stroke-linejoin="round" filter="url(#pencil)"/>
-  <path d="M112,316 q40,-10 76,0 M112,334 q40,-10 76,0 M112,352 q30,-8 56,0 M212,316 q40,-10 76,0 M212,334 q40,-10 76,0 M232,352 q30,-8 56,0" stroke="#b9c9da" stroke-width="2.6" fill="none"/>
-  <path d="M272,298 l0,34 l-7,-7 l-7,7 l0,-36" fill="#efb5bf" stroke="#5b4840" stroke-width="2" filter="url(#pencil)"/>
-  <path id="flipPage" d="M200,300 Q254,284 302,296 L308,374 Q252,362 200,378 Z" fill="#fffdf6" stroke="#5b4840" stroke-width="2.8" filter="url(#pencil)" opacity="0"/>
-  <ellipse cx="92" cy="346" rx="22" ry="17" fill="#bdb4ad" stroke="#5b4840" stroke-width="3" filter="url(#pencil)"/>
-  <ellipse cx="308" cy="346" rx="22" ry="17" fill="#bdb4ad" stroke="#5b4840" stroke-width="3" filter="url(#pencil)"/>
+  <path d="M84,306 Q200,286 316,306 L326,386 Q200,366 74,386 Z" fill="none" stroke="#4a3a33" stroke-width="5.0" stroke-linejoin="round" filter="url(#pencil)"/>
+  <path d="M200,300 Q146,284 98,296 L92,374 Q148,362 200,378 Z" fill="#fbf6ea" stroke="#4a3a33" stroke-width="4.3" stroke-linejoin="round" filter="url(#pencil)"/>
+  <path d="M200,300 Q254,284 302,296 L308,374 Q252,362 200,378 Z" fill="#fbf6ea" stroke="#4a3a33" stroke-width="4.3" stroke-linejoin="round" filter="url(#pencil)"/>
+  <path d="M112,316 q40,-10 76,0 M112,334 q40,-10 76,0 M112,352 q30,-8 56,0 M212,316 q40,-10 76,0 M212,334 q40,-10 76,0 M232,352 q30,-8 56,0" stroke="#b9c9da" stroke-width="4.0" fill="none"/>
+  <path d="M272,298 l0,34 l-7,-7 l-7,7 l0,-36" fill="#efb5bf" stroke="#4a3a33" stroke-width="3.1" filter="url(#pencil)"/>
+  <path id="flipPage" d="M200,300 Q254,284 302,296 L308,374 Q252,362 200,378 Z" fill="#fffdf6" stroke="#4a3a33" stroke-width="4.3" filter="url(#pencil)" opacity="0"/>
+  <ellipse cx="92" cy="346" rx="22" ry="17" fill="#bdb4ad" stroke="#4a3a33" stroke-width="4.7" filter="url(#pencil)"/>
+  <ellipse cx="308" cy="346" rx="22" ry="17" fill="#bdb4ad" stroke="#4a3a33" stroke-width="4.7" filter="url(#pencil)"/>
  </g>
 </g><g id="catFloat"></g></g>
 </svg>
