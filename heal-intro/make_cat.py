@@ -104,6 +104,7 @@ def swap(path, end_marker, root_tf, keep_float):
     open(path, 'w', encoding='utf-8').write(s)
 
 
-swap('envelope.html', '<svg id="fx"', 'translate(1432,588) scale(1.1)', True)
-swap('thumbnails/let-them-v4.html', '<div id="brand">', 'translate(1012,440) scale(.68)', False)
-print('cat swapped')
+if __name__ == '__main__':
+  swap('envelope.html', '<svg id="fx"', 'translate(1432,588) scale(1.1)', True)
+  swap('thumbnails/let-them-v4.html', '<div id="brand">', 'translate(1012,440) scale(.68)', False)
+  print('cat swapped')

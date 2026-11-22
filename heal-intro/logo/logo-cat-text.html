@@ -1,0 +1,70 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:goodfriend;src:url(../fonts/custom/goodfriend.ttf)}
+html,body{margin:0;width:800px;height:800px;overflow:hidden}
+#s{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,#d4e4f4 0%,#aec6e0 55%,#8eabca 100%)}
+svg{position:absolute;inset:0}
+</style></head><body><div id="s">
+<svg width="800" height="800"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0"/></filter><rect width="800" height="800" filter="url(#n)" opacity=".3" style="mix-blend-mode:soft-light"/></svg>
+<svg id="deco" width="800" height="800"></svg>
+<svg width="800" height="800" style="overflow:visible"><g id="catRoot" transform="translate(110.0,39.0) scale(1.45)">
+<defs><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="1" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.2"/></filter></defs>
+<g id="catPop" filter="url(#wob)">
+ <ellipse cx="200" cy="442" rx="160" ry="14" fill="#5f7da0" opacity=".2"/>
+ <g id="catTail">
+  <path d="M286,418 C338,416 368,378 362,326 C360,306 350,292 338,292 C326,293 322,306 328,318 C340,352 330,384 284,392 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M338,292 C326,293 322,306 328,318 C334,316 344,312 352,300 C348,295 343,292 338,292Z" fill="#d3d3d6" stroke="none"/>
+  <path d="M338,292 C326,293 322,306 328,318" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+ </g>
+ <g id="catBody">
+  <path d="M106,434 C88,336 118,252 200,248 C282,252 312,336 294,434 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M236,300 C262,300 280,330 282,362 C262,370 240,352 232,330 C228,316 228,304 236,300Z" fill="#d3d3d6" stroke="none"/>
+  <path d="M106,434 C88,336 118,252 200,248 C282,252 312,336 294,434" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M112,434 q0,-28 36,-28 q36,0 36,28 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M216,434 q0,-28 36,-28 q36,0 36,28 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M136,434 v-10 M160,434 v-10 M240,434 v-10 M264,434 v-10" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+ </g>
+ <g id="catHead">
+  <path d="M106,138 L104,62 Q106,48 120,54 L178,98 Z" fill="#d3d3d6" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M294,138 L296,62 Q294,48 280,54 L222,98 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M118,118 L118,74 L156,102 Z" fill="#f7b6c4" stroke="none"/>
+  <path d="M282,118 L282,74 L244,102 Z" fill="#f7b6c4" stroke="none"/>
+  <path d="M312.0,180.0 Q320.8,194.0 307.5,205.4 Q311.0,220.8 294.2,228.7 Q292.3,244.2 273.3,248.0 Q266.0,262.5 246.5,261.9 Q234.4,274.1 215.9,269.1 Q200.0,278.1 184.1,269.1 Q165.6,274.1 153.5,261.9 Q134.0,262.5 126.7,248.0 Q107.7,244.2 105.8,228.7 Q89.0,220.8 92.5,205.4 Q79.2,194.0 88.0,180.0 Q79.2,166.0 92.5,154.6 Q89.0,139.2 105.8,131.3 Q107.7,115.8 126.7,112.0 Q134.0,97.5 153.5,98.1 Q165.6,85.9 184.1,90.9 Q200.0,81.9 215.9,90.9 Q234.4,85.9 246.5,98.1 Q266.0,97.5 273.3,112.0 Q292.3,115.8 294.2,131.3 Q311.0,139.2 307.5,154.6 Q320.8,166.0 312.0,180.0 Z" fill="#ffffff" stroke="none"/>
+  <path d="M96,170 C92,120 130,96 170,100 C186,112 184,140 166,156 C140,176 112,180 96,170Z" fill="#d3d3d6" stroke="none"/>
+  <path d="M312.0,180.0 Q320.8,194.0 307.5,205.4 Q311.0,220.8 294.2,228.7 Q292.3,244.2 273.3,248.0 Q266.0,262.5 246.5,261.9 Q234.4,274.1 215.9,269.1 Q200.0,278.1 184.1,269.1 Q165.6,274.1 153.5,261.9 Q134.0,262.5 126.7,248.0 Q107.7,244.2 105.8,228.7 Q89.0,220.8 92.5,205.4 Q79.2,194.0 88.0,180.0 Q79.2,166.0 92.5,154.6 Q89.0,139.2 105.8,131.3 Q107.7,115.8 126.7,112.0 Q134.0,97.5 153.5,98.1 Q165.6,85.9 184.1,90.9 Q200.0,81.9 215.9,90.9 Q234.4,85.9 246.5,98.1 Q266.0,97.5 273.3,112.0 Q292.3,115.8 294.2,131.3 Q311.0,139.2 307.5,154.6 Q320.8,166.0 312.0,180.0 Z" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M184,92 l-4,-16 M200,90 l0,-18 M216,92 l4,-16" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"/>
+  <path d="M90,186 l-18,-4 M90,200 l-18,4 M310,186 l18,-4 M310,200 l18,4" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <ellipse cx="138" cy="222" rx="15" ry="9" fill="#f7b6c4" stroke="none"/>
+  <ellipse cx="262" cy="222" rx="15" ry="9" fill="#f7b6c4" stroke="none"/>
+  <g id="catEyes">
+   <ellipse cx="160" cy="192" rx="8" ry="9" fill="#1d1d1f"/><ellipse cx="240" cy="192" rx="8" ry="9" fill="#1d1d1f"/>
+  </g>
+  <circle cx="160" cy="190" r="31" fill="#eaf4ff" fill-opacity=".22" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  <circle cx="240" cy="190" r="31" fill="#eaf4ff" fill-opacity=".22" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  <path d="M191,186 q9,-8 18,0 M129,186 l-26,-8 M271,186 l26,-8" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  <path d="M193,220 q7,-4 14,0 q-2,8 -7,9 q-5,-1 -7,-9Z" fill="#1d1d1f" stroke="#1d1d1f" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M200,229 q-5,9 -12,5 M200,229 q5,9 12,5" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+ </g>
+ <g id="catBow">
+  <path d="M200,262 C180,244 160,250 164,266 C168,282 188,276 200,264 C212,276 232,282 236,266 C240,250 220,244 200,262Z" fill="#9cc8ee" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"/>
+  <circle cx="200" cy="264" r="7" fill="#9cc8ee" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"/>
+ </g>
+ <g id="catBook">
+  <path d="M82,306 Q200,286 318,306 L328,388 Q200,368 72,388 Z" fill="#9cc8ee" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M200,300 Q146,284 98,296 L92,376 Q148,364 200,380 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  <path d="M200,300 Q254,284 302,296 L308,376 Q252,364 200,380 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  <path d="M114,318 q38,-9 72,0 M114,336 q38,-9 72,0 M114,354 q28,-7 52,0 M214,318 q38,-9 72,0 M214,336 q38,-9 72,0 M234,354 q28,-7 52,0" fill="none" stroke="#b9c3cf" stroke-width="4" stroke-linecap="round"/>
+  <path d="M272,296 v36 l-8,-8 l-8,8 v-38" fill="#f7b6c4" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <path id="flipPage" d="M200,300 Q254,284 302,296 L308,376 Q252,364 200,380 Z" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" opacity="0"/>
+  <circle cx="92" cy="346" r="22" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="308" cy="346" r="22" fill="#ffffff" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M82,336 v8 M94,333 v8 M298,336 v8 M310,333 v8" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/>
+ </g>
+</g></g></svg>
+<div style="position:absolute;left:0;right:0;bottom:110px;text-align:center"><span style="display:inline-block;background:#fff;border:6px solid #1d1d1f;border-radius:60px;padding:6px 40px 14px;font-family:goodfriend;font-size:62px;color:#1f3b63">ฮีลใจ by book</span></div>
+</div><script>
+const NS='http://www.w3.org/2000/svg',g=document.getElementById('deco');
+function star(x,y,r,c){let d='';for(let i=0;i<10;i++){const a=i*Math.PI/5-Math.PI/2,rr=i%2?r*.45:r;d+=(i?'L':'M')+(x+Math.cos(a)*rr)+','+(y+Math.sin(a)*rr)}const p=document.createElementNS(NS,'path');p.setAttribute('d',d+'Z');p.setAttribute('fill',c);p.setAttribute('stroke',c);p.setAttribute('stroke-width',r*.3);p.setAttribute('stroke-linejoin','round');g.appendChild(p)}
+[[170,170,22,'#fff'],[640,150,26,'#fff'],[120,420,14,'#6d93c2'],[690,410,16,'#fff'],[230,90,10,'#6d93c2'],[560,80,11,'#fff'],[700,290,9,'#f6df7a'],[100,300,10,'#fff']].forEach(a=>star(...a));
+function sp(x,y,r,c){const p=document.createElementNS(NS,'path');p.setAttribute('d',`M${x},${y-r} L${x+r*.25},${y-r*.25} L${x+r},${y} L${x+r*.25},${y+r*.25} L${x},${y+r} L${x-r*.25},${y+r*.25} L${x-r},${y} L${x-r*.25},${y-r*.25}Z`);p.setAttribute('fill',c);p.setAttribute('stroke','#1d1d1f');p.setAttribute('stroke-width',4);p.setAttribute('stroke-linejoin','round');g.appendChild(p)}
+sp(612,250,24,'#f6df7a');sp(190,290,18,'#fff');
+</script></body></html>
