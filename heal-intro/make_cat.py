@@ -67,9 +67,7 @@ cat_inner = f'''
   <ellipse cx="138" cy="222" rx="15" ry="9" fill="{P}" stroke="none"/>
   <ellipse cx="262" cy="222" rx="15" ry="9" fill="{P}" stroke="none"/>
   <g id="catEyes">
-   <circle cx="160" cy="192" r="16" fill="{W}" {fillk} stroke-width="4.5"/><circle cx="240" cy="192" r="16" fill="{W}" {fillk} stroke-width="4.5"/>
-   <circle cx="160" cy="185" r="9" fill="{K}"/><circle cx="240" cy="185" r="9" fill="{K}"/>
-   <circle cx="157" cy="182" r="3" fill="{W}"/><circle cx="237" cy="182" r="3" fill="{W}"/>
+   <ellipse cx="160" cy="192" rx="8" ry="9" fill="{K}"/><ellipse cx="240" cy="192" rx="8" ry="9" fill="{K}"/>
   </g>
   <circle cx="160" cy="190" r="31" fill="#eaf4ff" fill-opacity=".22" {fillk} stroke-width="5"/>
   <circle cx="240" cy="190" r="31" fill="#eaf4ff" fill-opacity=".22" {fillk} stroke-width="5"/>
