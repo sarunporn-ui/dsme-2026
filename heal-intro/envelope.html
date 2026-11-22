@@ -4,6 +4,9 @@
 @font-face{font-family:Mali;src:url(fonts/Mali-Bold.ttf);font-weight:700}
 @font-face{font-family:Mali;src:url(fonts/Mali-SemiBold.ttf);font-weight:600}
 @font-face{font-family:Mali;src:url(fonts/Mali-Medium.ttf);font-weight:500}
+@font-face{font-family:merry;src:url(fonts/custom/merry.ttf)}
+@font-face{font-family:sky;src:url(fonts/custom/sky.ttf)}
+@font-face{font-family:skybold;src:url(fonts/custom/skybold.ttf)}
 html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#9fbad6}
 #stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#c3d6ea 0%,#a8c1dc 55%,#8eabca 100%)}
 #grain{position:absolute;inset:0;opacity:.35;mix-blend-mode:soft-light}
@@ -24,12 +27,12 @@ html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#9fbad6
 #paper{position:absolute;inset:0;background:#fffdf8;border-radius:6px;box-shadow:0 10px 26px rgba(40,70,110,.22);overflow:hidden}
 #paper:before{content:"";position:absolute;inset:22px;border:2px dashed #c9d8e7;border-radius:4px}
 #paper:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 47px,rgba(160,190,220,.16) 47px 49px);}
-#dear{position:absolute;left:62px;top:46px;font-family:Mali;font-weight:500;font-size:30px;color:#93abc4}
-#love{position:absolute;right:62px;bottom:40px;font-family:Mali;font-weight:500;font-size:28px;color:#93abc4}
+#dear{position:absolute;left:62px;top:46px;font-family:sky;font-weight:400;font-size:30px;color:#93abc4}
+#love{position:absolute;right:62px;bottom:40px;font-family:sky;font-weight:400;font-size:28px;color:#93abc4}
 #stamp{position:absolute;right:50px;top:40px}
-#title{position:absolute;left:0;right:0;top:78px;text-align:center;font-family:Mali;font-weight:700;font-size:170px;line-height:1.2;z-index:2}
+#title{position:absolute;left:0;right:0;top:78px;text-align:center;font-family:merry;font-weight:400;font-size:170px;line-height:1.2;z-index:2}
 #title span{display:inline-block;padding:40px 40px 20px;background:linear-gradient(180deg,#7fa2c6,#4c6d90);-webkit-background-clip:text;color:transparent}
-#by{position:absolute;left:0;right:0;top:318px;text-align:center;font-family:Mali;font-weight:600;font-size:64px;color:#7393b4;z-index:2}
+#by{position:absolute;left:0;right:0;top:292px;text-align:center;font-family:skybold;font-weight:400;font-size:66px;color:#7393b4;z-index:2}
 #fade{position:absolute;inset:0;background:#eef4fa;opacity:0}
 </style></head>
 <body><div id="stage">
