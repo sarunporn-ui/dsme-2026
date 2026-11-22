@@ -1,0 +1,155 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Mali;src:url(fonts/Mali-Bold.ttf);font-weight:700}
+@font-face{font-family:Mali;src:url(fonts/Mali-SemiBold.ttf);font-weight:600}
+@font-face{font-family:Mali;src:url(fonts/Mali-Medium.ttf);font-weight:500}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#9fbad6}
+#stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#c3d6ea 0%,#a8c1dc 55%,#8eabca 100%)}
+#grain{position:absolute;inset:0;opacity:.35;mix-blend-mode:soft-light}
+#stars,#pearls,#fx{position:absolute;inset:0}
+.abs{position:absolute}
+/* envelope: 900 x 520 */
+#env{left:510px;top:480px;width:900px;height:520px}
+.layer{position:absolute;inset:0}
+#back{background:linear-gradient(180deg,#9fbadb,#b3c9e2);border-radius:10px;filter:drop-shadow(0 22px 30px rgba(40,70,110,.3))}
+#pocketWrap{filter:drop-shadow(0 -3px 6px rgba(60,90,130,.18))}
+#pocket{background:linear-gradient(180deg,#dce8f5,#c9dbee);clip-path:polygon(0 0,50% 54%,100% 0,100% 100%,0 100%);border-radius:10px}
+#pocketLines{pointer-events:none}
+#flapWrap{transform-origin:50% 0;filter:drop-shadow(0 6px 8px rgba(60,90,130,.22))}
+#flap{position:absolute;left:0;top:0;width:900px;height:300px;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,#d3e2f2,#c2d6ec)}
+#seal{z-index:4;left:450px;top:270px;width:92px;height:92px;margin:-46px 0 0 -46px}
+/* letter: 800 x 460 */
+#letter{left:560px;top:520px;width:800px;height:460px;transform-origin:50% 50%}
+#paper{position:absolute;inset:0;background:#fffdf8;border-radius:6px;box-shadow:0 10px 26px rgba(40,70,110,.22);overflow:hidden}
+#paper:before{content:"";position:absolute;inset:22px;border:2px dashed #c9d8e7;border-radius:4px}
+#paper:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 47px,rgba(160,190,220,.16) 47px 49px);}
+#dear{position:absolute;left:62px;top:46px;font-family:Mali;font-weight:500;font-size:30px;color:#93abc4}
+#love{position:absolute;right:62px;bottom:40px;font-family:Mali;font-weight:500;font-size:28px;color:#93abc4}
+#stamp{position:absolute;right:50px;top:40px}
+#title{position:absolute;left:0;right:0;top:78px;text-align:center;font-family:Mali;font-weight:700;font-size:170px;line-height:1.2;z-index:2}
+#title span{display:inline-block;padding:40px 40px 20px;background:linear-gradient(180deg,#7fa2c6,#4c6d90);-webkit-background-clip:text;color:transparent}
+#by{position:absolute;left:0;right:0;top:318px;text-align:center;font-family:Mali;font-weight:600;font-size:64px;color:#7393b4;z-index:2}
+#fade{position:absolute;inset:0;background:#eef4fa;opacity:0}
+</style></head>
+<body><div id="stage">
+<svg id="grain" width="1920" height="1080"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0"/></filter><rect width="1920" height="1080" filter="url(#n)"/></svg>
+<svg id="stars" width="1920" height="1080"></svg>
+<svg id="pearls" width="1920" height="1080"><defs>
+ <radialGradient id="pg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#eef2f6"/><stop offset="1" stop-color="#b9c6d4"/></radialGradient>
+ <radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".25" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+</defs></svg>
+
+<div id="env" class="abs">
+ <div id="back" class="layer"></div>
+</div>
+<div id="letter" class="abs">
+ <div id="paper"></div>
+ <div id="dear">Dear you,</div>
+ <svg id="stamp" width="70" height="70" viewBox="-35 -35 70 70"><path d="M0,14 C-26,-6 -12,-28 0,-12 C12,-28 26,-6 0,14Z" fill="#cfe0f0" stroke="#8fb0d0" stroke-width="2.5"/><path d="M-2,-30 l2,7 7,2 -7,2 -2,7 -2,-7 -7,-2 7,-2z" fill="#fff" transform="translate(22,2)"/></svg>
+ <div id="title"><span>ฮีลใจ</span></div>
+ <div id="by">by book</div>
+ <div id="love">with love ♡</div>
+</div>
+<div id="env2" class="abs" style="left:510px;top:480px;width:900px;height:520px">
+ <div id="pocketWrap" class="layer"><div id="pocket" class="layer"></div></div>
+ <svg id="pocketLines" class="layer" width="900" height="520"><path d="M0,520 L410,300 M900,520 L490,300" stroke="#b3c8df" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M450,281 m-120,95 q120,-40 240,0" stroke="none" fill="none"/></svg>
+ <div id="flapWrap" class="layer"><div id="flap"></div></div>
+ <svg id="seal" class="abs" viewBox="-46 -46 92 92"><circle r="40" fill="#7d9fc4"/><circle r="40" fill="none" stroke="#5f82a8" stroke-width="4" stroke-dasharray="6 5"/><circle r="30" fill="none" stroke="#a9c3df" stroke-width="2"/><path d="M0,14 C-26,-6 -12,-28 0,-12 C12,-28 26,-6 0,14Z" fill="#eaf2fb" transform="translate(0,3)"/></svg>
+</div>
+<svg id="fx" width="1920" height="1080"></svg>
+<div id="fade"></div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+let s=7;const R=()=>(s=(s*16807)%2147483647)/2147483647;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease=x=>{x=clamp(x);return 1-Math.pow(1-x,3)};
+const easeIO=x=>{x=clamp(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const back=x=>{x=clamp(x);const c=1.4;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const prog=(t,a,b)=>clamp((t-a)/(b-a));
+const lerp=(a,b,k)=>a+(b-a)*k;
+
+// stars
+const starG=document.getElementById('stars');const stars=[];
+function starPath(cx,cy,R1,r1,rot){let d='';for(let i=0;i<10;i++){const a=rot+i*Math.PI/5-Math.PI/2,rr=i%2?r1:R1;d+=(i?'L':'M')+(cx+Math.cos(a)*rr).toFixed(1)+','+(cy+Math.sin(a)*rr).toFixed(1)}return d+'Z'}
+for(let i=0;i<75;i++){
+ const x=R()*1920,y=R()*1080;
+ if(Math.abs(x-960)<520&&Math.abs(y-560)<330){i--;continue}
+ const big=R()<.18,sz=big?14+R()*12:4+R()*6,blue=R()<.3;
+ const g=el('g',{},starG);
+ el('path',{d:starPath(0,0,sz,sz*.45,R()),fill:blue?'#6d93c2':'#fff',opacity:blue?.85:.95,'stroke-linejoin':'round',stroke:blue?'#6d93c2':'#fff','stroke-width':sz*.25},g);
+ stars.push({g,x,y,ph:R()*6.28,sp:1.5+R()*2.5,delay:R()*1.2});
+}
+// pearl swirls
+const pearlG=document.getElementById('pearls');const pearls=[];
+function swirl(cx,cy,scale,flip,start){
+ const N=70;for(let i=0;i<N;i++){const u=i/N,a=u*Math.PI*3.4,rad=(1-u*.82)*120*scale;
+  const x=cx+flip*Math.cos(a+1.2)*rad*1.1,y=cy+Math.sin(a+1.2)*rad-u*60*scale;
+  pearls.push({c:el('circle',{cx:x,cy:y,r:(5.5-u*2.2)*scale,fill:'url(#pg)',stroke:'#a9b9ca','stroke-width':.6},pearlG),x,y,t:start+u*1.1});}
+ const N2=26;for(let i=0;i<N2;i++){const u=i/N2,x=cx-flip*(30+u*190)*scale,y=cy+150*scale-Math.sin(u*3.1)*45*scale;
+  pearls.push({c:el('circle',{cx:x,cy:y,r:4.4*scale,fill:'url(#pg)',stroke:'#a9b9ca','stroke-width':.6},pearlG),x,y,t:start+.3+u*.7});}
+}
+swirl(1700,190,1.15,1,.3);swirl(220,860,1.15,-1,.5);
+function heart(x,y,s,p){return el('path',{d:`M${x},${y+s*.35} C${x-s*1.1},${y-s*.4} ${x-s*.45},${y-s*1.05} ${x},${y-s*.45} C${x+s*.45},${y-s*1.05} ${x+s*1.1},${y-s*.4} ${x},${y+s*.35}Z`,fill:'#f4f8fc',stroke:'#c7d5e4','stroke-width':1.2},p)}
+const hearts=[[380,180,16,0],[1560,900,18,0],[1480,120,12,0],[300,560,11,0],[1660,560,13,0]].map(([x,y,s],i)=>({h:heart(x,y,s,pearlG),x,y,t:.8+i*.18}));
+
+// fx
+const fx=document.getElementById('fx');
+const mkGlint=k=>{const g=el('g',{},fx);el('circle',{r:60*k,fill:'url(#glow)'},g);el('path',{d:`M0,${-70*k} L${6*k},${-6*k} L${70*k},0 L${6*k},${6*k} L0,${70*k} L${-6*k},${6*k} L${-70*k},0 L${-6*k},${-6*k}Z`,fill:'#fff'},g);return g};
+const glint=mkGlint(1);
+const twinkles=[[1360,330,.8,3.9],[600,430,.6,4.2],[1330,720,.55,4.45]].map(([x,y,k,t])=>({g:mkGlint(k),x,y,t}));
+// burst sparkles when the letter leaves the envelope
+const burst=[...Array(10)].map((_,i)=>{const g=mkGlint(.22+R()*.2);return {g,a:-Math.PI*(.1+.8*i/9),d:180+R()*160}});
+
+const $=id=>document.getElementById(id);
+const DUR=6.5;
+window.render=function(t){
+ $('stage').style.opacity=ease(t/0.4);
+ stars.forEach(o=>{const a=ease((t-o.delay*.6)/0.6);const tw=.55+.45*Math.sin(t*o.sp+o.ph);
+  o.g.setAttribute('transform',`translate(${o.x},${o.y+Math.sin(t*.8+o.ph)*4}) scale(${a*(.8+.25*tw)}) rotate(${Math.sin(t+o.ph)*8})`);o.g.setAttribute('opacity',a*(.45+.55*tw));});
+ pearls.forEach(p=>{const a=back((t-p.t)/0.35);p.c.setAttribute('transform',`translate(${p.x*(1-a)},${p.y*(1-a)}) scale(${a})`);p.c.setAttribute('opacity',clamp((t-p.t)/0.2))});
+ hearts.forEach(o=>{const a=back((t-o.t)/0.45);o.h.setAttribute('transform',`translate(${o.x},${o.y+Math.sin(t*1.6+o.x)*5}) scale(${a}) translate(${-o.x},${-o.y})`);});
+
+ // 1) envelope enters (0.2-1.1), 5) exits down (2.75-3.45)
+ const ein=back(prog(t,.2,1.1)), eout=easeIO(prog(t,2.75,3.45));
+ const envY=(1-ein)*700+eout*650, envR=(1-ein)*-4+eout*3, envO=ease(prog(t,.2,.5))*(1-prog(t,3.1,3.45));
+ const envT=`translateY(${envY}px) rotate(${envR}deg)`;
+ ['env','env2'].forEach(id=>{$(id).style.transform=envT;$(id).style.opacity=envO});
+ // 2) seal pops (1.05-1.35)
+ const sp=prog(t,1.05,1.35);
+ $('seal').style.transform=`translateY(${-sp*40}px) scale(${1+Math.sin(sp*Math.PI)*.25-sp*.3}) rotate(${sp*-25}deg)`;$('seal').style.opacity=1-ease(prog(t,1.15,1.35));
+ // 3) flap opens (1.25-1.9)
+ const fa=easeIO(prog(t,1.25,1.9))*180;
+ $('flapWrap').style.transform=`perspective(1400px) rotateX(${fa}deg)`;
+ $('flap').style.background=fa>90?'linear-gradient(0deg,#b4cbe5,#a3bedc)':'linear-gradient(180deg,#d3e2f2,#c2d6ec)';
+ // flap goes behind letter once past 90deg: move it into #env (behind letter) — via z-index ordering
+ $('flapWrap').style.zIndex=fa>90?0:3;
+ if(fa>90&&$('flapWrap').parentNode.id!=='env')$('env').appendChild($('flapWrap'));
+ if(fa<=90&&$('flapWrap').parentNode.id!=='env2')$('env2').insertBefore($('flapWrap'),$('seal'));
+ // 4) letter rises out (1.85-2.65), then comes forward to center (2.65-3.5)
+ const up=easeIO(prog(t,1.85,2.65)), fw=back(prog(t,2.65,3.5));
+ const out=t>=2.65;
+ $('letter').style.zIndex=out?5:1;$('env2').style.zIndex=out?2:3;$('env').style.zIndex=0;
+ // inside envelope: follows envelope; rise by -500px (bottom clears pocket top)
+ let ly=envY+lerp(0,-500,up), lr=envR, sc=1;
+ if(out){const y0=-500,yEnd=(540-230)-520; ly=lerp(y0,yEnd,fw)+Math.sin(t*1.3)*4*ease(prog(t,3.5,4.3)); sc=lerp(1,1.3,fw); lr=lerp(0,-1.2,fw)+Math.sin(t*1.1)*.4*ease(prog(t,3.5,4.3));}
+ $('letter').style.transform=`translateY(${ly}px) rotate(${lr}deg) scale(${sc})`;
+ $('letter').style.opacity=ease(prog(t,.2,.5));
+ // burst at exit
+ const bk=prog(t,2.55,3.2);
+ burst.forEach(b=>{const r=ease(bk)*b.d;b.g.setAttribute('transform',`translate(${960+Math.cos(b.a)*r*1.6},${560+Math.sin(b.a)*r}) rotate(${bk*120}) scale(${Math.sin(bk*Math.PI)})`);b.g.setAttribute('opacity',bk>0&&bk<1?1:0)});
+ // 6) text write-on (3.3-4.4)
+ const w=easeIO(prog(t,3.3,4.4))*130-15, m=`linear-gradient(90deg,#000 ${w}%,transparent ${w+15}%)`;
+ $('title').style.webkitMaskImage=m;$('title').style.maskImage=m;
+ $('title').style.filter=`blur(${(1-ease(prog(t,3.3,4.2)))*5}px)`;
+ const b=ease(prog(t,4.1,4.8));
+ $('by').style.opacity=b;$('by').style.transform=`translateY(${(1-b)*20}px)`;$('by').style.letterSpacing=`${(1-b)*12}px`;
+ const g=prog(t,4.25,5.1);
+ glint.setAttribute('transform',`translate(${700+g*560},${430-Math.sin(g*Math.PI)*30}) rotate(${g*90}) scale(${Math.sin(g*Math.PI)*.85})`);glint.setAttribute('opacity',g>0&&g<1?1:0);
+ twinkles.forEach(o=>{const k=prog(t,o.t,o.t+.6);o.g.setAttribute('transform',`translate(${o.x},${o.y}) rotate(${k*60}) scale(${Math.sin(k*Math.PI)})`);o.g.setAttribute('opacity',k>0&&k<1?1:0)});
+ $('fade').style.opacity=ease(prog(t,DUR-.45,DUR));
+};
+render(0);
+</script></body></html>
