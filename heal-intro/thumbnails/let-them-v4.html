@@ -38,7 +38,7 @@ svg.full{position:absolute;inset:0}
   <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.9 2.25" result="ga"/>
   <feComposite in="d" in2="ga" operator="in"/></filter>
 </defs>
-<g id="catRoot" transform="translate(612,432) scale(.68)"><g id="catPop">
+<g id="catRoot" transform="translate(1012,440) scale(.68)"><g id="catPop">
  <ellipse cx="200" cy="440" rx="170" ry="16" fill="#5f7da0" opacity=".22"/>
  <g id="catTail"><path d="M292,415 C350,410 378,360 360,310 C352,288 330,286 334,304 C348,350 330,388 285,392" fill="#bdb4ad" filter="url(#wc)"/>
   <path d="M292,415 C350,410 378,360 360,310 C352,288 330,286 334,304 C348,350 330,388 285,392" fill="none" stroke="#4a3a33" stroke-width="5.0" filter="url(#pencil)"/>
@@ -93,7 +93,7 @@ function star(x,y,r,c,o){let d='';for(let i=0;i<10;i++){const a=i*Math.PI/5-Math
 for(let i=0;i<70;i++){const x=R()*1280,y=R()*720;if(x>60&&x<820&&y>150&&y<560)continue;const big=R()<.18;star(x,y,big?8+R()*7:2.5+R()*4,R()<.3?'#6d93c2':'#fff',.6+R()*.4)}
 function swirl(cx,cy,sc,flip){for(let i=0;i<60;i++){const u=i/60,a=u*Math.PI*3.4,rad=(1-u*.82)*120*sc;el('circle',{cx:cx+flip*Math.cos(a+1.2)*rad*1.1,cy:cy+Math.sin(a+1.2)*rad-u*60*sc,r:(5.5-u*2.2)*sc,fill:'url(#pg)',stroke:'#a9b9ca','stroke-width':.6})}
  for(let i=0;i<22;i++){const u=i/22;el('circle',{cx:cx-flip*(30+u*190)*sc,cy:cy+150*sc-Math.sin(u*3.1)*45*sc,r:4.4*sc,fill:'url(#pg)',stroke:'#a9b9ca','stroke-width':.6})}}
-swirl(1205,640,.55,1);swirl(740,118,.42,-1);
+swirl(905,620,.5,1);swirl(740,118,.42,-1);
 function heart(x,y,s){el('path',{d:`M${x},${y+s*.35} C${x-s*1.1},${y-s*.4} ${x-s*.45},${y-s*1.05} ${x},${y-s*.45} C${x+s*.45},${y-s*1.05} ${x+s*1.1},${y-s*.4} ${x},${y+s*.35}Z`,fill:'#f4f8fc',stroke:'#c7d5e4','stroke-width':1.2})}
 heart(560,70,12);heart(900,600,13);heart(40,470,10);heart(1240,60,11);
 </script></body></html>
