@@ -12,6 +12,8 @@ html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#9fbad6
 #stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#c3d6ea 0%,#a8c1dc 55%,#8eabca 100%)}
 #grain{position:absolute;inset:0;opacity:.35;mix-blend-mode:soft-light}
 #stars,#pearls,#fx{position:absolute;inset:0}
+#fx{z-index:10}
+#fade{z-index:11}
 .abs{position:absolute}
 /* envelope: 900 x 520 */
 #env{left:510px;top:480px;width:900px;height:520px}
@@ -103,12 +105,60 @@ const hearts=[[380,180,16,0],[1560,900,18,0],[1480,120,12,0],[300,560,11,0],[166
 const fx=document.getElementById('fx');
 const mkGlint=k=>{const g=el('g',{},fx);el('circle',{r:60*k,fill:'url(#glow)'},g);el('path',{d:`M0,${-70*k} L${6*k},${-6*k} L${70*k},0 L${6*k},${6*k} L0,${70*k} L${-6*k},${6*k} L${-70*k},0 L${-6*k},${-6*k}Z`,fill:'#fff'},g);return g};
 const glint=mkGlint(1);
-const twinkles=[[1360,330,.8,3.9],[600,430,.6,4.2],[1330,720,.55,4.45]].map(([x,y,k,t])=>({g:mkGlint(k),x,y,t}));
+const twinkles=[[1360,330,.8,5.3],[600,430,.6,5.55],[1330,720,.55,5.8]].map(([x,y,k,t])=>({g:mkGlint(k),x,y,t}));
 // burst sparkles when the letter leaves the envelope
 const burst=[...Array(10)].map((_,i)=>{const g=mkGlint(.22+R()*.2);return {g,a:-Math.PI*(.1+.8*i/9),d:180+R()*160}});
 
+
+// ===== magic star wand =====
+let TR={l:440,w:1040,sl:30,sr:70,cy:430},BR={r:1100,cx:960,cy:690};
+const wandLayer=el('g',{},fx);const trailG=el('g',{},wandLayer);
+const wand=el('g',{},wandLayer);
+(function(){const d=el('defs',{},fx);
+ const lg=el('linearGradient',{id:'stick',x1:0,y1:0,x2:1,y2:0},d);el('stop',{offset:0,'stop-color':'#ffffff'},lg);el('stop',{offset:1,'stop-color':'#a9c3df'},lg);
+ const sg=el('radialGradient',{id:'starG',cx:'40%',cy:'35%',r:'70%'},d);el('stop',{offset:0,'stop-color':'#fffdf0'},sg);el('stop',{offset:.6,'stop-color':'#fbeea0'},sg);el('stop',{offset:1,'stop-color':'#f0d65a'},sg);})();
+const stickG=el('g',{},wand);
+el('rect',{x:-7,y:30,width:14,height:270,rx:7,fill:'url(#stick)',stroke:'#7d9fc4','stroke-width':2},stickG);
+for(let i=0;i<6;i++)el('path',{d:`M-7,${80+i*36} L7,${66+i*36}`,stroke:'#8fb0d0','stroke-width':4,'stroke-linecap':'round'},stickG);
+el('path',{d:'M0,44 C-34,22 -40,62 0,52 C40,62 34,22 0,44Z',fill:'#8fb0d0',stroke:'#6d93c2','stroke-width':2},stickG);
+el('path',{d:'M-2,50 C-16,80 -22,96 -30,112 M2,50 C14,80 24,94 30,110',stroke:'#8fb0d0','stroke-width':5,fill:'none','stroke-linecap':'round'},stickG);
+el('circle',{cx:0,cy:48,r:6,fill:'#6d93c2'},stickG);
+const starHead=el('g',{},wand);
+el('circle',{r:95,fill:'url(#glow)',opacity:.9},starHead);
+const starShape=el('path',{d:starPath(0,0,46,21,0),fill:'url(#starG)',stroke:'#fff','stroke-width':5,'stroke-linejoin':'round'},starHead);
+el('path',{d:'M-14,-12 q6,-8 14,-6',stroke:'#fff','stroke-width':4,fill:'none','stroke-linecap':'round'},starHead);
+const wOf=t=>lerp(TR.sl-15,TR.sr+5,easeIO(prog(t,3.3,4.4)));
+function wandAt(t){
+ const S0={x:1600,y:1300},A={x:TR.l+TR.w*TR.sl/100-30,y:TR.cy},E={x:TR.l+TR.w*TR.sr/100+25,y:TR.cy},B={x:BR.r+26,y:BR.cy-34};
+ if(t<3.3){const k=easeIO(prog(t,2.8,3.3));return {x:lerp(S0.x,A.x,k),y:lerp(S0.y,A.y,k)-Math.sin(k*Math.PI)*160,r:lerp(50,-8,k)}}
+ if(t<4.4){const x=clamp(TR.l+TR.w*(wOf(t)+6)/100,A.x,E.x),ph=(t-3.3)*17;return {x,y:TR.cy+Math.sin(ph)*42,r:-8+Math.sin(ph)*9}}
+ if(t<4.8){const k=easeIO(prog(t,4.4,4.8));return {x:lerp(E.x,B.x,k),y:lerp(E.y,B.y,k)-Math.sin(k*Math.PI)*70,r:lerp(-8,-28,k)}}
+ if(t<5.05){const k=prog(t,4.8,5.05),d=Math.sin(k*Math.PI);return {x:B.x-d*6,y:B.y+d*26,r:-28-d*16}}
+ const k=easeIO(prog(t,5.05,5.6));return {x:lerp(B.x,2100,k),y:lerp(B.y,-220,k)-Math.sin(k*Math.PI)*80,r:lerp(-28,35,k)}
+}
+const wandOn=t=>t>=2.8&&t<=5.6;
+// sparkle trail (deterministic particle pool)
+const T0=2.85,T1=5.55,NP=170,LIFE=.85,sparkCols=['#f4d54e','#ffe98a','#8fb0d0','#f4d54e','#b9cfe6'];
+const parts=[...Array(NP)].map((_,k)=>{const tb=T0+(T1-T0)*k/NP,type=R()<.55,sz=type?5+R()*9:2.5+R()*4;
+ const g=el('g',{},trailG);
+ if(type)el('path',{d:`M0,${-sz*2} L${sz*.35},${-sz*.35} L${sz*2},0 L${sz*.35},${sz*.35} L0,${sz*2} L${-sz*.35},${sz*.35} L${-sz*2},0 L${-sz*.35},${-sz*.35}Z`,fill:sparkCols[k%5]},g);
+ else el('circle',{r:sz,fill:sparkCols[(k+2)%5]},g);
+ return {g,tb,vx:(R()-.5)*120,vy:30+R()*110,ox:(R()-.5)*30,oy:(R()-.5)*30,sp:(R()-.5)*360}});
+// tap burst around "by book"
+const tapBurst=[...Array(14)].map((_,i)=>({g:mkGlint(.16+R()*.18),a:i/14*Math.PI*2+R()*.3,d:110+R()*120}));
+function drawWand(t){
+ const on=wandOn(t);wand.setAttribute('opacity',on?1:0);
+ if(on){const p=wandAt(t);wand.setAttribute('transform',`translate(${p.x},${p.y}) rotate(${-35+p.r})`);
+  starHead.setAttribute('transform',`rotate(${35-p.r}) scale(${1+.08*Math.sin(t*14)})`);starShape.setAttribute('transform',`rotate(${t*90})`);}
+ parts.forEach(q=>{const age=t-q.tb;if(age<0||age>LIFE){q.g.setAttribute('opacity',0);return}
+  const p=wandAt(q.tb),k=age/LIFE;
+  q.g.setAttribute('transform',`translate(${p.x+q.ox+q.vx*age},${p.y+q.oy+q.vy*age+60*age*age}) rotate(${q.sp*age}) scale(${Math.sin(Math.min(1,k*4)*Math.PI/2)*(1-k*.6)})`);
+  q.g.setAttribute('opacity',1-k*k);});
+ const bk=prog(t,4.85,5.55);
+ tapBurst.forEach(b=>{const r=ease(bk)*b.d;b.g.setAttribute('transform',`translate(${BR.cx+Math.cos(b.a)*r*1.5},${BR.cy+Math.sin(b.a)*r*.8}) rotate(${bk*140}) scale(${Math.sin(bk*Math.PI)})`);b.g.setAttribute('opacity',bk>0&&bk<1?1:0)});
+}
 const $=id=>document.getElementById(id);
-const DUR=6.5;
+const DUR=7;
 window.render=function(t){
  $('stage').style.opacity=ease(t/0.4);
  stars.forEach(o=>{const a=ease((t-o.delay*.6)/0.6);const tw=.55+.45*Math.sin(t*o.sp+o.ph);
@@ -145,15 +195,17 @@ window.render=function(t){
  const bk=prog(t,2.55,3.2);
  burst.forEach(b=>{const r=ease(bk)*b.d;b.g.setAttribute('transform',`translate(${960+Math.cos(b.a)*r*1.6},${560+Math.sin(b.a)*r}) rotate(${bk*120}) scale(${Math.sin(bk*Math.PI)})`);b.g.setAttribute('opacity',bk>0&&bk<1?1:0)});
  // 6) text write-on (3.3-4.4)
- const w=easeIO(prog(t,3.3,4.4))*130-15, m=`linear-gradient(90deg,#000 ${w}%,transparent ${w+15}%)`;
+ const w=t<3.3?-20:wOf(t), m=`linear-gradient(90deg,#000 ${w}%,transparent ${w+15}%)`;
  $('title').style.webkitMaskImage=m;$('title').style.maskImage=m;
  $('title').style.filter=`blur(${(1-ease(prog(t,3.3,4.2)))*5}px)`;
- const b=ease(prog(t,4.1,4.8));
- $('by').style.opacity=b;$('by').style.transform=`translateY(${(1-b)*20}px)`;$('by').style.letterSpacing=`${(1-b)*12}px`;
- const g=prog(t,4.25,5.1);
+ const b=ease(prog(t,4.85,5.35)),bp=back(prog(t,4.85,5.35));
+ $('by').style.opacity=b;$('by').style.transform=`scale(${.6+.4*bp})`;$('by').style.letterSpacing=`${(1-b)*12}px`;
+ const g=prog(t,5.6,6.4);
  glint.setAttribute('transform',`translate(${700+g*560},${430-Math.sin(g*Math.PI)*30}) rotate(${g*90}) scale(${Math.sin(g*Math.PI)*.85})`);glint.setAttribute('opacity',g>0&&g<1?1:0);
  twinkles.forEach(o=>{const k=prog(t,o.t,o.t+.6);o.g.setAttribute('transform',`translate(${o.x},${o.y}) rotate(${k*60}) scale(${Math.sin(k*Math.PI)})`);o.g.setAttribute('opacity',k>0&&k<1?1:0)});
+ drawWand(t);
  $('fade').style.opacity=ease(prog(t,DUR-.45,DUR));
 };
+(function(){render(6.2);const r=$('title').getBoundingClientRect(),sp=$('title').querySelector('span').getBoundingClientRect();const rg=document.createRange();rg.selectNodeContents($('by'));const b=rg.getBoundingClientRect();TR={l:r.left,w:r.width,sl:(sp.left+50-r.left)/r.width*100,sr:(sp.right-50-r.left)/r.width*100,cy:sp.top+sp.height*.6};BR={r:b.right,cx:b.left+b.width/2,cy:b.top+b.height/2};})();
 render(0);
 </script></body></html>
